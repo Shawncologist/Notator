@@ -11,6 +11,8 @@
   <script src="https://kit.fontawesome.com/8e9d7e365b.js" crossorigin"anonymous"></script>
   <!-- jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap date picker -->
+
   <style>
     body {
       padding: 60px;
@@ -227,7 +229,7 @@
               </div>
               <div class="col-6">
                 <!-- Loyalty fields -->
-                <div class="input-group g-3" id="cancel-type">
+                <div class="input-group g-3 temporary" id="cancel-type">
                   <div class="input-group-text"><i class="fas fa-frown-open fa-icon"></i></div>
                   <select class="form-select" aria-label="Default select example">
                     <option selected>Cancellation Type</option>
@@ -238,7 +240,7 @@
                   </select>
                 </div>
                 <!-- tech fields -->
-                <div class="input-group g-3" id="tech-type">
+                <div class="input-group g-3 temporary" id="tech-type">
                   <div class="input-group-text"><i class="fas fa-cogs fa-icon"></i></div>
                   <select class="form-select" aria-label="Default select example">
                     <option selected>Tech question</option>
@@ -249,6 +251,11 @@
                   </select>
                 </div>
               </div>
+                <!-- Treatment -->
+
+
+                <!-- end of form, leave it -->
+
             </div>
           </div>
 
@@ -326,6 +333,7 @@
       var cxProblem = document.getElementById("inputProblem").value;
       var cxAction = document.getElementById("inputAction").value;
       var callType = document.getElementById("special-topic").value;
+      // var cxTreatment = document.getElementById("inputTreatment").value;
 
       var output = 'Problem: ' + cxProblem + "\n\n";
       output += 'Name: ' + cxName + "\n";
@@ -333,9 +341,12 @@
       output += 'Verification: ' + cxVerify + "\n\n";
       output += 'Action: ' + cxAction + "\n\n";
       output += 'Contact ID: ' + contactId + "\n";
-      if (callType === "Loyalty" || callType === "Tech") {
-      output += 'Call Type: ' + callType + "\n";
-    }
+      if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment") {
+        output += 'Call Type: ' + callType + "\n";
+      }
+      if (callType === "Treatment") {
+        output += 'Will pay: $' + cxTreatment + "\n";
+      }
 
       document.getElementById('casOutput').value = output;
       navigator.clipboard.writeText(output);
@@ -350,6 +361,7 @@
     // reset button
     function resetForm() {
       document.getElementById("notatorForm").reset();
+      $('.temporary').hide();
     }
 
     // Loyalty CA form display, or not
@@ -357,15 +369,31 @@
       if ($(this).val() == "Loyalty") {
         $('#cancel-type').show();
         $('#tech-type').hide();
+        $('#treatment').hide();
       } else if ($(this).val() == "Tech") {
         $('#cancel-type').hide();
         $('#tech-type').show();
+        $('#treatment').hide();
+      } else if ($(this).val() == "Treatment") {
+        $('#cancel-type').hide();
+        $('#tech-type').hide();
+        $('#treatment').show();
       } else {
         $('#cancel-type').hide();
         $('#tech-type').hide();
+        $('#treatment').hide();
       }
     });
     $("#special-topic").trigger("change");
+
+    // date picker
+
+
+
+
+
+
+
   </script>
 </body>
 
