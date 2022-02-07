@@ -1,0 +1,3459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Notator CAS</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+    /* https://atgbcentral.com/data/out/196/5722784-holiday-background.jpg */
+
+    :root {
+      --main: #0B1235;
+      --text-color: white;
+      --title: white;
+      --navItem: white;
+      --navHover: white;
+      --dropdown: #0F154C;
+      --input-text: white;
+
+      --x: #5ED5FA;
+      --ham1: #EA6996;
+      --ham2: #FFB121;
+      --ham3: #56E97C;
+
+      --input: #0B1235;
+      --borders: #EA6996;
+
+      --btn: #0B1235;
+      --btn-border: white;
+      --btn-text: white;
+      --btn-hov: #EA6996;
+      --btn-text-hov: #EA6996;
+
+      --sideNav: #080D28;
+      --cats-background: #0F154C;
+      --sideNav-text: #5ED5FA;
+      --cats-hov: #0F154C;
+      /* #0F154C; */
+      --hov-nav-text: #2D4CD8;
+      /* #1D3187 */
+
+      --color1: #5ED5FA;
+      /*blue*/
+      --color2: #56E97C;
+      /*green*/
+      --color3: #FFB121;
+      /*orange #F5B63F*/
+      --color4: #EA6996;
+      /*pink*/
+
+      --border1: #5ED5FA;
+      /*blue*/
+      --border2: #56E97C;
+      /*green*/
+      --border3: #FFB121;
+      /*orange #F5B63F*/
+      --border4: #EA6996;
+      /*pink*/
+
+      --nav1: #5ED5FA;
+      /*blue*/
+      --nav2: #56E97C;
+      /*green*/
+      --nav3: #FFB121;
+      /*orange #F5B63F*/
+      --nav4: #EA6996;
+      /*pink*/
+
+      --image: ;
+    }
+
+
+    #body {
+      font: 18px/30px 'Roboto', sans-serif;
+      color: var(--text-color);
+      transition: 1s;
+      transition-delay: 0.5s;
+      background-color: var(--main);
+      background-image: var(--image);
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 50px 1fr;
+      grid-template-areas:
+        "head head"
+        "page page";
+    }
+
+    /* Body with sideNav */
+    .body {
+      margin-right: 270px;
+      transition-delay: 2s;
+      transition: 2s;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white;
+      font-size: 12px;
+      font-style: italic;
+      opacity: 0.7;
+      padding-left: 5px;
+      font-family: var(--font);
+    }
+
+    .input,
+    .comment {
+      background-color: var(--input);
+      border-radius: 10px;
+      color: var(--input-text);
+      font: 15px/18px 'Lato', sans-serif;
+      padding: 10px;
+    }
+
+    .input:focus,
+    .drop:focus,
+    .comment:focus,
+    button:focus {
+      border: 3px solid white;
+      outline: 0;
+    }
+
+    .drop {
+      -webkit-appearance: none;
+      border-radius: 10px;
+      background-color: var(--input);
+      padding: 5px;
+      color: var(--input-text);
+      text-align-last: right;
+      font: 15px/18px 'Lato', sans-serif;
+    }
+
+    .color1 {
+      border: 3px solid var(--border1);
+    }
+
+    .color2 {
+      border: 3px solid var(--border2);
+    }
+
+    .color3 {
+      border: 3px solid var(--border3);
+    }
+
+    .color4 {
+      border: 3px solid var(--border4);
+    }
+
+    /******************** BUTTONS **************************/
+
+    button {
+      cursor: pointer;
+      background-color: var(--btn);
+      font: 16px 'Roboto', sans-serif;
+      border: 3px solid var(--btn-border);
+      border-radius: 25px;
+      color: var(--btn-text);
+      padding: 10px
+    }
+
+    button:hover {
+      border: 4px solid var(--btn-hov);
+      color: var(--btn-text-hov);
+    }
+
+    .ptpButt,
+    .vacaButt,
+    .loyalButt,
+    .techButt {
+      display: none;
+    }
+
+
+    /**********************NAV BAR*****************/
+
+    #header {
+      color: white;
+      grid-area: head;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #vQs {
+      color: var(--color1);
+    }
+
+    #calcHead {
+      color: var(--color2);
+    }
+
+    #histHead {
+      color: var(--color3);
+    }
+
+    #themeHead {
+      color: var(--color4);
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .navItem {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .navItem:hover,
+    .title:hover {
+      cursor: pointer;
+      border-bottom: 4px solid var(--navHover);
+    }
+
+    .dropDown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropDown:hover {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    .dropDown:hover #title,
+    .dropDown:hover {
+      border-bottom: 4px solid var(--navHover);
+    }
+
+    .title {
+      cursor: pointer;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      color: var(--title);
+      font: 22px/20px 'Roboto', sans-serif;
+      font-weight: 900;
+    }
+
+    .dropContent {
+      display: none;
+      padding: 0;
+      color: white;
+      border-radius: 0 0 10px 10px;
+      padding: 12px 16px;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    .dropContent a {
+      color: white;
+      margin: 0;
+      text-decoration: none;
+      padding: 0;
+      display: block;
+      z-index: 100;
+    }
+
+    .dropContent a:hover {
+      color: var(--green);
+    }
+
+    .dropDown:hover .dropContent {
+      display: block;
+      background-color: var(--dropdown);
+    }
+
+    #navItems {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #navItems p {
+      padding-left: 10px;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+
+    #navButt {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+
+    #ham1,
+    #ham2,
+    #ham3 {
+      width: 50px;
+      height: 3px;
+      margin: 3px 0;
+      border-radius: 25px;
+    }
+
+    .x {
+      display: none;
+      position: relative;
+      bottom: 30px;
+      margin: 20px 0;
+      font-size: 35px;
+      border-radius: 25px;
+      font: bold 30px/20px 'Quicksand', sans-serif;
+      color: var(--x);
+      transition: 0.2s;
+      transition-delay: 0.3s;
+      -webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    }
+
+    .xAfter {}
+
+    .hanimation1 {
+      -webkit-animation: slide-out-top 0.1s ease-in-out 0.1s both;
+      animation: slide-out-top 0.1s ease-in-out 0.1s both;
+    }
+
+    .hanimation2 {
+      background-color: white;
+      -webkit-animation: slide-out-top 0.5s ease-in-out 0.1s both;
+      animation: slide-out-top 0.5s ease-in-out 0.1s both;
+    }
+
+    .hanimation3 {
+      -webkit-animation: slide-out-top 1s ease-in-out 0.2s both;
+      animation: slide-out-top 1s ease-in-out 0.2s both;
+    }
+
+    #ham1 {
+      background-color: var(--ham1);
+    }
+
+    #ham2 {
+      background-color: var(--ham2);
+    }
+
+    #ham3 {
+      background-color: var(--ham3);
+    }
+
+    #navButt:hover #ham1 {
+      width: 20px;
+    }
+
+    #navButt:hover #ham2 {
+      width: 35px;
+    }
+
+    #navButt:hover #ham3 {
+      width: 45px;
+    }
+
+    /* hAnimations */
+
+    @-webkit-keyframes slide-out-top {
+      0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes slide-out-top {
+      0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      100% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+      }
+    }
+
+    /* THE X ANIMATION */
+
+    @-webkit-keyframes slide-in-top {
+      0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+      }
+
+      100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slide-in-top {
+      0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+      }
+
+      100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /****************CUSTOMER CARE *********************/
+
+    #care,
+    #retail,
+    #history,
+    #port {
+      grid-area: page;
+      display: flex;
+      flex-direction: column;
+      margin: 25px;
+    }
+
+
+    /************ AREA ONE **********/
+
+    .form {
+      display: grid;
+      grid-area: form;
+      grid-gap: 2%;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "one two"
+        "one two";
+    }
+
+    #area1 {
+      grid-area: one;
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-column-gap: 2%;
+    }
+
+    #area2 {
+      grid-area: two;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #btnGroup {
+      grid-area: btn;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+
+
+    #nameL {
+      grid-area: 3 / 1 / 3 / 3;
+    }
+
+    #name {
+      grid-area: 4 / 1 / 4 / 3;
+      height: 2px;
+    }
+
+    #num {
+      height: 8px;
+    }
+
+    #pin {
+      height: 35px;
+    }
+
+    #genReset,
+    #ptpReset,
+    #vacaReset,
+    #loyalReset,
+    #techReset {
+      margin-left: 70px;
+    }
+
+    /********* GENERAL FORM *********/
+
+    #gen {
+      display: grid;
+      grid-area: 7/ 1 / 7 / 3;
+    }
+
+    #probL {
+      grid-area: 1 / 1 / 1 / 3;
+    }
+
+    #prob {
+      grid-area: 2 / 1 / 2 / 3;
+      padding-left: 10px;
+    }
+
+    #actL {
+      grid-area: 3 / 1 / 3 / 3;
+    }
+
+    #act {
+      grid-area: 4 / 1 / 4 / 3;
+      height: 100px;
+    }
+
+    /************** PTP FORM *************/
+
+    #ptp {
+      display: grid;
+      grid-gap: 5px;
+      grid-area: 7/ 1 / 7 / 3;
+      grid-template-columns: 33% 33% 33%;
+    }
+
+    #detsL {
+      grid-area: 3 / 1 / 3 / 4;
+    }
+
+    #dets {
+      grid-area: 4 / 1 / 4 / 4;
+      height: 80px;
+    }
+
+    #ptpChecks {
+      grid-area: 5 / 1 / 5 / 4;
+      display: grid;
+      grid-template-columns: repeat(3, 5% 1fr);
+    }
+
+    /************ VACATION SUSPEND *******/
+
+    #vaca {
+      display: grid;
+      grid-gap: 5px;
+      grid-area: 7/ 1 / 7 / 3;
+      grid-template-columns: 33% 33% 33%;
+    }
+
+    #detsLVaca {
+      grid-area: 3 / 1 / 3 / 4;
+    }
+
+    #vacaDets {
+      grid-area: 4 / 1 / 4 / 4;
+      height: 150px;
+    }
+
+    #vacaChecks {
+      grid-area: 5 / 1 / 5 / 4;
+      display: grid;
+      grid-template-columns: 5% 1fr 5% 1fr;
+    }
+
+    /***********TECH SUPPORT **********/
+
+    #tech {
+      display: grid;
+      grid-gap: 5px;
+      grid-template-columns: 1fr 1fr;
+      grid-area: 7 / 1 / 7 / 3;
+    }
+
+    #probTechL {
+      grid-area: 1 / 1 / 1 / 3;
+    }
+
+    #techProb {
+      grid-area: 2 / 1 / 2 / 3;
+      height: 15px;
+    }
+
+    #comTechL {
+      grid-area: 3 / 1 / 3 / 3;
+    }
+
+
+    #techCom {
+      grid-area: 4 / 1 / 4 / 3;
+      height: 70px;
+    }
+
+    #techChecks {
+      grid-area: 7 / 1 / 7 / 3;
+      display: grid;
+      grid-template-columns: 5% 1fr 5% 1fr;
+    }
+
+    /***********LOYALTY ***************/
+
+    #loyal {
+      display: grid;
+      grid-gap: 5px;
+      grid-template-columns: 1fr 1fr;
+      grid-area: 7 / 1 / 7 / 3;
+    }
+
+    #cancelDropL {
+      visibility: hidden;
+    }
+
+    #cancelDrop {
+      visibility: hidden;
+    }
+
+    #offDetsL {
+      grid-area: 3 / 1 / 3 / 3;
+    }
+
+    #offer {
+      grid-area: 4 / 1 / 4 / 3;
+    }
+
+    #comLoyL {
+      grid-area: 5 / 1 / 5 / 3;
+    }
+
+    #cancelCom {
+      grid-area: 6 / 1 / 6 / 3;
+    }
+
+    #loyalNest {
+      grid-area: 7 / 1 / 7 / 3;
+      display: grid;
+      grid-gap: 5px;
+      grid-template-columns: repeat(3, 33%);
+    }
+
+    #loyalChecks {
+      grid-area: 8 / 1 / 8 / 3;
+      display: grid;
+      grid-template-columns: 7% 1fr;
+    }
+
+    #myTab {
+      height: 5px;
+      visibility: hidden;
+    }
+
+    #myTabL {
+      visibility: hidden;
+    }
+
+    #portCheck {
+      visibility: hidden;
+    }
+
+    #portCheckL {
+      visibility: hidden;
+    }
+
+    #notesL {
+      grid-area: 1 / 1 / 1 / 4;
+    }
+
+    #output {
+      grid-area: 2 / 1 / 2 / 4;
+      height: 430px;
+    }
+
+    /*********** SIDE NAV *************/
+
+    .sideNav {
+      height: 100%;
+      position: fixed;
+      z-index: 10;
+      width: 0;
+      top: 0;
+      right: 0;
+      background-color: var(--sideNav);
+      overflow-x: hidden;
+      transition: 1s;
+      transition-delay: 0.5s;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .sideNav2 {
+      height: 100%;
+      position: fixed;
+      z-index: 10;
+      width: 260px;
+      top: 0;
+      right: 0;
+      background-color: var(--sideNav);
+      overflow-x: hidden;
+      transition: 1s;
+      transition-delay: 0.5s;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .navInput {
+      width: 40px;
+      border: 0;
+      background-color: #0F154C;
+      color: white;
+    }
+
+    .navInput:focus {
+      outline: none;
+    }
+
+    #navButt {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #tag {
+      color: var(--nav4);
+    }
+
+
+    #predefined {
+      color: var(--nav3);
+    }
+
+    #ptpNav {
+      color: var(--nav2);
+    }
+
+    #vacaNav {
+      color: var(--nav1);
+    }
+
+    #loyalNav {
+      color: var(--nav4);
+    }
+
+    #techNav {
+      color: var(--nav2);
+    }
+
+    /* CATEGORIES IN SIDE NAV */
+
+    .cats {
+      font-size: 15px;
+      padding: 20px;
+      margin: 0;
+      font: 16px/10px 'Roboto', sans-serif;
+    }
+
+    .cats:hover {
+      background-color: var(--cats-hov);
+      cursor: pointer;
+    }
+
+    /* GROUPED VERBATIMS */
+
+    .catsOptsDiv {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* EACH INDIVIDUAL VERBATIM */
+
+    .catsOpts,
+    .tags,
+    .quote {
+      background-color: var(--cats-background);
+      cursor: pointer;
+      color: var(--color1);
+      padding: 15px;
+      margin: 0;
+      transition: all 0.5s ease-in-out;
+      font: 14px/15px 'Lato', sans-serif;
+    }
+
+    /* Hide Quote */
+
+    .quote {
+      display: none;
+    }
+
+    .catsOpts:hover,
+    .quote:hover,
+    .tags:hover {
+      background-color: var(--hov-nav-text);
+      padding-left: 20px;
+    }
+
+    .catsOpts:hover .quote {
+      background-color: var(--hov-nav-text);
+      padding-left: 20px;
+    }
+
+    #tag1,
+    #tag2,
+    #tag3,
+    #tag4,
+    #tag5,
+    #tag6,
+    #tag7,
+    #tag8,
+    #tag9,
+    #tag10 {
+      font: 14px/10px 'Lato', sans-serif;
+    }
+
+    #pre1,
+    #ptp1,
+    #vaca1,
+    #loyal1 {
+      display: none;
+      animation: slide-in-left 0.2s ease-in both;
+    }
+
+    #pre2,
+    #ptp2,
+    #vaca2,
+    #loyal2 {
+      display: none;
+      animation: slide-in-left 0.4s ease-in both;
+    }
+
+    #pre3,
+    #ptp3,
+    #vaca3,
+    #loyal3 {
+      display: none;
+      animation: slide-in-left 0.6s ease-in both;
+    }
+
+    #pre4,
+    #vaca4,
+    #loyal4 {
+      display: none;
+      animation: slide-in-left 0.8s ease-in both;
+    }
+
+    #pre5,
+    #vaca5 {
+      display: none;
+      animation: slide-in-left 1s ease-in both;
+    }
+
+
+    #tag1,
+    #tech1 {
+      display: none;
+      animation: slide-in-left 0.1s ease-in both;
+    }
+
+    #tag2,
+    #tech2 {
+      display: none;
+      animation: slide-in-left 0.15s ease-in both;
+    }
+
+    #tag3,
+    #tech3 {
+      display: none;
+      animation: slide-in-left 0.3s ease-in both;
+    }
+
+    #tag4,
+    #tech4 {
+      display: none;
+      animation: slide-in-left 0.25s ease-in both;
+    }
+
+    #tag5,
+    #tech5 {
+      display: none;
+      animation: slide-in-left 0.3s ease-in both;
+    }
+
+    #tag6,
+    #tech6 {
+      display: none;
+      animation: slide-in-left 0.35s ease-in both;
+    }
+
+    #tag7,
+    #tech7 {
+      display: none;
+      animation: slide-in-left 0.45s ease-in both;
+    }
+
+    #tag8,
+    #tech8 {
+      display: none;
+      animation: slide-in-left 0.5s ease-in both;
+    }
+
+    #tag9 {
+      display: none;
+      animation: slide-in-left 0.55s ease-in both;
+    }
+
+    #tag10 {
+      display: none;
+      animation: slide-in-left 0.6s ease-in both;
+    }
+
+    /* Tags special checks */
+
+    #tagOpts {
+      display: grid;
+      background-color: #0F154C;
+      cursor: pointer;
+      color: var(--color1);
+    }
+
+    .tags input {
+      display: none;
+    }
+
+    .checkmark {
+      width: 500px;
+      cursor: pointer;
+    }
+
+
+    @keyframes slide-in-left {
+      0% {
+        -webkit-transform: translateX(-1000px);
+        transform: translateX(-1000px);
+        opacity: 0;
+      }
+
+      100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /**********************CALCULATOR***************************/
+    #calc {
+      margin: 25px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 50px;
+    }
+
+    #prepaid,
+    #ratePlan {
+      display: grid;
+      grid-gap: 5px;
+    }
+
+    .calcTitle {
+      font-size: 18px;
+      color: var(--green);
+    }
+
+    #calc label {
+      font-size: 14px;
+      padding-top: 10px;
+    }
+
+    #calc button {
+
+    }
+
+    /**********HISTORY********************/
+
+    #history {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .hist {
+      border: 3px solid var(--color2);
+      border-radius: 25px;
+      padding: 10px;
+      margin: 10px;
+      outline: 0;
+      background-color: var(--main);
+      color: var(--text-color);
+      height: 500px;
+      width: 300px;
+      white-space: pre-wrap;
+      overflow: auto;
+    }
+
+    .newCheck {
+      border-radius: 25px;
+      outline: 0;
+      padding: 5px;
+      background-color: var(--main);
+      border: 3px solid var(--color4);
+      color: white;
+      white-space: pre-wrap;
+    }
+
+    .histCheck {
+      display: none;
+    }
+
+    .container:hover input~.newCheck {
+      background-color: #0f154c;
+      cursor: pointer;
+    }
+
+    .container input:checked~.newCheck {
+      background-color: red;
+    }
+
+
+    /**********************RETAIL SUPPORT ***************************/
+    #retail {
+      margin: 25px;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-areas:
+        "retForm retForm"
+        ". retBtn";
+    }
+
+    #retailForm {
+
+
+      grid-gap: 2%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-area: retForm;
+      grid-template-areas:
+        "ret1 ret2";
+
+    }
+
+
+    #retail1 {
+
+      display: grid;
+      grid-area: ret1;
+      grid-column-gap: 2%;
+
+    }
+
+    #retail2 {
+
+      display: flex;
+      flex-direction: column;
+      grid-area: ret2;
+
+    }
+
+
+    #retailNotes {
+
+      height: 430px;
+
+    }
+
+    #retBtn {
+
+      grid-area: retBtn;
+      display: flex;
+      justify-content: flex-end;
+
+    }
+
+    #retailReset {
+
+      margin-left: 70px;
+
+    }
+
+    #cfaL {
+
+
+      grid-area: 1 / 1 / 1 / 3;
+
+
+    }
+
+
+    #cfa {
+
+      grid-area: 2 / 1 / 2 / 3;
+      height: 3px;
+
+    }
+
+    #storeL {
+
+      grid-area: 3 / 1 / 3 / 3;
+
+    }
+
+    #store {
+
+      grid-area: 4 / 1 / 4 / 3;
+      height: 3px;
+
+    }
+
+    #retailNum {
+
+      grid-area: 6 / 1 / 6 / 2;
+      height: 3px;
+
+
+    }
+
+    #retailPin {
+
+      grid-area: 6 / 2 / 6 / 3;
+      height: 30px;
+
+
+    }
+
+    #retailNameL {
+
+      grid-area: 7 / 1 / 7 / 3;
+
+
+    }
+
+    #retailName {
+
+      grid-area: 8 / 1 / 8 / 3;
+      height: 3px;
+
+    }
+
+    #requestL {
+
+      grid-area: 9 / 1 / 9 / 3;
+
+    }
+
+    #request {
+
+      grid-area: 10 / 1 / 10 / 3;
+      height: 20px;
+
+    }
+
+    #retailActL {
+
+      grid-area: 11 / 1 / 11 / 3;
+
+    }
+
+    #retailAct {
+
+      grid-area: 12 / 1 / 12 / 3;
+      height: 100px;
+
+
+
+    }
+
+    /**************************PORTING ************************/
+
+    #port {
+
+      display: grid;
+      margin: 25px;
+      grid-gap: 10px;
+      grid-template-areas:
+        "pForm pForm"
+        ". pBtn";
+
+
+    }
+
+    #portForm {
+
+
+      display: grid;
+      grid-area: pForm;
+      grid-gap: 2%;
+      grid-template-areas:
+        "port1 port2";
+
+    }
+
+    #portBtn {
+
+      grid-area: pBtn;
+      display: flex;
+      justify-content: flex-end;
+
+    }
+
+    #port1 {
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 5px;
+      grid-area: port1;
+      grid-column-gap: 2%;
+
+    }
+
+    #port2 {
+
+      display: flex;
+      flex-direction: column;
+      grid-area: port2;
+
+    }
+
+    #carrierL {
+
+      grid-area: 5 / 1 / 5 / 3;
+
+    }
+
+
+    #carrier {
+
+      grid-area: 6 / 1 / 6 / 3;
+
+    }
+
+    #namePortL {
+
+      grid-area: 7 / 1 / 7 / 3;
+
+    }
+
+    #namePort {
+
+      grid-area: 8 / 1 / 8 / 3;
+
+    }
+
+    #addressL {
+
+      grid-area: 9 / 1 / 9 / 3;
+
+    }
+
+    #address {
+
+      grid-area: 10 / 1 / 10 / 3;
+
+    }
+
+    #accountNumL {
+
+      grid-area: 11 / 1 / 11 / 3;
+
+    }
+
+    #accountNum {
+
+      grid-area: 12 / 1 / 12 / 3;
+
+    }
+
+    #portNotes {
+
+      height: 430px;
+
+    }
+
+
+    #portReset {
+
+      margin-left: 70px;
+
+    }
+  </style>
+</head>
+
+<body id="body">
+
+  <div id="header">
+
+    <div id="navItems">
+
+      <div class="dropDown">
+        <p id="titleCare" class="title"> Customer Care </p>
+        <p id="titleRetail" class="title" style="display:none"> Retail Support </p>
+        <p id="titlePort" class="title" style="display:none"> Porting </p>
+        <div class=dropContent>
+          <a id="careLink" href="#">Customer Care</a>
+          <a id="retailLink" href="#"> Retail Support</a>
+          <a id="portLink" href="#">Porting</a>
+        </div>
+      </div>
+
+      <p id="vQs" class="navItem"> Verification </p>
+
+      <p id="calcHead" class="navItem"> Calculator</p>
+      <p id="histHead" class="navItem"> History</p>
+      <div class="dropDown">
+        <p id="themeHead" class="navItem"> Theme</p>
+        <div class=dropContent>
+          <a href="#"></a>
+          <a href="#" class="themes" id="theme1">Lime </a>
+          <a href="#" class="themes" id="theme3">Grape </a>
+          <a href="#" class="themes" id="theme2">Nightmode</a>
+          <a href="#" id="xmas">Seasonal</a> <!-- did not add a theme class, because this theme will have emojis -->
+          <a href="#" class="themes" id="default"> Default </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="navButt">
+
+      <div id="ham1" class="ham"></div>
+      <div id="ham2" class="ham"></div>
+      <div id="ham3" class="ham"></div>
+
+      <div id="closeNav">
+
+        <div class="x"> x </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- *****************VERIFICATION *********************-->
+  <div class="page" id="verificationPage" style="display: none">
+
+    <h2> Verification Questions </h2>
+
+    <div id="vRules">
+
+      <p> Customers need to answer 3 out of 4 questions correctly. </p>
+      <p> Always ask all 4 questions, even if the customer has passed or failed before you have finished. </p>
+      <p> Never give the customer any indication of what questions they answered correctly/incorrectly. </p>
+
+    </div>
+
+    <div id="vQues">
+
+      Q1. What is the IMEI associated with the device you are using? <br> Q2. What is the current make & model of the phone associated with your mytab? <br> Q3. What email address do you have listed on your account?
+      <br> Q4. How much was your Last Payment or Top-up? (+/- $5)
+      <br> Q5. When was the last payment made to Freedom Mobile? (+/- 2 days)
+      <br> Q6. What are the last 4 digits of the credit card setup on Auto Pay? (May not apply)
+      <br> Q7. What is the alternate contact number listed on your account? (May not apply)
+      <br> Q8. What is your current monthly plan fee?
+      <br> Q9. What was the last number you called before calling Customer Care?
+
+    </div>
+
+  </div>
+  <!-- **********************CALCULATOR ******************-->
+  <div class="page" id="calc" style="display:none">
+    <div id="prepaid">
+      <p class="calcTitle"> Prepaid Proration </p>
+
+      <label> Days until next top-up date? </label>
+
+      <select class="drop color4" id="period">
+        <option value="" disabled selected>&#9660; &nbsp;</option>
+        <option value='1'> 1 to 10 days </option>
+        <option value='2'> 11 to 20 days </option>
+        <option value='3'> 21 to 30 days </option>
+      </select>
+
+      <label> Enter Rate Plan Price </label>
+
+      <input class="input color1" id="rate">
+
+      <label>Total Payment Due</label>
+
+      <textarea class="input color2" id="pay" readonly></textarea>
+
+      <button id="calcR" class="btn-group" onclick="topUp()">Calculate</button>
+    </div>
+    <div id="ratePlan">
+      <p class="calcTitle"> Rate Plan Change Proration </p>
+
+      <label> How many days left in bill cycle?</label>
+
+      <input class="input color3" id="days">
+
+      <p id="invalidNum" style="display: none"> Number must be between 1 & 31.
+      </p>
+
+      <label> Enter Old Rate Plan Price </label>
+
+      <input class="input color2" id="old">
+
+      <label class="calWid"> Enter New Rate Plan Price </label>
+
+      <input class="input color4" id="newb">
+
+      <label> Total Payment Due </label>
+
+      <textarea class="input color1" id="chRatePl" readonly></textarea>
+
+      <button id="calcCred" onclick="daysCon();planCh()"> Calculate </button>
+    </div>
+
+  </div>
+
+  <!-- **********************HISTORY ******************-->
+
+  <div class="page" id="history" style="display:none"></div>
+
+  <!-- **********************RETAIL SUPPORT ******************-->
+  <div class="page" id="retail" style="display:none">
+
+    <form id="retailForm">
+
+      <div id="retail1">
+
+        <label id="cfaL"> CFA </label>
+
+        <input class="input color4" id="cfa">
+
+        <label id="storeL"> Store </label>
+
+        <input class="input color1" id="store">
+
+        <label id="retailNumL"> MSISDN </label>
+
+        <input class="input color2" id="retailNum">
+
+        <label id="retailPinL"> Verification </label>
+
+        <select class="drop color3" id="retailPin">
+
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="Verification: Passed">Passed</option>
+          <option value="Verification: Failed">Failed</option>
+          <option value="Verification: Unauthorized User">Unauthorized User</option>
+          <option value="Verification: N/A">N/A</option>
+          <option value="Two Factor Verified: Add/Edit Secondary User">2FA: Add/Edit 2nd User</option>
+          <option value="Two Factor Verified: Address Update">2FA: Address Update</option>
+          <option value="Two Factor Verified: Call Back">2FA: Call Back</option>
+          <option value="Two Factor Verified: Email Update">2FA: Email Update</option>
+          <option value="Two Factor Verified: HUG">2FA: HUG</option>
+          <option value="Two Factor Verified: Migration">2FA: Migration</option>
+          <option value="Two Factor Verified: MSISDN Swap">2FA: MSISDN Swap</option>
+          <option value="Two Factor Verified: Pin Update">2FA: Pin Update</option>
+          <option value="Two Factor Verified: Port-in Request">2FA: Port-in Request</option>
+
+        </select>
+
+        <label id="retailNameL"> Name </label>
+
+        <input class="input color4" id="retailName">
+
+        <label id="requestL"> Request </label>
+
+        <textarea class="input color2" id="request"></textarea>
+
+        <label id="retailActL"> Action </label>
+
+        <textarea class="comment color1" id="retailAct"></textarea>
+
+      </div>
+
+      <div id="retail2">
+
+        <label id="retailNotesL">Notes</label>
+        <textarea class="input color2" id="retailNotes"></textarea>
+
+      </div>
+
+    </form>
+
+    <div id="retBtn">
+      <button id="retailCombine" class="combineBtn" onclick="convertRetail()"> Combine & Copy </button>
+      <button id="retailReset" class="resetBtn"> Reset </button>
+    </div>
+
+  </div>
+
+  <!-- ********************** PORTING  ******************-->
+
+  <div id=port class="page" style="display: none">
+
+    <form id="portForm">
+      <div id="port1">
+
+        <label> Number to Port</label>
+        <label> Freedom Temporary Number </label>
+
+        <input class="input color4" id="numtoPort"></input>
+        <input class="input color1" id="tempNum"></input>
+
+        <label>Number is Active </label>
+        <label> Wireless/Wireline</label>
+
+        <select class="drop color2" id="active">
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <select class="drop color3" id="wire">
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="Wireless">Wireless</option>
+          <option value="Wireline">Wireline</option>
+        </select>
+
+        <label id="carrierL"> Carrier</label>
+        <input class="input color1" id="carrier"></input>
+
+        <label id="namePortL">Customer's Name with Carrier </label>
+        <input class="input color2" id="namePort"></input>
+
+        <label id="addressL">Address Registered with Carrier </label>
+        <input class="input color3" id="address"></input>
+
+        <label id="accountNumL">Account Number or PIN </label>
+        <input class="input color4" id="accountNum"></input>
+
+      </div>
+      <div id="port2">
+
+        <label id="portNotesL">Notes</label>
+
+        <textarea class="input color4" id="portNotes"></textarea>
+
+
+      </div>
+    </form>
+
+    <div id="portBtn">
+
+      <button id="portCombine" class="combineBtn" onclick="convertPort()"> Combine & Copy </button>
+      <button id="portReset" class="resetBtn"> Reset </button>
+
+    </div>
+
+  </div>
+
+  <!-- **********************CUSTOMER CARE  ******************-->
+
+  <div class="page" id="care">
+
+    <form id="careForm" class="form">
+
+      <div id="area1">
+
+        <label>Type</label>
+
+        <label id="cancelDropL">Cancel Type</label>
+
+        <select class="drop color4" id="formType">
+
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="gen">General</option>
+          <option value="ptp">Promise to Pay</option>
+          <option value="vaca">Vacation Suspend</option>
+          <option value="loyal">Loyalty</option>
+          <option value="tech">Tech Support</option>
+
+        </select>
+
+        <select class="drop color1" id="cancelDrop">
+
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="cancel">Cancellation</option>
+          <option value="cancelTab">Cancellation with Tab</option>
+          <option value="port">Port-out</option>
+          <option value="portTab">Port-out with Tab</option>
+
+        </select>
+
+        <label id="nameL">Name</label>
+
+        <input class="input color2" id="name">
+
+        <label>Number</label>
+
+        <label>Verification</label>
+
+        <input class="input color1" id="num">
+
+        <select class="drop color3" id="pin">
+
+          <option value="" disabled selected>&#9660; &nbsp;</option>
+          <option value="Verification: Passed">Passed</option>
+          <option value="Verification: Failed">Failed</option>
+          <option value="Verification: Unauthorized User">Unauthorized User</option>
+          <option value="Verification: N/A">N/A</option>
+          <option value="Two Factor Verified: Add/Edit Secondary User">2FA: Add/Edit 2nd User</option>
+          <option value="Two Factor Verified: Address Update">2FA: Address Update</option>
+          <option value="Two Factor Verified: Call Back">2FA: Call Back</option>
+          <option value="Two Factor Verified: Email Update">2FA: Email Update</option>
+          <option value="Two Factor Verified: HUG">2FA: HUG</option>
+          <option value="Two Factor Verified: Migration">2FA: Migration</option>
+          <option value="Two Factor Verified: MSISDN Swap">2FA: MSISDN Swap</option>
+          <option value="Two Factor Verified: Pin Update">2FA: Pin Update</option>
+          <option value="Two Factor Verified: Port-in Request">2FA: Port-in Request</option>
+
+        </select>
+
+        <div id="gen">
+
+          <label id="probL">Problem</label>
+
+          <textarea class="input color4" id="prob"></textarea>
+
+          <label id="actL">Action</label>
+
+          <textarea class="comment color2" id="act"></textarea>
+
+        </div>
+
+        <!-- PROMISE TO PAY -->
+
+        <div id="ptp" style="display: none">
+
+          <label> Amount </label>
+          <label> Method </label>
+          <label> Last Broken P2P </label>
+
+          <input class="input color3" id="ptpAmount">
+
+          <select class="drop color1" id="ptpMethod">
+            <option value="" disabled selected> &#9660; &nbsp;</option>
+            <option value="Customer Care">Customer Care</option>
+            <option value="My Account">My Account</option>
+            <option value="Retail">Retail</option>
+            <option value="Bank">Bank</option>
+            <option value="N/A">N/A</option>
+          </select>
+
+          <input class="input color4" id="broke">
+
+          <label id="detsL"> Additional Details </label>
+
+          <textarea class="comment color2" id="dets"></textarea>
+
+        </div>
+
+        <!-- *******************************VACATION******************************* -->
+
+        <div id="vaca" style="display: none">
+
+          <label> Duration </label>
+          <label> Start Month </label>
+          <label> Bill Cycle </label>
+
+          <select class="drop color3" id="vacaDur">
+            <option value="" disabled selected>&#9660; &nbsp;</option>
+            <option value="1">One Month</option>
+            <option value="2">Two Months</option>
+            <option value="3">Three Months</option>
+            <option value="4">Four Months</option>
+            <option value="5">Five Months</option>
+            <option value="6">Six Months</option>
+          </select>
+
+          <select class="drop color1" id="startMonth">
+
+            <option value="" disabled selected> &#9660; &nbsp;</option>
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+
+          </select>
+
+          <select class="drop color4" id="billCycle">
+
+            <option value="" disabled selected> &#9660; &nbsp;</option>
+            <option value="05">5th</option>
+            <option value="10">10th</option>
+            <option value="15">15th</option>
+            <option value="20">20th</option>
+            <option value="25">25th</option>
+
+          </select>
+
+          <label id="detsLVaca"> Additional Details </label>
+          <textarea class="comment color2" id="vacaDets"></textarea>
+
+          <div id="vacaChecks" style="display:none">
+
+            <input type="checkbox" class="check" id="refundCheck">
+            <label>Refund Policy Edu</label>
+            <input type="checkbox" class="check" id="vacaBillCheck">
+            <label>Vacation Billing Edu</label>
+            <input type="checkbox" class="check" id="vmfCheck">
+            <label>VM & Call Forwarding Edu</label>
+            <input type="checkbox" class="check" id="btwCheck">
+            <label>BTS Edu </label>
+            <input type="checkbox" class="check" id="emailCheck">
+            <label>Validated Email</label>
+
+          </div>
+
+        </div>
+
+        <!-- ***** TECH SUPPORT ****** -->
+
+        <div id="tech" style="display: none">
+
+          <label id="probTechL"> Problem </label>
+          <textarea class="input color2" id="techProb"></textarea>
+          <label id="comTechL"> Comments </label>
+          <textarea class="comment color1" id="techCom"></textarea>
+
+          <label> Software Updated? </label>
+          <label> Sim Updated? </label>
+
+          <select class="drop color3" id="software">
+
+            <option value="" disabled selected>&#9660; &nbsp;</option>
+            <option value="y"> Yes </option>
+            <option value="n"> No </option>
+            <option value="na"> N/A </option>
+
+          </select>
+
+          <select class="drop color4" id="sim">
+
+            <option value="" disabled selected>&#9660; &nbsp;</option>
+            <option value="y"> Yes </option>
+            <option value="n"> No </option>
+            <option value="na"> N/A </option>
+
+          </select>
+
+          <div id="techChecks" style="display:none">
+
+            <input type="checkbox" class="check" id="data">
+
+            <label> Data Roaming on </label>
+
+            <input type="checkbox" class="check" id="throttled">
+
+            <label> Data not throttled </label>
+
+            <input type="checkbox" class="check" id="plane">
+
+            <label> Airplane Mode </label>
+
+            <input type="checkbox" class="check" id="power">
+
+            <label> Power Cycle </label>
+
+            <input type="checkbox" class="check" id="40001">
+
+            <label> Text 'Sim' to 40001 </label>
+
+            <input type="checkbox" class="check" id="41111">
+
+            <label> Text 'Setup' to 41111 </label>
+
+
+          </div>
+
+        </div>
+
+        <!-- ***************** LOYALTY *********************** -->
+
+        <div id="loyal" style="display: none">
+
+          <label> Reason for Cancellation </label>
+          <label> Offer </label>
+
+          <select class="drop color4" id="cancelReason">
+
+            <option value="" disabled selected>...</option>
+            <option value="Network Service Issues">Network Service Issues</option>
+            <option value="Insufficient Coverage Area">Insufficient Coverage Area</option>
+            <option value="Poor Customer Service">Poor Customer Service</option>
+            <option value="Unexpected PPU Charges">Unexpected PPU Charges</option>
+            <option value="Promotion Ended">Promotion Ended</option>
+            <option value="Competitor Offer">Competitor Offer</option>
+            <option value="Moving out of Country">Moving out of Country</option>
+            <option value="Moving out of Service Area">Moving out of Service Area</option>
+            <option value="Refused to Provide Reason">Refused to Provide Reason</option>
+            <option value="Other (please note)">Other (please note)</option>
+
+          </select>
+
+          <select class="drop color2" id="offerOpt">
+
+            <option value="" disabled selected>...</option>
+            <option value="Accepted"> Accepted </option>
+            <option value="Declined"> Declined </option>
+            <option value="No offer was extended"> No Offer </option>
+            <option value="Cancellation was unavoidable"> Unavoidable </option>
+
+          </select>
+
+          <label id="offDetsL"> Offer Details </label>
+          <input class="input color3" id="offer" placeholder="Include any offers made here">
+          <label id="comLoyL"> Comments </label>
+          <textarea class="comment color4" id="cancelCom"></textarea>
+
+          <div id="loyalNest">
+
+            <label> Final Bill Month </label>
+            <label> Final Bill Date </label>
+            <label id="myTabL"> MyTab Balance </label>
+
+            <select class="drop color3" id="billMonth">
+
+              <option value="" disabled selected>&#9660; &nbsp;</option>
+              <option value="Jan">January</option>
+              <option value="Feb">February</option>
+              <option value="Mar">March</option>
+              <option value="Apr">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="Aug">August</option>
+              <option value="Sep">September</option>
+              <option value="Oct">October</option>
+              <option value="Nov">November</option>
+              <option value="Dec">December</option>
+
+            </select>
+
+            <select class="drop color1" id="finalCycle">
+
+              <option value="" disabled selected>&#9660; &nbsp;</option>
+              <option value="5th">5th</option>
+              <option value="10th">10th</option>
+              <option value="15th">15th</option>
+              <option value="20th">20th</option>
+              <option value="25th">25th</option>
+
+            </select>
+
+            <input class="input color2" id="myTab">
+
+            <div id="loyalChecks" style="display:none">
+
+              <input type="checkbox" class="check" id="proration">
+              <label>Number Lost & Immediate Cancellation. </label>
+              <input type="checkbox" class="check" id="lostNum">
+              <label> Proration Edu</label>
+
+            </div>
+
+
+
+            <!--******************END FORM TYPES **************************-->
+          </div>
+
+        </div>
+
+      </div>
+      <div id="area2">
+
+        <label id="notesL">Notes</label>
+
+        <textarea class="input color1" id="output"></textarea>
+
+      </div>
+
+    </form>
+
+    <div id="btnGroup">
+
+      <button class="genButt combineBtn" id="combine" onclick="convertCare()"> Combine & Copy </button>
+
+      <button class="genButt resetBtn" id="genReset">Reset</button>
+
+
+      <button class="ptpButt combineBtn" id="ptpCombine" onclick="convertPtp()"> Combine & Copy </button>
+      <button class="ptpButt resetBtn" id="ptpReset">Reset</button>
+
+
+      <button class="vacaButt combineBtn" id="vacaCombine" onclick="endDate();changeMonth();convertVaca()"> Combine & Copy </button>
+      <button class="vacaButt resetBtn" id="vacaReset">Reset</button>
+
+
+      <button class="loyalButt combineBtn" id="loyalCombine" onclick="convertCancel()"> Combine & Copy </button>
+      <button class="loyalButt resetBtn" id="loyalReset">Reset</button>
+
+
+      <button class="techButt combineBtn" id="techCombine" onclick="convertTech()"> Combine & Copy </button>
+      <button class="techButt resetBtn" id="techReset">Reset</button>
+
+
+    </div>
+
+  </div>
+
+  <div class="sideNav">
+    <h2 class="cats" id="tag">
+      TAGS
+    </h2>
+
+    <div class="catsOptsDiv" id="tagOpts">
+
+      <label class="tags" id="tag1">
+        <input class="tagsCheck" type="checkbox" value="****MESSAGING****">
+        <span class="checkmark"> Messaging</span>
+      </label>
+
+      <label class="tags" id="tag2">
+        <input class="tagsCheck" type="checkbox" value="****ROAMING****">
+        <span class="checkmark"> Roaming </span>
+      </label>
+
+      <label class="tags" id="tag3">
+        <input class="tagsCheck" type="checkbox" value="****ESCALATIONS****">
+        <span class="checkmark"> Escalations </span>
+      </label>
+      <label class="tags" id="tag4">
+        <input class="tagsCheck" type="checkbox" value="****RATE PLAN CHANGE****">
+        <span class="checkmark">Rate Plan Change</span>
+      </label>
+      <label class="tags" id="tag5">
+        <input class="tagsCheck" type="checkbox" value="****NO MORE PROMOS****">
+        <span class="checkmark">No More Promos</span>
+      </label>
+      <label class="tags" id="tag6">
+        <input class="tagsCheck" type="checkbox" value="****PTP DENIED****">
+        <span class="checkmark"> PTP Denied</span>
+      </label>
+      <label class="tags" id="tag7">
+        <input class="tagsCheck" type="checkbox" value="****ADDRESS CHANGE****">
+        <span class="checkmark"> Address Change</span>
+      </label>
+      <label class="tags" id="tag8">
+        <input class="tagsCheck" type="checkbox" value="****TWITTER****">
+        <span class="checkmark"> Twitter</span>
+      </label>
+      <label class="tags" id="tag9">
+        <input class="tagsCheck" type="checkbox" value="****FACEBOOK****">
+        <span class="checkmark"> Facebook</span>
+      </label>
+      <label class="tags" id="tag10">
+        <input class="tagsCheck" type="checkbox" value="****EMAIL****">
+        <span class="checkmark"> Email</span>
+      </label>
+
+
+    </div>
+
+    <h2 class="cats" id="predefined">
+      PREDEFINED CONTENT
+    </h2>
+    <form class="catsOptsDiv" id="preOpts">
+      <label class="tags" id="pre1">
+        <input class="preCheck" type="checkbox"
+          value="&#x00A;Edu that calling is only in the USA and back to Canada. Advised that after the data allotment in the package, data is PPU and they need to be aware of their usage. Added the package per cx request.">
+        <span class="checkmark"> BGR US</span>
+      </label>
+
+      <label class="tags" id="pre2">
+        <input class="preCheck" type="checkbox" value="&#x00A;Edu that calling is only within the country they are in and back to Canada. Advised that after the data allotment in the package, data is PPU and they need to be aware of their usage.">
+        <span class="checkmark"> BGR South & Int</span>
+      </label>
+
+      <label class="tags" id="pre3">
+        <input class="preCheck" type="checkbox" value="&#x00A;Had to opt cx out of the CTRC roaming cap. Cx understands that this means there is now no limit to the charges they could incur after the data in their package. ">
+        <span class="checkmark"> Roaming CAP</span>
+      </label>
+
+      <label class="tags" id="pre4">
+        <input class="preCheck" type="checkbox"
+          value="&#x00A;Advised cx that it cannot be added back on and they will no longer be covered for any damages. Cx understands and I canceled the phone protection plan. Advised cancellation is effective immediately. ">
+        <span class="checkmark">Phone Protection Plan</span>
+      </label>
+
+      <label class="tags" id="pre5">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx that they don't qualify for another PTP as they broke one in the last 3 months. Advised cx that the full overdue balance on the account is needed to reactivate the account. ">
+        <span class="checkmark">PTP Declined</span>
+      </label>
+
+    </form>
+
+    <h2 class="cats" id="ptpNav">
+      PROMISE TO PAY
+    </h2>
+    <form class="catsOptsDiv" id="ptpOpts">
+
+      <label class="tags" id="ptp1">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer aware that bank transfers will take 3-5 business days. ">
+        <span class="checkmark">Bank Payment Education</span>
+      </label>
+
+      <label class="tags" id="ptp2">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer knows that cash payments take 24 hours.">
+        <span class="checkmark">Cash Payment Education</span>
+      </label>
+      <label class="tags" id="ptp3">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer knows if the promise is broken they will not be able to make another for 90 days. ">
+        <span class="checkmark">Broken Promises Education
+        </span>
+      </label>
+
+    </form>
+
+    <h2 class="cats" id="vacaNav">
+      VACATION SUSPEND
+    </h2>
+
+    <form class="catsOptsDiv" id="vacaOpts">
+
+      <label class="tags" id="vaca1">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer is aware there are no refunds under any circumstances. ">
+        <span class="checkmark">Refund Policy Education
+        </span>
+      </label>
+
+      <label class="tags" id="vaca2">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer is aware they are responsible for any charges generated during their vacation period and the next invoice is still due 14 days after it generates.">
+        <span class="checkmark">Vacation Billing Education</span>
+      </label>
+
+      <label class="tags" id="vaca3">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer is aware that call forwarding and voicemail will NOT function during the suspension period.">
+        <span class="checkmark">VM & Call Forwarding Education</span>
+      </label>
+
+      <label class="tags" id="vaca4">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer is aware that this line will NOT be eligible for Better Together Savings, which may result in other lines receiving a reduced amount of BTS credit. ">
+        <span class="checkmark"> BTS Education</span>
+      </label>
+      <label class="tags" id="vaca5">
+        <input class="preCheck" type="checkbox" value="&#x00A;I have checked the customer's email is correct so they can receive suspension notifications.">
+        <span class="checkmark"> Validated Customer Email</span>
+      </label>
+
+    </form>
+
+    <h2 class="cats" id="loyalNav">
+      LOYALTY
+    </h2>
+
+    <form class="catsOptsDiv" id="loyalOpts">
+
+      <label class="tags" id="loyal1">
+        <input class="preCheck" type="checkbox" value="&#x00A;I explained the line will be canceled effective immediately and the number will be lost. Edu cx that this action cannot be reversed.">
+        <span class="checkmark"> Cancellation is immediate & number will be lost</span>
+      </label>
+      <label class="tags" id="loyal2">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer knows that the final bill will be prorated to the day that the line is canceled.">
+        <span class="checkmark"> Educated on Final Bill Proration</span>
+      </label>
+      <label class="tags" id="loyal3">
+        <input class="preCheck" type="checkbox" value="&#x00A;Customer knows that the line will cancel upon port-out.">
+        <span class="checkmark"> Port-out Cancellation</span>
+      </label>
+      </label>
+      <label class="tags" id="loyal4">
+        <input class="preCheck" type="checkbox" value="&#x00A;Cx knows that their remaining MyTab balance will be billed onto their final invoice.">
+        <span class="checkmark"> My Tab on final bill</span>
+      </label>
+
+
+
+    </form>
+
+    <h2 class="cats" id="techNav">
+      TECH SUPPORT
+    </h2>
+    <form class="catsOptsDiv" id="techOpts">
+
+      <label class="tags" id="tech1">
+        <input class="preCheck" type="checkbox" value="&#x00A;Checked that Data is not Throttled. ">
+        <span class="checkmark"> Not throttled</span>
+      </label>
+
+      <label class="tags" id="tech2">
+        <input class="preCheck" type="checkbox" value="&#x00A;Confirmed that data and/or data roaming are enabled on customer's device. ">
+        <span class="checkmark"> Data & Data Roaming</span>
+      </label>
+
+      <label class="tags" id="tech3">
+        <input class="preCheck" type="checkbox" value="&#x00A;Deleted feature and readded it.">
+        <span class="checkmark"> Reset Feature</span>
+      </label>
+
+      <label class="tags" id="tech4">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx to toggle airplane mode./Cx has toggled airplane mode">
+        <span class="checkmark"> Airplane Mode</span>
+      </label>
+
+      <label class="tags" id="tech5">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx to perform a Network Reset./Cx has already Reset Network Settings">
+        <span class="checkmark"> Network Reset</span>
+      </label>
+
+      <label class="tags" id="tech6">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx to Power Cycle the phone.">
+        <span class="checkmark"> Power Cycle</span>
+      </label>
+
+      <label class="tags" id="tech7">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx to text Setup to 41111 to update APN settings. ">
+        <span class="checkmark"> Setup to 41111</span>
+      </label>
+
+      <label class="tags" id="tech8">
+        <input class="preCheck" type="checkbox" value="&#x00A;Advised cx to text SIM to 40001 to update SIM card. ">
+        <span class="checkmark"> SIM to 40001</span>
+      </label>
+
+    </form>
+
+  </div>
+
+
+
+  <script>
+    //CHANGE FORM TYPE
+
+    function formChange(c, v, h, i) {
+
+      $(document).ready(function() {
+        $(c).on('change', function() {
+          if (this.value == v) {
+            $(h).show();
+            $(i).show();
+
+
+          } else {
+            $(h).hide();
+            $(i).hide();
+
+          }
+        });
+      });
+
+    }
+
+    formChange("#formType", "gen", "#gen", ".genButt");
+    formChange("#formType", "ptp", "#ptp", ".ptpButt");
+    formChange("#formType", "vaca", "#vaca", ".vacaButt");
+    formChange("#formType", "tech", "#tech", ".techButt");
+    formChange("#formType", "loyal", "#loyal", ".loyalButt");
+
+    //Change Loyalty Form
+
+    $(document).ready(function() {
+      $("#cancelDrop").on('change', function() {
+        if (this.value == "cancel" || this.value == "cancelTab") {
+
+          $("#portCheck").css("visibility", "hidden");
+          $("#portCheckL").css("visibility", "hidden");
+
+          if (this.value == "cancelTab") {
+
+            $("#myTab").css("visibility", "visible");
+            $("#myTabL").css("visibility", "visible");
+          } else {
+
+            $("#myTab").css("visibility", "hidden");
+            $("#myTabL").css("visibility", "hidden");
+
+
+          }
+
+        } else {
+
+          $("#portCheck").css("visibility", "visible");
+          $("#portCheckL").css("visibility", "visible");
+
+          if (this.value == "portTab") {
+
+            $("#myTab").css("visibility", "visible");
+            $("#myTabL").css("visibility", "visible");
+          } else {
+
+            $("#myTab").css("visibility", "hidden");
+            $("#myTabL").css("visibility", "hidden");
+
+
+          }
+
+        }
+      });
+    });
+
+    //CHANGE VISIBILITY (avoid messing with the grid )
+
+    function changeVisible(h, i, j, k) {
+
+      $(document).ready(function() {
+        $(h).on('change', function() {
+          if (this.value == i) {
+            $(j).css("visibility", "visible");
+            $(k).css("visibility", "visible");
+
+          } else {
+            $(j).css("visibility", "hidden");
+            $(k).css("visibility", "hidden");
+
+          }
+        });
+      });
+
+    }
+
+    changeVisible("#formType", "loyal", "#cancelDrop", "#cancelDropL");
+
+    //HISTORY TAB CREATE CHECK
+
+    function history(i, j) {
+      $(document).ready(function() {
+        $(i).click(function() {
+          // Create span element
+
+          var text = document.createElement("span");
+
+          // Add class to div element
+          $(text).addClass("hist");
+
+          $(text).attr("readonly", true);
+
+          //get value of output box
+          var paste = $(j).val();
+
+          var date = new Date();
+          date.getDate();
+          var time = new Date().toLocaleTimeString();
+          var d = date.toString().split(" ").splice(1, 3).join(" ");
+          var dateTime = d + " " + time;
+
+          // Add the text of the output box to the div
+          $(text).text(dateTime + "\n\n" + paste);
+
+          //prepend div to the history div
+          $("#history").prepend(text);
+
+          resetForm("#genReset", "careForm");
+          resetForm("#ptpReset", "careForm");
+          resetForm("#vacaReset", "careForm");
+          resetForm("#loyalReset", "careForm");
+          resetForm("#techReset", "careForm");
+          resetForm("#retailReset", "retailForm");
+
+        });
+      });
+    }
+
+    history("#genReset", "#output");
+    history("#ptpReset", "#output");
+    history("#vacaReset", "#output");
+    history("#loyalReset", "#output");
+    history("#techReset", "#output");
+    history("#retailReset", "#retailNotes");
+
+    //innerHTML gets all inside an element, might be helpful for the input copy paste
+
+
+    //TOGGLE CLASS
+
+    function toggleClass(i, j, k) {
+
+      $(i).click(function() {
+        $(j).toggleClass(k);
+      });
+
+
+    }
+
+    //HAMBURGER BUTTON ANIMATION
+
+    toggleClass("#navButt", "#ham1", "hanimation1");
+    toggleClass("#navButt", "#ham2", "hanimation2");
+    toggleClass("#navButt", "#ham3", "hanimation3");
+
+
+    // OPEN AND CLOSE sideNav
+
+    toggleClass("#navButt", ".sideNav", "sideNav2");
+    toggleClass("#navButt", "#body", "body");
+
+    // TOGGLE PAGES
+
+    function pageChg(i, j) {
+
+      $(document).ready(function() {
+        $(i).click(function() {
+
+          $(".page").hide();
+
+          $(j).show();
+
+
+        });
+      });
+
+    }
+
+    // Change to Verification Page
+
+    pageChg("#vQs", "#verificationPage");
+    pageChg("#calcHead", "#calc");
+    pageChg("#titleCare", "#care");
+    pageChg("#titleRetail", "#retail");
+    pageChg("#titlePort", "#port");
+    pageChg("#histHead", "#history");
+    pageChg("#retailLink", "#retail");
+    pageChg("#careLink", "#care");
+    pageChg("#portLink", "#port");
+
+    // CHANGE PAGE TITLE
+
+    function titleChg(i, j) {
+
+      $(document).ready(function() {
+        $(i).click(function() {
+
+          $(".title").hide();
+          $(j).show();
+
+        });
+      });
+
+    }
+
+    titleChg("#retailLink", "#titleRetail");
+    titleChg("#portLink", "#titlePort");
+    titleChg("#careLink", "#titleCare");
+
+    //SHOW and HIDE function
+
+    function hideShow(i, j) {
+
+      $(document).ready(function() {
+        $(i).click(function() {
+          $(j).toggle();
+        });
+      });
+
+    }
+
+
+    //Category Drops Down
+
+    hideShow("#predefined", "#pre1");
+    hideShow("#predefined", "#pre2");
+    hideShow("#predefined", "#pre3");
+    hideShow("#predefined", "#pre4");
+    hideShow("#predefined", "#pre5");
+
+    hideShow("#tag", "#tag1");
+    hideShow("#tag", "#tag2");
+    hideShow("#tag", "#tag3");
+    hideShow("#tag", "#tag4");
+    hideShow("#tag", "#tag5");
+    hideShow("#tag", "#tag6");
+    hideShow("#tag", "#tag7");
+    hideShow("#tag", "#tag8");
+    hideShow("#tag", "#tag9");
+    hideShow("#tag", "#tag10");
+
+    hideShow("#ptpNav", "#ptp1");
+    hideShow("#ptpNav", "#ptp2");
+    hideShow("#ptpNav", "#ptp3");
+
+    hideShow("#vacaNav", "#vaca1");
+    hideShow("#vacaNav", "#vaca2");
+    hideShow("#vacaNav", "#vaca3");
+    hideShow("#vacaNav", "#vaca4");
+    hideShow("#vacaNav", "#vaca5");
+
+    hideShow("#loyalNav", "#loyal1");
+    hideShow("#loyalNav", "#loyal2");
+    hideShow("#loyalNav", "#loyal3");
+    hideShow("#loyalNav", "#loyal4");
+
+    hideShow("#techNav", "#tech1");
+    hideShow("#techNav", "#tech2");
+    hideShow("#techNav", "#tech3");
+    hideShow("#techNav", "#tech4");
+    hideShow("#techNav", "#tech5");
+    hideShow("#techNav", "#tech6");
+    hideShow("#techNav", "#tech7");
+    hideShow("#techNav", "#tech8");
+
+    // X Animation, Hamburger Button Animation
+
+    hideShow("#navButt", ".x");
+
+
+    // CONVERT GENERAL CARE
+
+    function convertCare() {
+
+      var output = "";
+
+      //ADD the tags
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+      var name = $("#name").val();
+      var num = $("#num").val();
+      var pin = $("#pin").val();
+      var prob = $("#prob").val();
+      var act = $("#act").val();
+
+      output += "Problem: " + prob + "\n\n";
+      output += "Name: " + toProperCase(name) + "\n";
+      output += "MSISDN: " + num + "\n";
+      output += pin + "\n\n";
+      output += "Action: " + act;
+
+      $("#output").val(output);
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+    }
+
+
+    //CONVERT PTP
+
+    function convertPtp() {
+
+
+      var output = "";
+
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+      });
+
+
+      var ptpName = document.getElementById("name").value;
+      var ptpNumber = document.getElementById("num").value;
+      var ptpPin = document.getElementById("pin").value;
+      var ptpAmount = document.getElementById("ptpAmount").value;
+      var ptpMethod = document.getElementById("ptpMethod").value;
+      var broke = document.getElementById("broke").value;
+      var ptpDetails = document.getElementById("dets").value;
+      var checkBank = document.getElementById("checkBank");
+      var checkCash = document.getElementById("checkCash");
+      var checkBroken = document.getElementById("checkBroke");
+
+      var date = new Date();
+      date.setDate(date.getDate() + 7);
+      var f = date.toString().split(" ").splice(1, 3).join(" ");
+
+
+      output += "***PROMISE TO PAY***\n\nName: " + toProperCase(ptpName) + "\n";
+      output += "MSISDN: " + ptpNumber + "\n";
+      output += ptpPin + "\n\n";
+      output += "Amount: $" + ptpAmount + "\n";
+      output += "Due date: " + f + "\n";
+      output += "Method: " + ptpMethod + "\n";
+      output += "Last Broken P2P: " + broke + "\n\n";
+      output += "Additional Details: " + ptpDetails;
+
+      document.getElementById("output").value = output;
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+    }
+
+    //END DATE FOR VACATION
+    var start = "";
+    var eD = "";
+
+    function changeMonth() {
+
+      start = document.getElementById("startMonth").value;
+
+      switch (start) {
+
+        case "0":
+          start = "Jan";
+          break;
+
+        case "1":
+          start = "Feb";
+          break;
+
+        case "2":
+          start = "Mar";
+          break;
+
+        case "3":
+          start = "Apr";
+          break;
+
+        case "4":
+          start = "May";
+          break;
+
+        case "5":
+          start = "Jun";
+          break;
+
+        case "6":
+          start = "Jul";
+          break;
+
+        case "7":
+          start = "Aug";
+          break;
+
+        case "8":
+          start = "Sep";
+          break;
+
+        case "9":
+          start = "Oct";
+          break;
+
+        case "10":
+          start = "Nov";
+          break;
+
+        case "11":
+          start = "Dec";
+          break;
+
+        default:
+          start = "FILL IN MONTH!!";
+          break;
+      }
+
+    }
+
+    function endDate() {
+
+      var output = "";
+
+      var months = document.getElementById("vacaDur").value;
+      var startMonth = document.getElementById("startMonth").value;
+      var billCycle = document.getElementById("billCycle").value;
+
+
+      var dd = new Date();
+      var year = dd.getFullYear();
+      var month = parseInt(startMonth);
+      var day = parseInt(billCycle);
+      var duration = parseInt(months);
+
+
+      var d = new Date(year, month, day);
+      d.setMonth(d.getMonth() + duration);
+
+      eD = d.toString().split(" ").splice(1, 3).join(" ");
+
+    }
+
+
+    // *******************VACATION COMBINE ************************
+
+    function convertVaca() {
+
+
+      var output = "";
+
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+
+      });
+
+
+      var vacaName = document.getElementById("name").value;
+      var vacaNumber = document.getElementById("num").value;
+      var vacaPin = document.getElementById("pin").value;
+      var months = document.getElementById("vacaDur").value;
+      var billCycle = document.getElementById("billCycle").value;
+      var vacaDetails = document.getElementById("vacaDets").value;
+
+      var dd = new Date();
+      var year = dd.getFullYear();
+
+      output += "***VACATION SUSPEND***\n\nName: " + toProperCase(vacaName) + "\n";
+      output += "MSISDN: " + vacaNumber + "\n";
+      output += vacaPin + "\n\n";
+      output += "Payment: $" + months * 15 + "\n";
+      output += "Suspension Start Date: " + start + " ";
+      output += billCycle + " ";
+      output += year + "\n";
+      output += "Duration: " + months + " month(s)" + "\n";
+      output += "Suspension End Date: " + eD + "\n\n";
+      output += "Additional Details: " + vacaDetails;
+
+      document.getElementById("output").value = output;
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+
+    }
+
+    // **************************LOYALTY COMBINE ******************
+
+    function convertCancel() {
+
+      var output = "";
+
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+
+      });
+
+      var name = document.getElementById("name").value;
+      var number = document.getElementById("num").value;
+      var pin = document.getElementById("pin").value;
+      var reason = document.getElementById("cancelReason").value;
+      var comment = document.getElementById("cancelCom").value;
+      var month = document.getElementById("billMonth").value;
+      var cycle = document.getElementById("finalCycle").value;
+      var tab = document.getElementById("myTab").value;
+      var offerOpt = document.getElementById("offerOpt").value;
+      var offer = document.getElementById("offer").value;
+
+      var pro = document.getElementById("proration");
+      var lost = document.getElementById("lostNum");
+      var port = document.getElementById("port");
+
+
+      output += "***LOYALTY***\n\nName: " + toProperCase(name) + "\n";
+      output += "MSISDN: " + number + "\n";
+      output += pin + "\n\n";
+      output += "Reason for Cancellation: " + reason + "\n";
+      output += "Final Bill Date: " + month + " ";
+      output += cycle + "\n";
+
+      if (tab != "") {
+        output += "MyTab Balance: $" + tab + " + taxes\n";
+      }
+
+      output += "Offer: " + offer + " ( " + offerOpt + " )\n\n";
+      output += "Comments:" + comment;
+
+      console.log(tab);
+
+      document.getElementById("output").value = output;
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+
+    }
+
+    // **************** TECH COMBINE *******************
+
+    function convertTech() {
+
+      var output = "";
+
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+
+      });
+
+      var name = document.getElementById("name").value;
+      var number = document.getElementById("num").value;
+      var pin = document.getElementById("pin").value;
+      var problem = document.getElementById("techProb").value;
+      var comment = document.getElementById("techCom").value;
+      var sim = document.getElementById("sim").value;
+      var os = document.getElementById("software").value;
+
+      var air = document.getElementById("plane");
+      var power = document.getElementById("power");
+      var networkReset = document.getElementById("reset");
+      var textSim = document.getElementById("40001");
+      var textSet = document.getElementById("41111");
+      var data = document.getElementById("data");
+      var throttled = document.getElementById("throttled");
+      var feat = document.getElementById("feat");
+
+
+      output += "***TECH SUPPORT***\n\nName: " + toProperCase(name) + "\n";
+      output += "MSISDN: " + number + "\n";
+      output += pin + "\n\n";
+      output += "Problem: " + problem + "\n\n";
+      output += "Recommendations/Comments: " + comment + "\n";
+
+      //Software Drop
+
+      if (os == "y") {
+        output += "-Customer's software is up to date." + "\n";
+        document.getElementById("output").value = output;
+      } else if (os == "n") {
+        output += "-Software is not up to date and I recommended performing an update." + "\n";
+        document.getElementById("output").value = output;
+      } else {
+        output += ""
+        document.getElementById("output").value = output;
+      }
+
+      //Sim drop
+      if (sim == "y") {
+        output += "-Customer's SIM is up to date." + "\n";
+        document.getElementById("output").value = output;
+      } else if (sim == "n") {
+        output += "-SIM needs to be updated and I sent them the Warranty and Repair." + "\n";
+        document.getElementById("output").value = output;
+      } else {
+        output += ""
+        document.getElementById("output").value = output;
+      }
+
+
+      if (data.checked == true) {
+        output += "-Checked if data and data roaming are ON." + "\n";
+        document.getElementById("output").value = output;
+      } else {
+        output += "";
+        document.getElementById("output").value = output;
+      }
+
+      if (throttled.checked == true) {
+        output += "-Checked that the feature is active and/or the customer is not throttled.\n";
+        document.getElementById("output").value = output;
+      } else {
+        output += "";
+        document.getElementById("output").value = output;
+      }
+
+      document.getElementById("output").value = output;
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#output").val(output);
+
+      });
+
+    }
+
+    //RETAIL COMBINE
+
+    function convertRetail() {
+      var output = "";
+
+      //ADD the tags
+      $(".tagsCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#retailNotes").val(output);
+      });
+
+      var cfa = $("#cfa").val();
+      var store = $("#store").val();
+      var num = $("#retailNum").val();
+      var name = $("#retailName").val();
+      var pin = $("#retailPin").val();
+      var prob = $("#request").val();
+      var act = $("#retailAct").val();
+
+      output += "Request: " + prob + "\n\n";
+      output += "CFA: " + cfa + "\n";
+      output += "Store: " + store + "\n";
+      output += "Name: " + toProperCase(name) + "\n";
+      output += "MSISDN: " + num + "\n";
+      output += pin + "\n\n";
+      output += "Action: " + act;
+
+      $("#retailNotes").val(output);
+
+      $(".preCheck:checked").each(function() {
+        output += $(this).val();
+        output += "\n";
+
+        $("#retailNotes").val(output);
+
+      });
+    }
+
+    //PORT COMBINE
+
+    function convertPort() {
+
+
+      var numPort = $("#numtoPort").val();
+      var temp = $("#tempNum").val();
+      var active = $("#active").val();
+      var wire = $("#wire").val();
+      var carr = $("#carrier").val();
+      var name = $("#namePort").val();
+      var address = $("#address").val();
+      var acc = $("#accountNum").val();
+
+      var output = "";
+
+      output += "Requested MSISDN: " + numPort + "\n";
+      output += "Temporary MSISDN: " + temp + "\n";
+      output += "Active: " + active + "\n";
+      output += "Type: " + wire + "\n";
+      output += "Carrier: " + carr + "\n";
+      output += "Name: " + toProperCase(name) + "\n";
+      output += "Address: " + address + "\n";
+      output += "Account Number/PIN Number: " + acc;
+
+
+
+      $("#portNotes").val(output);
+    }
+
+    //CHANGE NAME CASE
+
+    toProperCase = function(s) {
+      return s.toLowerCase().replace(/\b((m)(a?c))?(\w)/g,
+        function($1, $2, $3, $4, $5) {
+          if ($2) {
+            return $3.toUpperCase() + $4 + $5.toUpperCase();
+          }
+          return $1.toUpperCase();
+        });
+    }
+
+    //**************************THEMES**************************
+
+    // color the inputs
+
+    function theme(b, v, c) {
+
+      $(document).ready(function() {
+        $(b).click(function() {
+          document.documentElement.style.setProperty(v, c);
+        });
+      });
+    }
+
+    //*******GREEN & WHITE*********
+
+    var green = "#56E97C"
+    var grey = "#C2CADA"
+    var blue = "#0F154C"
+
+    //body
+    theme("#theme1", "--main", "white");
+    theme("#theme1", "--text-color", blue);
+    theme("#theme1", "--image", "");
+    theme("#theme1", "--input-text", blue);
+
+    //buttons
+    theme("#theme1", "--btn-text", blue);
+    theme("#theme1", "--btn", green);
+    theme("#theme1", "--btn-border", green);
+    theme("#theme1", "--btn-hov", green);
+    theme("#theme1", "--btn-text-hov", blue);
+
+    //inputs
+    theme("#theme1", "--input", grey);
+    theme("#theme1", "--borders", grey);
+
+    //nav
+    theme("#theme1", "--title", green);
+    theme("#theme1", "--navHover", green);
+    theme("#theme1", "--ham1", blue);
+    theme("#theme1", "--ham2", blue);
+    theme("#theme1", "--ham3", blue);
+    theme("#theme1", "--x", blue);
+    theme("#theme1", "--dropdown", green);
+
+    //side-nav
+    theme("#theme1", "--sideNav", green);
+    theme("#theme1", "--cats-background", "white");
+    theme("#theme1", "--hov-nav-text", grey);
+    theme("#theme1", "--cats-hov", blue);
+
+    //fix multicolor
+    theme("#theme1", "--color1", blue);
+    theme("#theme1", "--color2", blue);
+    theme("#theme1", "--color3", blue);
+    theme("#theme1", "--color4", blue);
+
+    theme("#theme1", "--border1", grey);
+    theme("#theme1", "--border2", grey);
+    theme("#theme1", "--border3", grey);
+    theme("#theme1", "--border4", grey);
+
+    theme("#theme1", "--nav1", "white");
+    theme("#theme1", "--nav2", "white");
+    theme("#theme1", "--nav3", "white");
+    theme("#theme1", "--nav4", "white");
+
+    //Default
+
+    var mainBlue = "#0B1235";
+    var lightBlue = "#5ED5FA";
+    var pink = "#EA6996";
+    var mainGreen = "#56E97C";
+    var yellow = "#FFB121";
+
+    //body
+    theme("#default", "--main", mainBlue);
+    theme("#default", "--text-color", "white");
+    theme("#default", "--image", "")
+    theme("#default", "--input-text", "white");
+
+    //buttons
+    theme("#default", "--btn-text", "white");
+    theme("#default", "--btn", mainBlue);
+    theme("#default", "--btn-border", "white");
+    theme("#default", "--btn-hov", pink);
+    theme("#default", "--btn-text-hov", pink);
+
+    //inputs
+    theme("#default", "--input", mainBlue);
+
+    //nav
+    theme("#default", "--title", "white");
+    theme("#default", "--navHover", "white");
+    theme("#default", "--ham1", pink);
+    theme("#default", "--ham2", yellow);
+    theme("#default", "--ham3", green);
+    theme("#default", "--x", lightBlue);
+    theme("#default", "--dropdown", "#0F154C");
+
+    //side-nav
+    theme("#default", "--sideNav", "#080D28");
+    theme("#default", "--cats-background", "#0F154C");
+    theme("#default", "--hov-nav-text", "#2D4CD8");
+    theme("#default", "--cats-hov", "#0F154C");
+
+    //fix multicolor
+    theme("#default", "--color1", lightBlue);
+    theme("#default", "--color2", mainGreen);
+    theme("#default", "--color3", yellow);
+    theme("#default", "--color4", pink);
+
+    theme("#default", "--border1", lightBlue);
+    theme("#default", "--border2", mainGreen);
+    theme("#default", "--border3", yellow);
+    theme("#default", "--border4", pink);
+
+    theme("#default", "--nav1", lightBlue);
+    theme("#default", "--nav2", mainGreen);
+    theme("#default", "--nav3", yellow);
+    theme("#default", "--nav4", pink);
+
+    //***************** nightmode // theme 2*****************
+
+    var blueDark = "#041123";
+    var blueLight = "#5ed5fa";
+    var bluePurp = "#3c93f7";
+    var blueGrey = "#0f233f"
+
+    //body
+    theme("#theme2", "--main", blueDark);
+    theme("#theme2", "--text-color", blueLight);
+    theme("#theme2", "--image", "");
+    theme("#theme2", "--input-text", blueLight);
+
+    //buttons
+    theme("#theme2", "--btn-text", "white");
+    theme("#theme2", "--btn", bluePurp);
+    theme("#theme2", "--btn-border", bluePurp);
+    theme("#theme2", "--btn-hov", "white");
+    theme("#theme2", "--btn-text-hov", "white");
+
+    //inputs
+    theme("#theme2", "--input", blueGrey);
+
+    //nav
+    theme("#theme2", "--title", bluePurp);
+    theme("#theme2", "--navHover", bluePurp);
+    theme("#theme2", "--ham1", bluePurp);
+    theme("#theme2", "--ham2", bluePurp);
+    theme("#theme2", "--ham3", bluePurp);
+    theme("#theme2", "--x", bluePurp);
+    theme("#theme2", "--dropdown", bluePurp);
+
+    //side-nav
+    theme("#theme2", "--sideNav", "#030b16");
+    theme("#theme2", "--cats-background", blueDark);
+    theme("#theme2", "--hov-nav-text", "#2D71BF");
+    theme("#theme2", "--cats-hov", blueGrey);
+
+    //fix multicolor
+    theme("#theme2", "--color1", blueLight);
+    theme("#theme2", "--color2", blueLight);
+    theme("#theme2", "--color3", blueLight);
+    theme("#theme2", "--color4", blueLight);
+
+    theme("#theme2", "--border1", blueGrey);
+    theme("#theme2", "--border2", blueGrey);
+    theme("#theme2", "--border3", blueGrey);
+    theme("#theme2", "--border4", blueGrey);
+
+    theme("#theme2", "--nav1", blueLight);
+    theme("#theme2", "--nav2", blueLight);
+    theme("#theme2", "--nav3", blueLight);
+    theme("#theme2", "--nav4", blueLight);
+
+    // ******************PURPLE ***********************
+
+    var purp = "#4b20ed";
+    var purpGrey = "#d9dff4";
+
+    //body
+    theme("#theme3", "--main", "white");
+    theme("#theme3", "--text-color", purp);
+    theme("#theme3", "--image", "");
+    theme("#theme3", "--input-text", purp);
+
+    //buttons
+    theme("#theme3", "--btn-text", "white");
+    theme("#theme3", "--btn", purp);
+    theme("#theme3", "--btn-border", purp);
+    theme("#theme3", "--btn-hov", purp);
+    theme("#theme3", "--btn-text-hov", "white");
+
+    //inputs
+    theme("#theme3", "--input", purpGrey);
+    theme("#theme3", "--borders", purpGrey);
+
+    //nav
+    theme("#theme3", "--title", purp);
+    theme("#theme3", "--navHover", purp);
+    theme("#theme3", "--ham1", purp);
+    theme("#theme3", "--ham2", purp);
+    theme("#theme3", "--ham3", purp);
+    theme("#theme3", "--x", purp);
+    theme("#theme3", "--dropdown", purp);
+
+
+    //side-nav
+    theme("#theme3", "--sideNav", purp);
+    theme("#theme3", "--cats-background", "white");
+    theme("#theme3", "--hov-nav-text", purpGrey);
+    theme("#theme3", "--cats-hov", purpGrey);
+
+    //fix multicolor
+    theme("#theme3", "--color1", purp);
+    theme("#theme3", "--color2", purp);
+    theme("#theme3", "--color3", purp);
+    theme("#theme3", "--color4", purp);
+
+    theme("#theme3", "--border1", purpGrey);
+    theme("#theme3", "--border2", purpGrey);
+    theme("#theme3", "--border3", purpGrey);
+    theme("#theme3", "--border4", purpGrey);
+
+    theme("#theme3", "--nav1", "white");
+    theme("#theme3", "--nav2", "white");
+    theme("#theme3", "--nav3", "white");
+    theme("#theme3", "--nav4", "white");
+
+    //Christmas Theme
+
+    var red = "#e40301"; //
+    var midnight = "#02112e"; // or 011c08
+    var snow = "rgba(245, 243, 233, 1)";
+    var transparent = "rgba(245, 243, 233, 0.85)"
+    var scene = "url(https://i.pinimg.com/originals/05/86/d5/0586d5605231f269b0d8cbe22e950c42.jpg)";
+    var sky = "#325BCD"
+    var blu = "#122046";
+
+    //body
+    theme("#xmas", "--main", midnight);
+    theme("#xmas", "--text-color", snow);
+    theme("#xmas", "--image", scene);
+    theme("#xmas", "--input-text", blu);
+
+
+    //buttons
+    theme("#xmas", "--btn-text", snow);
+    theme("#xmas", "--btn", blu);
+    theme("#xmas", "--btn-border", blu);
+    theme("#xmas", "--btn-hov", blu);
+    theme("#xmas", "--btn-text-hov", snow);
+
+    //inputs
+    theme("#xmas", "--input", transparent);
+    theme("#xmas", "--borders", snow);
+
+    //nav
+    theme("#xmas", "--title", blu);
+    theme("#xmas", "--navHover", snow);
+    theme("#xmas", "--ham1", blu);
+    theme("#xmas", "--ham2", blu);
+    theme("#xmas", "--ham3", blu);
+    theme("#xmas", "--x", blu);
+    theme("#xmas", "--dropdown", blu);
+
+
+    //side-nav
+    theme("#xmas", "--sideNav", snow);
+    theme("#xmas", "--cats-background", sky);
+    theme("#xmas", "--hov-nav-text", blu);
+    theme("#xmas", "--cats-hov", "#8FA5E3");
+
+    //fix multicolor
+    theme("#xmas", "--color1", snow);
+    theme("#xmas", "--color2", snow);
+    theme("#xmas", "--color3", snow);
+    theme("#xmas", "--color4", snow);
+
+    theme("#xmas", "--border1", snow);
+    theme("#xmas", "--border2", snow);
+    theme("#xmas", "--border3", snow);
+    theme("#xmas", "--border4", snow);
+
+    theme("#xmas", "--nav1", sky);
+    theme("#xmas", "--nav2", sky);
+    theme("#xmas", "--nav3", sky);
+    theme("#xmas", "--nav4", sky);
+
+    // Add Emojis
+
+
+    var emoji_counter = 0;
+
+    function emoji(i, j, k) {
+
+
+      $("#xmas").click(function() {
+
+        emoji_counter++;
+        if (emoji_counter < 6) {
+
+          if (i == ".combineBtn") {
+            $(i).html(j);
+          } else {
+            $(i).append(j);
+            $(i).prepend(k);
+          }
+        }
+      });
+    }
+
+    emoji(".title", "&#9924;", "&#x1f385; &#x1f936;");
+    emoji(".combineBtn", "Combine &#x1f384; Copy");
+    emoji(".cats", " &#10052;", "&#10052;");
+    emoji(".resetBtn", " &#x1f98c;", "");
+    emoji(".checkmark", " &#10052;", "");
+
+    function removeEmoji(i) {
+
+      $(".themes").click(function() {
+        $(i).each(function() {
+          if (i == ".combineBtn") {
+
+            $(i).html("Combine & Copy");
+          } else {
+            var str = this.innerHTML;
+            var replace = str.replace(/[^A-Za-z0-9$&%*\s]/gi, '');
+            this.innerHTML = replace;
+          }
+
+          emoji_counter = 0;
+        });
+      });
+    }
+
+    removeEmoji(".title");
+    removeEmoji(".combineBtn");
+    removeEmoji(".cats");
+    removeEmoji(".resetBtn");
+    removeEmoji(".checkmark");
+    //CALCULATOR
+
+
+    //Global Variables
+
+    var prNew = "";
+
+    //TOP UP FUNCTION
+
+    function topUp() {
+      var per = document.getElementById('period').value;
+      var rate = document.getElementById("rate").value;
+      var r = parseInt(rate);
+
+      var output = "";
+
+      switch (per) {
+
+        case "1":
+          var ans = r / 3;
+          output += "$" + ans.toFixed(2);
+
+          document.getElementById("pay").value = output;
+          break;
+
+        case "2":
+          var ans = r / 3 * 2;
+          output += "$" + ans.toFixed(2);
+
+          document.getElementById("pay").value = output;
+          break;
+
+        case "3":
+          output += "$" + r.toFixed(2);
+
+          document.getElementById("pay").value = output;
+          break;
+
+        default:
+          output += "Please fill in values."
+          document.getElementById("pay").value = output;
+
+      }
+    }
+
+    // Check days are valid
+
+    $("#days").change(function() {
+
+      var v = $("#days").val();
+
+      parseInt(v);
+
+      if (v > 31 || v == 0) {
+
+        $("#invalidNum").show();
+        $('#days').css({
+          "border": "4px solid red"
+        });
+
+      } else {
+        $("#invalidNum").hide();
+        $('#days').css({
+          "border": "4px solid"
+        });
+      }
+    });
+
+    //Divide old rate plan
+
+    function daysCon() {
+
+      var newb = document.getElementById("newb").value;
+      var days = document.getElementById('days').value;
+      var d = parseInt(days);
+
+
+      if (d >= 1 && d <= 10) {
+
+        prNew = newb / 3;
+
+      } else if (d >= 11 && d <= 20) {
+
+        prNew = newb / 3 * 2;
+
+      } else if (d >= 21 && d <= 31)
+
+        prNew = newb;
+
+      else {
+
+        proNew = "";
+
+      }
+
+    }
+
+    // START OF PLAN CHANGE FUNC
+
+
+    function planCh() {
+
+      var days = document.getElementById('days').value;
+      var newb = document.getElementById("newb").value;
+      var old = document.getElementById("old").value;
+      var part = old * 12 / 365 * days;
+      var output = "";
+
+      var ans = prNew - part;
+      output += "$" + ans.toFixed(2);
+
+      document.getElementById("chRatePl").value = output;
+    }
+
+    // Tags CheckMarks UX
+
+    function tagUX(i) {
+      $(i).click(function() {
+        if ($(this).prop("checked") == true) {
+          $(this).parent().css("background-color", "var(--hov-nav-text)");
+        } else if ($(this).prop("checked") == false) {
+          $(this).parent().css("background-color", "var(--cats-background)");
+        }
+      });
+    }
+
+    tagUX(".tagsCheck");
+    tagUX(".preCheck");
+
+    //COPY NOTES :)
+
+    function copyNotes(i, j) {
+      $(i).click(function() {
+        var copyText = $(j);
+        copyText.select();
+        document.execCommand("copy");
+      });
+    }
+
+    copyNotes("#combine", "#output");
+    copyNotes("#ptpCombine", "#output");
+    copyNotes("#vacaCombine", "#output");
+    copyNotes("#loyalCombine", "#output");
+    copyNotes("#techCombine", "#output");
+    copyNotes("#retailCombine", "#retailNotes");
+    copyNotes("#portCombine", "#portNotes");
+
+    //RESET FORM
+
+    var comment;
+
+    function resetForm(i, j) {
+      $(i).click(function() {
+        document.getElementById(j).reset();
+
+
+        var output = "";
+
+        $(".tagsCheck:checked").each(function() {
+          output += $(this).val();
+          output += "\n";
+
+          $("#output").val(output);
+
+
+        });
+
+
+        $(".comment").val('');
+      });
+    }
+
+    //other resets are inside the history function
+
+    resetForm("#portReset", "portForm");
+
+
+    // reset Checks
+
+    function resetChecks(i, j) {
+      $(i).click(function() {
+
+        document.getElementById(j).reset();
+
+        if ($(".preCheck").prop("checked") == true) {
+          $(".preCheck").parent().css("background-color", "var(--hov-nav-text)");
+        } else if ($(".preCheck").prop("checked") == false) {
+          $(".preCheck").parent().css("background-color", "var(--cats-background)");
+        }
+
+      });
+    }
+
+
+    resetChecks("#genReset", "preOpts");
+    resetChecks("#genReset", "vacaOpts");
+    resetChecks("#genReset", "loyalOpts");
+    resetChecks("#genReset", "ptpOpts");
+    resetChecks("#genReset", "techOpts");
+
+    resetChecks("#ptpReset", "preOpts");
+    resetChecks("#ptpReset", "vacaOpts");
+    resetChecks("#ptpReset", "loyalOpts");
+    resetChecks("#ptpReset", "ptpOpts");
+    resetChecks("#ptpReset", "techOpts");
+
+    resetChecks("#vacaReset", "preOpts");
+    resetChecks("#vacaReset", "vacaOpts");
+    resetChecks("#vacaReset", "loyalOpts");
+    resetChecks("#vacaReset", "ptpOpts");
+    resetChecks("#vacaReset", "techOpts");
+
+    resetChecks("#techReset", "preOpts");
+    resetChecks("#techReset", "vacaOpts");
+    resetChecks("#techReset", "loyalOpts");
+    resetChecks("#techReset", "ptpOpts");
+    resetChecks("#techReset", "techOpts");
+
+    resetChecks("#loyalReset", "preOpts");
+    resetChecks("#loyalReset", "vacaOpts");
+    resetChecks("#loyalReset", "loyalOpts");
+    resetChecks("#loyalReset", "ptpOpts");
+    resetChecks("#loyalReset", "techOpts");
+
+
+    // replace anything but nums
+
+    function just_nums(i) {
+      $(i).focusout(function() {
+        var input = $(this).val();
+
+        var replace = input.replace(/[^0-9]/g, '');
+
+        $(this).val(replace);
+      });
+    }
+
+    just_nums("#num");
+    just_nums("#retailNum");
+    just_nums("#numtoPort");
+    just_nums("#tempNum");
+
+    function noSpace() {
+      $("#name").focusout(function() {
+
+        var input = $(this).val();
+        var replace = input.trim();
+        $(this).val(replace);
+
+      });
+    }
+    noSpace();
+  </script>
+
+</body>
+
+</html>

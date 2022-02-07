@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/8e9d7e365b.js" crossorigin"anonymous"></script>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <style>
+    body {
+      padding: 60px;
+      background-color: #E6EDf5;
+      width: 100% height: 100vh;
+    }
+
+    h4 {
+      padding: 0px 15px 0px 0px;
+      margin-bottom: 0;
+    }
+
+    h5 {
+      padding: 0px 0px 10px 0px;
+
+    }
+
+    nav span {
+      margin: 0 0 0 15px;
+    }
+
+    section {
+      padding: 15px 11px;
+    }
+
+    .btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .btn-combine {
+      float: left;
+      margin: 5px 0;
+    }
+
+    .btn-reset {
+      float: right;
+      margin: 5px 0;
+    }
+
+    .container-fluid {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .divider {
+      width: 80%;
+      margin: auto;
+    }
+
+    .fa-icon {
+      color: #616161;
+    }
+
+    .fas-nav {
+      padding: 0 0 0 34px;
+    }
+
+    .form-select {
+      color: #71869A;
+    }
+
+    .form-control::placeholder {
+      color: #CCCCCC;
+      opacity: 1;
+    }
+
+    .navbar {
+      border-bottom: 1px solid grey;
+      background-color: #D8E2ED;
+    }
+
+    .nav-footer {
+      border-top: 1px solid grey;
+      background-color: #D8E2ED;
+    }
+
+    /* div {
+      border: solid 1px red;
+    } */
+
+    .row {
+      margin-bottom: 15px;
+    }
+
+    .footer {
+      margin: 0 2rem;
+      font-size: .75rem;
+    }
+
+    #cancel-type {
+      display=none;
+    }
+  </style>
+
+  <title>Notator v.4</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container-fluid">
+        <i class="fas fa-ghost fa-2x fas-nav"></i>
+        <h4><span>Wireless Care Notator</span></h4>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Team</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" onclick="return show('CAS', 'Messaging','Retail Support', 'Treatment', 'Proration', 'Instructions');">CAS</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('Messaging', 'CAS','Retail Support', 'Treatment', 'Proration', 'Instructions');">Messaging</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('Retail Support', 'Messaging','CAS', 'Treatment', 'Proration', 'Instructions');">Retail Support</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>Calculators</span>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#" onclick="return show('Treatment', 'Messaging','Retail Support', 'CAS', 'Proration', 'Instructions');">Treatment</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('Proration', 'Messaging','Retail Support', 'Treatment', 'CAS', 'Instructions');">Proration</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="return show('Instructions', 'Messaging','Retail Support', 'Treatment', 'Proration', 'CAS');"><span>Instructions</span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Beginning of pages -->
+
+  <section id="CAS">
+    <h5>Customer Account Specialist</h5>
+    <form id="notatorForm">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-user fa-icon"></i></div>
+                  <label for="inputName" class="visually-hidden">Full Name</label>
+                  <input type="text" class="form-control" id="inputName" placeholder="Customer's First and Last Name">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-phone fa-icon"></i></div>
+                  <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
+                  <input type="numbers" class="form-control" id="inputMsisdn" placeholder="Customer's Phone #">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-hashtag fa-icon"></i></div>
+                  <label for="inputContactId" class="visually-hidden">Contact ID</label>
+                  <input type="numbers" class="form-control" id="inputContactId" placeholder="Conversation ID or Calabrio ID">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text" id="verification"><i class="fas fa-lock fa-icon"></i></div>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Was this customer verified?</option>
+                    <option value="1">Yes, with PIN</option>
+                    <option value="2">No, wrong PIN</option>
+                    <option value="3">No, unauthorized</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <hr class="divider">
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label for="inputProblem" class="visually-hidden">Problem</label>
+                <textarea rows="2" cols="10" class="form-control" id="inputProblem" placeholder="Reason for the customer's call"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label for="inputAction" class="visually-hidden">Actions</label>
+                <textarea rows="6" cols="10" class="form-control" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
+              </div>
+            </div>
+
+            <!-- Specialized Call Fields -->
+            <div class="row">
+              <hr class="divider">
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
+                  <select class="form-select" aria-label="Default select example" id="special-topic">
+                    <option selected>Select a specialized topic</option>
+                    <option value="Loyalty">Loyalty</option>
+                    <option value="Tech">Technical Support</option>
+                    <option value="Treatment">Treatment</option>
+                    <option value="Vacation">Vacation Suspend</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <!-- Loyalty fields -->
+                <div class="input-group g-3" id="cancel-type">
+                  <div class="input-group-text"><i class="fas fa-frown-open fa-icon"></i></div>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Cancellation Type</option>
+                    <option value="1">Cancellation</option>
+                    <option value="2">Cancellation with MyTab</option>
+                    <option value="3">Port-Out</option>
+                    <option value="4">Port-Out with MyTab</option>
+                  </select>
+                </div>
+                <!-- tech fields -->
+                <div class="input-group g-3" id="tech-type">
+                  <div class="input-group-text"><i class="fas fa-cogs fa-icon"></i></div>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Tech question</option>
+                    <option value="1">whatever</option>
+                    <option value="2">also</option>
+                    <option value="3">thing</option>
+                    <option value="4">turn it off and on</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output box and buttons -->
+          <div class="col-lg-6">
+            <label for="casOutput" class="visually-hidden">Note</label>
+            <textarea rows="15" cols="10" class="form-control" id="casOutput" placeholder="Your notes will appear here when you click Combine"></textarea>
+            <div class="">
+              <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
+              <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+
+
+  <section id="Retail Support" style="display:none">
+    <h5>Retail Support</h5>
+  </section>
+
+  <section id="Messaging" style="display:none">
+    <h5>Messaging</h5>
+  </section>
+
+  <section id="Treatment" style="display:none">
+    <h5>Treatment Calculator</h5>
+  </section>
+
+  <section id="Proration" style="display:none">
+    <h5>Proration Calculator</h5>
+  </section>
+
+  <section id="Instructions" style="display:none">
+    <h5>Notator Instructions</h5>
+  </section>
+
+  <!-- Footer -->
+
+  <nav class="navbar fixed-bottom navbar-light nav-footer">
+    <div class="container-fluid">
+      <span class="footer">v.4</span>
+      <span class="footer">
+        <script>
+          var date = document.lastModified;
+          document.write("Last Modified: " + date);
+        </script>
+      </span>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script>
+    // Nav show and hide pages
+    function show(shown, hidden, hidden2, hidden3, hidden4, hidden5, hidden6) {
+      document.getElementById(shown).style.display = 'block';
+      document.getElementById(hidden).style.display = 'none';
+      document.getElementById(hidden2).style.display = 'none';
+      document.getElementById(hidden3).style.display = 'none';
+      document.getElementById(hidden4).style.display = 'none';
+      document.getElementById(hidden5).style.display = 'none';
+      document.getElementById(hidden6).style.display = 'none';
+      return false;
+    }
+
+    // Combine & Copy Form textbox
+    function formsCombine() {
+      var cxName = document.getElementById("inputName").value;
+      var cxMsisdn = document.getElementById("inputMsisdn").value;
+      var contactId = document.getElementById("inputContactId").value;
+      var cxVerify = document.getElementById("verification").value;
+      var cxProblem = document.getElementById("inputProblem").value;
+      var cxAction = document.getElementById("inputAction").value;
+      var callType = document.getElementById("special-topic").value;
+
+      var output = 'Problem: ' + cxProblem + "\n\n";
+      output += 'Name: ' + cxName + "\n";
+      output += 'MSISDN: ' + cxMsisdn + "\n";
+      output += 'Verification: ' + cxVerify + "\n\n";
+      output += 'Action: ' + cxAction + "\n\n";
+      output += 'Contact ID: ' + contactId + "\n";
+      if (callType === "Loyalty" || callType === "Tech") {
+      output += 'Call Type: ' + callType + "\n";
+    }
+
+      document.getElementById('casOutput').value = output;
+      navigator.clipboard.writeText(output);
+
+      var copyBtn = document.getElementById("copy-btn");
+      copyBtn.innerHTML = "Copied"
+      setTimeout(function() {
+        copyBtn.innerHTML = "Combine & Copy"
+      }, 5000)
+    }
+
+    // reset button
+    function resetForm() {
+      document.getElementById("notatorForm").reset();
+    }
+
+    // Loyalty CA form display, or not
+    $("#special-topic").change(function() {
+      if ($(this).val() == "Loyalty") {
+        $('#cancel-type').show();
+        $('#tech-type').hide();
+      } else if ($(this).val() == "Tech") {
+        $('#cancel-type').hide();
+        $('#tech-type').show();
+      } else {
+        $('#cancel-type').hide();
+        $('#tech-type').hide();
+      }
+    });
+    $("#special-topic").trigger("change");
+  </script>
+</body>
+
+</html>
