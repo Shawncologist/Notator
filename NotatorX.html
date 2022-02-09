@@ -291,7 +291,7 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them they will not be able to make another "Promise to Pay" for 90 days if they miss this payment." id="checkBroken90">
+                  <input class="form-check-input" type="checkbox" value="I informed them they will not be able to make another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
                   <label class="form-check-label" for="checkBroken90">
                     I informed them they will not be able to make another "Promise to Pay" for 90 days if they miss this payment.
                   </label>
@@ -311,19 +311,19 @@
               </div>
             </div>
 
-          <!-- end of form, leave it -->
-        </div>
+            <!-- end of form, leave it -->
+          </div>
 
-        <!-- Output box and buttons -->
-        <div class="col-lg-6">
-          <label for="casOutput" class="visually-hidden">Note</label>
-          <textarea rows="15" cols="10" class="form-control" id="casOutput" placeholder="Your notes will appear here when you click Combine"></textarea>
-          <div class="">
-            <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
-            <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+          <!-- Output box and buttons -->
+          <div class="col-lg-6">
+            <label for="casOutput" class="visually-hidden">Note</label>
+            <textarea rows="15" cols="10" class="form-control" id="casOutput" placeholder="Your notes will appear here when you click Combine"></textarea>
+            <div class="">
+              <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
+              <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </form>
   </section>
@@ -353,11 +353,9 @@
   <!-- Footer -->
 
   <nav class="navbar fixed-bottom navbar-light nav-footer d-flex justify-content-end">
-    <div class="footer">V.4.01
-      <script>
-        var date = document.lastModified;
-        document.write("Last Modified: " + date);
-      </script>
+    <div class="footer">V.4.01</div>
+    <div class="footer" id="d20" onclick="randomTwenty()">[ 20 ]</div>
+    <div class="footer" id="lastModified">
     </div>
   </nav>
 
@@ -399,23 +397,32 @@
       var cxcheck3Business = document.getElementById("check3Business").checked;
 
       var output = 'Problem: ' + cxProblem + "\n\n";
+      if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment") {
+        output += 'Call Type: ' + callType + "\n";
+      }
       output += 'Name: ' + cxName + "\n";
       output += 'MSISDN: ' + cxMsisdn + "\n";
       output += 'Verification: ' + cxVerify + "\n";
       output += 'Contact ID: ' + contactId + "\n\n";
       output += 'Action: ' + cxAction + "\n\n";
-      if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment") {
-        output += 'Call Type: ' + callType + "\n";
-      }
       if (callType === "Treatment") {
         output += 'Last Broken PTP: ' + cxBroken + "\n";
         output += 'Will pay: $' + cxPay + "\n";
         output += 'Payment method: ' + cxMethod + "\n";
-        output += cxCheckPayBefore + "\n";
-        output += cxCheckBroken90 + "\n";
-        output += cxcheckCash24 + "\n";
-        output += cxcheck3Business + "\n\n";
       }
+      if (cxCheckPayBefore === true && callType === "Treatment") {
+        output += "- " + checkPayBefore.getAttribute('value') + "\n";
+      }
+      if (cxCheckBroken90 === true && callType === "Treatment") {
+        output += "- " + checkBroken90.getAttribute('value') + "\n";
+      }
+      if (cxcheckCash24 === true && callType === "Treatment") {
+        output += "- " + checkCash24.getAttribute('value') + "\n";
+      }
+      if (cxcheck3Business === true && callType === "Treatment") {
+        output += "- " + check3Business.getAttribute('value') + "\n";
+      }
+
 
       document.getElementById('casOutput').value = output;
       navigator.clipboard.writeText(output);
@@ -475,6 +482,18 @@
         format: "D, MM d",
       });
     });
+
+// Nothing important
+function randomTwenty () {
+  let d = document.querySelector("#d20");
+  d.innerText = "[ " + (Math.floor(Math.random(20) * 20) + 1) + " ]";
+}
+
+// date modified calculation
+let date = document.lastModified;
+date = date.split(' ')[0];
+document.querySelector("#lastModified").innerText = date;
+
   </script>
 </body>
 
