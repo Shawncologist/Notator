@@ -95,6 +95,10 @@
       border: solid 1px red;
     } */
 
+.divider-calculator {
+  margin-top: 3rem;
+}
+
     .row {
       margin-bottom: 15px;
     }
@@ -162,14 +166,14 @@
             <div class="row">
               <div class="col-6">
                 <div class="input-group g-3">
-                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-user fa-icon"></i></div>
+                  <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
                   <label for="inputName" class="visually-hidden">Full Name</label>
                   <input type="text" class="form-control" id="inputName" placeholder="Customer's First and Last Name">
                 </div>
               </div>
               <div class="col-6">
                 <div class="input-group g-3">
-                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-phone fa-icon"></i></div>
+                  <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
                   <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
                   <input type="numbers" class="form-control" id="inputMsisdn" placeholder="Customer's Phone #">
                 </div>
@@ -178,19 +182,20 @@
             <div class="row">
               <div class="col-6">
                 <div class="input-group g-3">
-                  <div class="input-group-text" id="basic-addon1"><i class="fas fa-hashtag fa-icon"></i></div>
+                  <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
                   <label for="inputContactId" class="visually-hidden">Contact ID</label>
                   <input type="numbers" class="form-control" id="inputContactId" placeholder="Conversation ID or Calabrio ID">
                 </div>
               </div>
               <div class="col-6">
                 <div class="input-group g-3">
-                  <div class="input-group-text" id="verification"><i class="fas fa-lock fa-icon"></i></div>
-                  <select class="form-select" aria-label="Default select example">
+                  <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
+                  <select class="form-select" aria-label="Default select example" id="inputVerification">
                     <option selected>Was this customer verified?</option>
-                    <option value="1">Yes, with PIN</option>
-                    <option value="2">No, wrong PIN</option>
-                    <option value="3">No, unauthorized</option>
+                    <option value="Yes, with PIN">Yes, with PIN</option>
+                    <option value="Yes, with MFA and PIN reset">Yes, with MFA and PIN reset</option>
+                    <option value="No, wrong PIN">No, wrong PIN</option>
+                    <option value="No, unauthorized">No, unauthorized</option>
                   </select>
                 </div>
               </div>
@@ -291,9 +296,9 @@
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them they will not be able to make another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
+                  <input class="form-check-input" type="checkbox" value="I informed them we will not accept another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
                   <label class="form-check-label" for="checkBroken90">
-                    I informed them they will not be able to make another "Promise to Pay" for 90 days if they miss this payment.
+                    I informed them we will not accept another Promise to Pay for 90 days if they miss this payment.
                   </label>
                 </div>
                 <div class="form-check">
@@ -344,6 +349,84 @@
 
   <section id="Proration" style="display:none">
     <h5>Proration Calculator</h5>
+    <form id="prepaidProration">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <!-- This should have top-up date and options for rate plan changes? -->
+            <h6>Pre-Paid Proration Calculator</h6>
+            <div class="input-group g-3 temporary">
+              <div class="input-group-text"><i class="fas fa-calendar fa-icon"></i></div>
+              <select class="form-select" aria-label="Default select" id="prorationPeriod">
+                <option selected>Days until next top-up date?</option>
+                <option value="33">1 - 10 days remaining</option>
+                <option value="66">11 - 20 days remaining</option>
+                <option value="99">21 - 30 days remaining</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+         <div class="row">
+           <div class="col-lg-3">
+            <div class="input-group g-3">
+              <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+              <label for="inputPrepaidRatePlan" class="visually-hidden">Rate plan price</label>
+              <input type="numbers" class="form-control" id="inputPrepaidRatePlan" placeholder="Price of the item">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="">
+            <button id="pp-calc-btn" onclick="prepaidCalculator()" class="btn btn-secondary btn-combine" type="button">Calculate</button>
+            <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetPreCalc()">Reset</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="input-group g-3">
+            <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
+            <label for="inputPrepaidRatePlan" class="visually-hidden">Rate plan price</label>
+            <input type="text" class="form-control" id="prepaidCalcResult" placeholder="Amount to pay">
+          </div>
+          <div class="row">
+            <hr class="divider divider-calculator">
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </form>
+
+    <!-- Postpaid calculator -->
+    <form id="postpaidProration">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <h6>Post-Paid Proration Calculator</h6>
+            <div class="input-group g-3 temporary">
+              <div class="input-group-text"><i class="fas fa-calendar-check fa-icon"></i></div>
+              <select class="form-select" aria-label="Default select" id="prorationCycle">
+                <option selected>Billing Cycle Date</option>
+                <option value="1">5th</option>
+                <option value="2">10th</option>
+                <option value="3">15th</option>
+                <option value="3">20th</option>
+                <option value="3">25th</option>
+              </select>
+            </div>
+            <br>more calculator here..
+            </div>
+
+        </div>
+      </div>
+      </div>
+    </form>
   </section>
 
   <section id="Instructions" style="display:none">
@@ -384,7 +467,7 @@
       var cxName = document.getElementById("inputName").value;
       var cxMsisdn = document.getElementById("inputMsisdn").value;
       var contactId = document.getElementById("inputContactId").value;
-      var cxVerify = document.getElementById("verification").value;
+      var cxVerify = document.getElementById("inputVerification").value;
       var cxProblem = document.getElementById("inputProblem").value;
       var cxAction = document.getElementById("inputAction").value;
       var callType = document.getElementById("special-topic").value;
@@ -483,16 +566,39 @@
       });
     });
 
-// Nothing important
-function randomTwenty () {
-  let d = document.querySelector("#d20");
-  d.innerText = "[ " + (Math.floor(Math.random(20) * 20) + 1) + " ]";
-}
+    // Nothing important
+    function randomTwenty() {
+      let d = document.querySelector("#d20");
+      d.innerText = "[ " + (Math.floor(Math.random(20) * 20) + 1) + " ]";
+    }
 
-// date modified calculation
-let date = document.lastModified;
-date = date.split(' ')[0];
-document.querySelector("#lastModified").innerText = date;
+    // date modified calculation
+    let date = document.lastModified;
+    date = date.split(' ')[0];
+    document.querySelector("#lastModified").innerText = date;
+
+// Pre-Paid calculator
+function prepaidCalculator() {
+  let daysRemaining = document.getElementById("prorationPeriod").value;
+  let prepaidRate = document.getElementById("inputPrepaidRatePlan").value;
+  let prepaidAmountPay = ""
+  if (daysRemaining === "33") {
+    prepaidAmountPay = (prepaidRate * 0.3333333).toFixed(2);
+  }
+  else if (daysRemaining === "66") {
+    prepaidAmountPay = (prepaidRate * 0.6666666).toFixed(2);
+  }
+  else if (daysRemaining === "99") {
+    prepaidAmountPay = (prepaidRate * 0.9999999).toFixed(2);
+  }
+
+  let outputPre = '$' + prepaidAmountPay;
+  document.getElementById('prepaidCalcResult').value = outputPre;
+}
+  function resetPreCalc() {
+    document.getElementById("prepaidProration").reset();
+  }
+
 
   </script>
 </body>
