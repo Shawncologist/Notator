@@ -21,6 +21,10 @@
       width: 100% height: 100vh;
     }
 
+    /* div {
+      border: solid 1px red;
+    } */
+
     h4 {
       padding: 0px 15px 0px 0px;
       margin-bottom: 0;
@@ -91,13 +95,9 @@
       background-color: #D8E2ED;
     }
 
-    /* div {
-      border: solid 1px red;
-    } */
-
-.divider-calculator {
-  margin-top: 3rem;
-}
+    .divider-calculator {
+      margin-top: 3rem;
+    }
 
     .row {
       margin-bottom: 15px;
@@ -108,7 +108,7 @@
       font-size: .75rem;
     }
 
-    #cancel-type {
+    #inputCancelType {
       display=none;
     }
   </style>
@@ -132,9 +132,9 @@
                 <span>Team</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#" onclick="return show('CAS', 'Messaging','Retail Support', 'Treatment', 'Proration', 'Instructions');">CAS</a></li>
-                <li><a class="dropdown-item" href="#" onclick="return show('Messaging', 'CAS','Retail Support', 'Treatment', 'Proration', 'Instructions');">Messaging</a></li>
-                <li><a class="dropdown-item" href="#" onclick="return show('Retail Support', 'Messaging','CAS', 'Treatment', 'Proration', 'Instructions');">Retail Support</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('CAS', 'Messaging','retailSupport', 'Treatment', 'postProration', 'preProration', 'Instructions');">CAS</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('Messaging', 'CAS','retailSupport', 'Treatment', 'postProration', 'preProration', 'Instructions');">Messaging</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('retailSupport', 'Messaging','CAS', 'Treatment', 'postProration', 'preProration', 'Instructions');">Retail Support</a></li>
               </ul>
             </li>
             <li class="nav-item dropdown">
@@ -142,12 +142,13 @@
                 <span>Calculators</span>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#" onclick="return show('Treatment', 'Messaging','Retail Support', 'CAS', 'Proration', 'Instructions');">Treatment</a></li>
-                <li><a class="dropdown-item" href="#" onclick="return show('Proration', 'Messaging','Retail Support', 'Treatment', 'CAS', 'Instructions');">Proration</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('Treatment', 'Messaging','retailSupport', 'CAS', 'postProration', 'preProration', 'Instructions');">Treatment</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('preProration', 'Messaging','retailSupport', 'Treatment', 'CAS', 'postProration', 'Instructions');">Pre-paid Proration</a></li>
+                <li><a class="dropdown-item" href="#" onclick="return show('postProration', 'Messaging','retailSupport', 'Treatment', 'CAS', 'preProration', 'Instructions');">Post-paid Proration</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="return show('Instructions', 'Messaging','Retail Support', 'Treatment', 'Proration', 'CAS');"><span>Instructions</span></a>
+              <a class="nav-link" href="#" onclick="return show('Instructions', 'Messaging','retailSupport', 'Treatment', 'postProration', 'preProration', 'CAS');"><span>Instructions</span></a>
             </li>
           </ul>
         </div>
@@ -224,7 +225,7 @@
               <div class="col-6">
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
-                  <select class="form-select" aria-label="Default select example" id="special-topic">
+                  <select class="form-select" aria-label="Default select example" id="inputSpecialTopic">
                     <option selected>Select a specialized topic</option>
                     <option value="Loyalty">Loyalty</option>
                     <option value="Tech">Technical Support</option>
@@ -235,9 +236,9 @@
               </div>
               <div class="col-6">
                 <!-- Loyalty fields -->
-                <div class="input-group g-3 temporary" id="cancel-type">
+                <div class="input-group g-3 temporary" id="cancelType">
                   <div class="input-group-text"><i class="fas fa-frown-open fa-icon"></i></div>
-                  <select class="form-select" aria-label="Default select example">
+                  <select class="form-select" aria-label="Default select example" id="inputCancelType">
                     <option selected>Cancellation Type</option>
                     <option value="1">Cancellation</option>
                     <option value="2">Cancellation with MyTab</option>
@@ -246,9 +247,9 @@
                   </select>
                 </div>
                 <!-- tech fields -->
-                <div class="input-group g-3 temporary" id="tech-type">
+                <div class="input-group g-3 temporary" id="techType">
                   <div class="input-group-text"><i class="fas fa-cogs fa-icon"></i></div>
-                  <select class="form-select" aria-label="Default select example">
+                  <select class="form-select" aria-label="Default select example"  id="inputTechType">
                     <option selected>Tech question</option>
                     <option value="1">whatever</option>
                     <option value="2">also</option>
@@ -267,7 +268,7 @@
             <div class="row">
               <div class="col-6">
                 <div class="input-group g-3 temporary" id="payAmount">
-                  <div class="input-group-text" id="payAmount"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                  <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                   <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
                   <input type="numbers" class="form-control" id="inputPayAmount" placeholder="Amount to be paid">
                 </div>
@@ -335,7 +336,7 @@
 
 
 
-  <section id="Retail Support" style="display:none">
+  <section id="retailSupport" style="display:none">
     <h5>Retail Support</h5>
   </section>
 
@@ -347,14 +348,39 @@
     <h5>Treatment Calculator</h5>
   </section>
 
-  <section id="Proration" style="display:none">
-    <h5>Proration Calculator</h5>
+  <section id="postProration" style="display:none">
+    <h5>Post-paid Proration Calculator</h5>
+    <!-- Postpaid calculator -->
+    <form id="postpaidProration">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="input-group g-3 temporary">
+              <div class="input-group-text"><i class="fas fa-calendar-check fa-icon"></i></div>
+              <select class="form-select" aria-label="Default select" id="prorationCycle">
+                <option selected>Billing Cycle Date</option>
+                <option value="1">5th</option>
+                <option value="2">10th</option>
+                <option value="3">15th</option>
+                <option value="3">20th</option>
+                <option value="3">25th</option>
+              </select>
+            </div>
+            <br>more calculator here..
+          </div>
+
+        </div>
+      </div>
+      </div>
+    </form>
+  </section>
+
+  <section id="preProration" style="display:none">
+    <h5>Pre-paid Proration Calculator</h5>
     <form id="prepaidProration">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3">
-            <!-- This should have top-up date and options for rate plan changes? -->
-            <h6>Pre-Paid Proration Calculator</h6>
             <div class="input-group g-3 temporary">
               <div class="input-group-text"><i class="fas fa-calendar fa-icon"></i></div>
               <select class="form-select" aria-label="Default select" id="prorationPeriod">
@@ -367,8 +393,8 @@
           </div>
         </div>
 
-         <div class="row">
-           <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-3">
             <div class="input-group g-3">
               <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
               <label for="inputPrepaidRatePlan" class="visually-hidden">Rate plan price</label>
@@ -393,9 +419,7 @@
             <label for="inputPrepaidRatePlan" class="visually-hidden">Rate plan price</label>
             <input type="text" class="form-control" id="prepaidCalcResult" placeholder="Amount to pay">
           </div>
-          <div class="row">
-            <hr class="divider divider-calculator">
-          </div>
+      
         </div>
 
       </div>
@@ -403,30 +427,7 @@
       </div>
     </form>
 
-    <!-- Postpaid calculator -->
-    <form id="postpaidProration">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-3">
-            <h6>Post-Paid Proration Calculator</h6>
-            <div class="input-group g-3 temporary">
-              <div class="input-group-text"><i class="fas fa-calendar-check fa-icon"></i></div>
-              <select class="form-select" aria-label="Default select" id="prorationCycle">
-                <option selected>Billing Cycle Date</option>
-                <option value="1">5th</option>
-                <option value="2">10th</option>
-                <option value="3">15th</option>
-                <option value="3">20th</option>
-                <option value="3">25th</option>
-              </select>
-            </div>
-            <br>more calculator here..
-            </div>
 
-        </div>
-      </div>
-      </div>
-    </form>
   </section>
 
   <section id="Instructions" style="display:none">
@@ -451,7 +452,7 @@
 
   <script>
     // Nav show and hide pages
-    function show(shown, hidden, hidden2, hidden3, hidden4, hidden5, hidden6) {
+    function show(shown, hidden, hidden2, hidden3, hidden4, hidden5, hidden6, hidden7) {
       document.getElementById(shown).style.display = 'block';
       document.getElementById(hidden).style.display = 'none';
       document.getElementById(hidden2).style.display = 'none';
@@ -459,6 +460,7 @@
       document.getElementById(hidden4).style.display = 'none';
       document.getElementById(hidden5).style.display = 'none';
       document.getElementById(hidden6).style.display = 'none';
+      document.getElementById(hidden7).style.display = 'none';
       return false;
     }
 
@@ -470,7 +472,7 @@
       var cxVerify = document.getElementById("inputVerification").value;
       var cxProblem = document.getElementById("inputProblem").value;
       var cxAction = document.getElementById("inputAction").value;
-      var callType = document.getElementById("special-topic").value;
+      var callType = document.getElementById("inputSpecialTopic").value;
       var cxBroken = document.getElementById("inputLastBroken").value;
       var cxPay = document.getElementById("inputPayAmount").value;
       var cxMethod = document.getElementById("inputPayMethod").value;
@@ -524,38 +526,38 @@
     }
 
     // CA form display, or not
-    $("#special-topic").change(function() {
+    $("#inputSpecialTopic").change(function() {
       if ($(this).val() == "Loyalty") {
-        $('#cancel-type').show();
-        $('#tech-type').hide();
+        $('#cancelType').show();
+        $('#techType').hide();
         $('#lastBroken').hide();
         $('#payAmount').hide();
         $('#payMethod').hide();
         $('#treatmentChecks').hide();
       } else if ($(this).val() == "Tech") {
-        $('#cancel-type').hide();
-        $('#tech-type').show();
+        $('#cancelType').hide();
+        $('#techType').show();
         $('#lastBroken').hide();
         $('#payAmount').hide();
         $('#payMethod').hide();
         $('#treatmentChecks').hide();
       } else if ($(this).val() == "Treatment") {
-        $('#cancel-type').hide();
-        $('#tech-type').hide();
+        $('#cancelType').hide();
+        $('#techType').hide();
         $('#lastBroken').show();
         $('#payAmount').show();
         $('#payMethod').show();
         $('#treatmentChecks').show();
       } else {
-        $('#cancel-type').hide();
-        $('#tech-type').hide();
+        $('#cancelType').hide();
+        $('#techType').hide();
         $('#lastBroken').hide();
         $('#payAmount').hide();
         $('#payMethod').hide();
         $('#treatmentChecks').hide();
       }
     });
-    $("#special-topic").trigger("change");
+    $("#inputSpecialTopic").trigger("change");
 
     // date picker
     $(document).ready(function() {
@@ -577,29 +579,26 @@
     date = date.split(' ')[0];
     document.querySelector("#lastModified").innerText = date;
 
-// Pre-Paid calculator
-function prepaidCalculator() {
-  let daysRemaining = document.getElementById("prorationPeriod").value;
-  let prepaidRate = document.getElementById("inputPrepaidRatePlan").value;
-  let prepaidAmountPay = ""
-  if (daysRemaining === "33") {
-    prepaidAmountPay = (prepaidRate * 0.3333333).toFixed(2);
-  }
-  else if (daysRemaining === "66") {
-    prepaidAmountPay = (prepaidRate * 0.6666666).toFixed(2);
-  }
-  else if (daysRemaining === "99") {
-    prepaidAmountPay = (prepaidRate * 0.9999999).toFixed(2);
-  }
+    // Pre-Paid calculator
+    function prepaidCalculator() {
+      let daysRemaining = document.getElementById("prorationPeriod").value;
+      let prepaidRate = document.getElementById("inputPrepaidRatePlan").value;
+      let prepaidAmountPay = ""
+      if (daysRemaining === "33") {
+        prepaidAmountPay = (prepaidRate * 0.3333333).toFixed(2);
+      } else if (daysRemaining === "66") {
+        prepaidAmountPay = (prepaidRate * 0.6666666).toFixed(2);
+      } else if (daysRemaining === "99") {
+        prepaidAmountPay = (prepaidRate * 0.9999999).toFixed(2);
+      }
 
-  let outputPre = '$' + prepaidAmountPay;
-  document.getElementById('prepaidCalcResult').value = outputPre;
-}
-  function resetPreCalc() {
-    document.getElementById("prepaidProration").reset();
-  }
+      let outputPre = '$' + prepaidAmountPay;
+      document.getElementById('prepaidCalcResult').value = outputPre;
+    }
 
-
+    function resetPreCalc() {
+      document.getElementById("prepaidProration").reset();
+    }
   </script>
 </body>
 
