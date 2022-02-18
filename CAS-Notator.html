@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #FFFFFF;
+      width: 100%;
+      height: 100vh;
+    }
+
+    /* div {
+    border: 1px solid pink;
+  } */
+
+    input[type="date"]:before {
+      content: attr(placeholder) !important;
+      color: #aaa;
+      margin-right: 0.5em;
+    }
+
+    input[type="date"]:focus:before,
+    input[type="date"]:valid:before {
+      content: "";
+    }
+
+    .bluer:focus {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      border: 1px solid #DDDDDD;
+      background-color: #EBF5FB55;
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
+    }
+
+    section {
+      padding: 0 0 200px 0;
+      min-height: 660px;
+    }
+
+    .bluer {
+      background-color: #EBF5FB55;
+    }
+
+
+    .btn:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .btn-combine {
+      float: left;
+      margin: 10px 0;
+    }
+
+    .btn-reset {
+      float: right;
+      margin: 10px 0;
+    }
+
+    .container-fluid {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .divider {
+      width: 80%;
+      margin: auto;
+    }
+
+    .fa-icon {
+      color: #616161;
+    }
+
+    .fas-nav {
+      padding: 0 0 0 34px;
+    }
+
+    .footer {
+      margin: 0 2rem;
+      font-size: .75rem;
+    }
+
+    .form-select {
+      color: #71869A;
+    }
+
+    .form-control::placeholder {
+      color: #CCCCCC;
+      opacity: 1;
+    }
+
+    .nav-footer {
+      border: 1px solid #616161;
+      background-color: #E9ECEF;
+    }
+
+    .row {
+      margin-bottom: 15px;
+    }
+
+    .verbatim {
+      border: 1px solid #CED4DA;
+      display: none;
+      padding: 10px;
+    }
+
+    .warning {
+      color: red;
+      text-align: center;
+      margin-bottom: 0px;
+      display: none;
+    }
+  </style>
+
+<body>
+  <section id="CAS">
+    <form id="notatorForm">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- column a -->
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-">
+                  <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
+                  <label for="inputName" class="visually-hidden"></label>
+                  <input type="text" class="form-control bluer" id="inputName" placeholder="First and Last Name">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
+                  <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
+                  <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="Customer's Phone #">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
+                  <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
+                    <option selected>Customer's status?</option>
+                    <option value="Account Holder">Account Holder</option>
+                    <option value="Authorized User">Authorized User</option>
+                    <option value="Device User">Device User</option>
+                    <option value="Not Authorized">Not Authorized</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
+                  <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
+                    <option selected>Verification?</option>
+                    <option value="Yes, with PIN">Yes, with PIN</option>
+                    <option value="Yes, with MFA">Yes, with MFA</option>
+                    <option value="No, wrong PIN">No, wrong PIN</option>
+                    <option value="No, unverified">No, unverified</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
+                  <label for="inputContactId" class="visually-hidden">Contact ID</label>
+                  <input type="numbers" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
+                </div>
+              </div>
+            </div>
+            <div class="row warning">
+              <div class="col-12">
+              </div>
+              <p><strong>This customer may not be given any information from the account!</strong></p>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label for="inputProblem" class="visually-hidden">Problem</label>
+                <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Reason for the customer's call"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <label for="inputAction" class="visually-hidden">Actions</label>
+                <textarea rows="10" cols="10" class="form-control bluer" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
+              </div>
+            </div>
+            <!-- Specialized Call Fields -->
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
+                  <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic">
+                    <option selected>Select a specialized topic</option>
+                    <option value="Loyalty">Loyalty - NOT YET</option>
+                    <option value="Outage">Outage Credit</option>
+                    <option value="Tech">Technical Support - NOT YET</option>
+                    <option value="Treatment">Treatment</option>
+                    <option value="Vacation">Vacation Suspend - NOT YET</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group g-3 temporary" id="lastBroken">
+                  <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
+                  <label for="inputLastBroken" class="visually-hidden"></label>
+                  <input type="date" class="form-control bluer" id="inputLastBroken" placeholder="Last Broken PTP: ">
+                </div>
+                <div class="input-group g-3 temporary" id="outageMonthlyCharge">
+                  <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                  <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
+                  <input type="numbers" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="input-group g-3 temporary" id="payAmount">
+                  <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                  <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
+                  <input type="numbers" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
+                </div>
+                <div class="input-group g-3 temporary" id="outageLength">
+                  <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
+                  <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
+                  <input type="numbers" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="input-group g-3 temporary bluer" id="payMethod">
+                  <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
+                  <select class="form-select bluer" aria-label="Default select example" id="inputPayMethod">
+                    <option selected>Method of payment</option>
+                    <option value="Bank">Bank</option>
+                    <option value="Customer Care">Customer Care</option>
+                    <option value="MyAccount">MyAccount</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Unknown">Unknown</option>
+                  </select>
+                </div>
+                <div class="">
+                  <button id="outage-calc-btn" onclick="outageCalculator()" class="btn btn-secondary temporary" type="button">Calculate Refund</button>
+                </div>
+              </div>
+            </div>
+            <div class="row temporary" id="treatmentChecks">
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
+                  <label class="form-check-label" for="checkPayBefore">
+                    I informed them that payment must be received within 7 days.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="I informed them we will not accept another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
+                  <label class="form-check-label" for="checkBroken90">
+                    I informed them we will not accept another Promise to Pay for 90 days if they miss this payment.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="I informed them that cash payments may take up to 24 hours." id="checkCash24">
+                  <label class="form-check-label" for="checkCash24">
+                    I informed them that cash payments may take 24 hours.
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="I informed them that bank payments may take 3 - 5 business days." id="check3Business">
+                  <label class="form-check-label" for="check3Business">
+                    I informed them that bank payments may take 3 - 5 business days.
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div id="outageVerbatim" class="temporary verbatim">
+
+            </div>
+          </div>
+          <!-- column b -->
+          <div class="col-lg-6">
+            <label for="casOutput" class="visually-hidden">Note</label>
+            <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine"></textarea>
+            <div>
+              <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
+              <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+  <nav class="navbar fixed-bottom navbar-light nav-footer d-flex justify-content-end">
+    <div class="footer">V.4.01</div>
+    <div class="footer" id="d20" onclick="randomTwenty()">[ 00 ]</div>
+    <div class="footer" id="lastModified">
+    </div>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/8e9d7e365b.js" crossorigin"anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script>
+    function formsCombine() {
+      // var output = "";
+
+      var cxName = $("#inputName").val();
+      var cxMsisdn = $("#inputMsisdn").val();
+      var cxStatus = $("#inputStatus").val();
+      var contactId = $("#inputContactId").val();
+      var cxVerify = $("#inputVerification").val();
+      var cxProblem = $("#inputProblem").val();
+      var cxAction = $("#inputAction").val();
+      var callType = $("#inputSpecialTopic").val();
+      var cxBroken = $("#inputLastBroken").val();
+      var cxPay = $("#inputPayAmount").val();
+      var cxMethod = $("#inputPayMethod").val();
+      var outLength = $("#inputOutageLength").val();
+      var outMonth = $("#inputOutageMonthlyCharge").val();
+      var cxCheckPayBefore = document.getElementById("checkPayBefore").checked;
+      var cxCheckBroken90 = document.getElementById("checkBroken90").checked;
+      var cxcheckCash24 = document.getElementById("checkCash24").checked;
+      var cxcheck3Business = document.getElementById("check3Business").checked;
+
+      var output = 'Problem: ' + cxProblem + "\n\n";
+      if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment") {
+        output += 'Call Type: ' + callType + "\n";
+      }
+      output += 'Name: ' + cxName + "\n";
+      output += 'CX Status: ' + cxStatus + "\n";
+      output += 'Verification: ' + cxVerify + "\n";
+      output += 'MSISDN: ' + cxMsisdn + "\n";
+      output += 'Contact ID: ' + contactId + "\n\n";
+      output += 'Action: ' + cxAction + "\n\n";
+      if (callType === "Treatment") {
+        output += 'Last Broken PTP: ' + cxBroken + "\n";
+        output += 'Will pay: $' + cxPay + "\n";
+        output += 'Payment method: ' + cxMethod + "\n";
+      }
+      if (cxCheckPayBefore === true && callType === "Treatment") {
+        output += "- " + checkPayBefore.getAttribute('value') + "\n";
+      }
+      if (cxCheckBroken90 === true && callType === "Treatment") {
+        output += "- " + checkBroken90.getAttribute('value') + "\n";
+      }
+      if (cxcheckCash24 === true && callType === "Treatment") {
+        output += "- " + checkCash24.getAttribute('value') + "\n";
+      }
+      if (cxcheck3Business === true && callType === "Treatment") {
+        output += "- " + check3Business.getAttribute('value') + "\n";
+      }
+
+      $("#casOutput").val(output);
+      $("#casOutput").focus(function() {
+        this.selectionStart = this.selectionEnd = -1;
+      });
+    }
+
+    function copyNotes(i, j) {
+      $(i).click(function() {
+        var copyText = $(j);
+        copyText.select();
+        document.execCommand("copy");
+      });
+    }
+
+    copyNotes("#copy-btn", "#casOutput");
+
+    // reset button
+    function resetForm() {
+      document.getElementById("notatorForm").reset();
+      $('.temporary').hide();
+      $('.warning').hide();
+    }
+
+    // CA form display, or not
+    $("#inputSpecialTopic").change(function() {
+      if ($(this).val() == "Loyalty") {
+        $('#cancelType').show();
+        $('#techType').hide();
+        $('#lastBroken').hide();
+        $('#outage-calc-btn').hide();
+        $('#outageLength').hide();
+        $('#outageMonthlyCharge').hide();
+        $('#outageVerbatim').hide();
+        $('#payAmount').hide();
+        $('#payMethod').hide();
+        $('#treatmentChecks').hide();
+      } else if ($(this).val() == "Outage") {
+        $('#cancelType').hide();
+        $('#techType').hide();
+        $('#lastBroken').hide();
+        $('#outage-calc-btn').show();
+        $('#outageLength').show();
+        $('#outageMonthlyCharge').show();
+        // $('#outageVerbatim').show();
+        $('#payAmount').hide();
+        $('#payMethod').hide();
+        $('#treatmentChecks').hide();
+      } else if ($(this).val() == "Tech") {
+        $('#cancelType').hide();
+        $('#techType').show();
+        $('#lastBroken').hide();
+        $('#outage-calc-btn').hide();
+        $('#outageLength').hide();
+        $('#outageMonthlyCharge').hide();
+        $('#outageVerbatim').hide();
+        $('#payAmount').hide();
+        $('#payMethod').hide();
+        $('#treatmentChecks').hide();
+      } else if ($(this).val() == "Treatment") {
+        $('#cancelType').hide();
+        $('#techType').hide();
+        $('#lastBroken').show();
+        $('#outage-calc-btn').hide();
+        $('#outageLength').hide();
+        $('#outageMonthlyCharge').hide();
+        $('#outageVerbatim').hide();
+        $('#payAmount').show();
+        $('#payMethod').show();
+        $('#treatmentChecks').show();
+      } else {
+        $('#cancelType').hide();
+        $('#techType').hide();
+        $('#lastBroken').hide();
+        $('#outage-calc-btn').hide();
+        $('#outageLength').hide();
+        $('#outageMonthlyCharge').hide();
+        $('#outageVerbatim').hide();
+        $('#payAmount').hide();
+        $('#payMethod').hide();
+        $('#treatmentChecks').hide();
+      }
+    });
+    $("#inputSpecialTopic").trigger("change");
+
+    // warning message (flawed code, needs to be done better)
+    $(document.body).click(function() {
+      if ($("#inputStatus").val() === "Not Authorized" || $("#inputVerification").val() === "No, wrong PIN" || $("#inputVerification").val() === "No, unverified") {
+        $('.warning').show();
+      } else {
+        $('.warning').hide();
+      }
+    });
+
+    // Nothing important
+    function randomTwenty() {
+      let d = document.querySelector("#d20");
+      d.innerText = "[ " + (Math.floor(Math.random(20) * 20) + 1).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false
+      }) + " ]";
+    }
+
+    // date modified calculation
+    let date = document.lastModified;
+    date = date.split(' ')[0];
+    document.querySelector("#lastModified").innerText = "Last modified: " + date;
+
+    // outage calculator
+    function outageCalculator() {
+      let outCalLength = $("#inputOutageLength").val();
+      let outCalMonth = $("#inputOutageMonthlyCharge").val();
+      let dailyRate = ((((outCalMonth * 100) * 12) / 365) / 100).toFixed(2);
+      let totalRefund = (dailyRate * outCalLength).toFixed(2);
+      let roundedOffer = Math.ceil(totalRefund);
+      let altOfferMonths = "";
+        if (roundedOffer <= 8) {
+          altOfferMonths = 2;
+        }
+        else if (roundedOffer > 8 && roundedOffer <= 10) {
+          altOfferMonths = 3;
+        }
+        else if (roundedOffer > 10 && roundedOffer <= 12) {
+          altOfferMonths = 4;
+        }
+        else if (roundedOffer > 12 && roundedOffer <= 30) {
+          altOfferMonths = 6;
+        } else {
+          altOfferMonths = 0;
+        }
+
+        var makeOffer = "";
+        if (roundedOffer >= 5.01 && roundedOffer <= 30.01) {
+          makeOffer = $("#outageVerbatim").html("Looking at your account I see your monthly charge is " + "<strong>" + "$" + outCalMonth + "</strong>" + "<br>" + "Which means your service cost is " + "<strong>" + "$" + dailyRate + "</strong>" + " per day. " + "<br>"
+           + "At that cost, this outage of " + "<strong>" + outCalLength + "</strong>" + " days equals a refund of " + "<strong>" + "$" + totalRefund + "</strong>" + "<br>" + "I'm happy to round that amount up to " + "<strong>" + "$" + roundedOffer +
+           "</strong>" + "<br>" + "or if you prefer, I can apply a temporary discount of " + "<strong>" + "$5 off for " + altOfferMonths + " months."+ "</strong>" + "<br><br>" + "Which would you like me to place on your account for you?");
+        } else {
+          $("#outageVerbatim").html("Looking at your account I see your monthly charge is " + "<strong>" + "$" + outCalMonth + "</strong>" + "<br>" + "Which means your service cost is " + "<strong>" + "$" + dailyRate + "</strong>" + " per day. " + "<br>"
+           + "At that cost, this outage of " + "<strong>" + outCalLength + "</strong>" + " days equals a refund of " + "<strong>" + "$" + totalRefund + "</strong>" + "<br>" + "I'm happy to round that amount up to " + "<strong>" + "$" + roundedOffer +
+           "</strong>");
+        }
+
+      $('#outageVerbatim').show();
+
+
+
+
+    };
+  </script>
+</body>
+
+</html>
