@@ -304,7 +304,7 @@
           <!-- column b -->
           <div class="col-md-6">
             <label for="casOutput" class="visually-hidden">Note</label>
-            <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine"></textarea>
+            <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They will also be automatically copied, so you're ready to paste them into Singleview."></textarea>
             <div>
               <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
               <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
@@ -536,8 +536,8 @@
         output += "- " + check3Business.getAttribute('value') + "\n";
       }
 
-      $("#casOutput").val(output);
-    }
+      $("#casOutput").val(output)
+      }
 
     function copyNotes(i, j) {
       $(i).click(function() {
