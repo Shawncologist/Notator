@@ -27,6 +27,11 @@
       content: "";
     }
 
+    section {
+      padding: 0 0 200px 0;
+      min-height: 660px;
+    }
+
     .bluer:focus {
       -webkit-transition: all 0.30s ease-in-out;
       -moz-transition: all 0.30s ease-in-out;
@@ -38,15 +43,9 @@
       border: 1px solid rgba(81, 203, 238, 1);
     }
 
-    section {
-      padding: 0 0 200px 0;
-      min-height: 660px;
-    }
-
     .bluer {
       background-color: #EBF5FB55;
     }
-
 
     .btn:focus {
       outline: none;
@@ -139,7 +138,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
                   <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
-                  <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="Customer's Phone #">
+                  <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="CX Phone #">
                 </div>
               </div>
             </div>
@@ -148,7 +147,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
                   <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
-                    <option selected>Customer's status?</option>
+                    <option selected>CX Status</option>
                     <option value="Account Holder">Account Holder</option>
                     <option value="Authorized User">Authorized User</option>
                     <option value="Device User">Device User</option>
@@ -160,7 +159,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
                   <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
-                    <option selected>Verification?</option>
+                    <option selected>Verification</option>
                     <option value="Yes, with PIN">Yes, with PIN</option>
                     <option value="Yes, with MFA">Yes, with MFA</option>
                     <option value="No, wrong PIN">No, wrong PIN</option>
@@ -172,7 +171,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
                   <label for="inputContactId" class="visually-hidden">Contact ID</label>
-                  <input type="numbers" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
+                  <input type="text" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
                 </div>
               </div>
             </div>
@@ -184,7 +183,7 @@
             <div class="row">
               <div class="col-md-12">
                 <label for="inputProblem" class="visually-hidden">Problem</label>
-                <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Reason for the customer's call"></textarea>
+                <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
               </div>
             </div>
             <div class="row">
@@ -203,7 +202,7 @@
                     <option value="Loyalty">Loyalty - NOT YET</option>
                     <option value="Outage">Outage Credit</option>
                     <option value="Tech">Technical Support - NOT YET</option>
-                    <option value="Treatment">Treatment</option>
+                    <option value="Treatment">Promise to Pay</option>
                     <option value="Vacation">Vacation Suspend - NOT YET</option>
                   </select>
                 </div>
@@ -217,7 +216,7 @@
                 <div class="input-group g-3 temporary" id="outageMonthlyCharge">
                   <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                   <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
-                  <input type="numbers" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
+                  <input type="number" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
                 </div>
               </div>
             </div>
@@ -226,12 +225,12 @@
                 <div class="input-group g-3 temporary" id="payAmount">
                   <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                   <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
-                  <input type="numbers" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
+                  <input type="number" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
                 </div>
                 <div class="input-group g-3 temporary" id="outageLength">
                   <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
                   <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
-                  <input type="numbers" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
+                  <input type="number" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
                 </div>
               </div>
               <div class="col-md-6">
@@ -346,7 +345,6 @@
     let totalRefund = "";
     let roundedOffer = "";
     let altOfferMonths = "";
-
 
     // CA form display, or not
     $("#inputSpecialTopic").change(function() {
@@ -493,6 +491,8 @@
       var cxCheckBroken90 = document.getElementById("checkBroken90").checked;
       var cxcheckCash24 = document.getElementById("checkCash24").checked;
       var cxcheck3Business = document.getElementById("check3Business").checked;
+
+      cxName = cxName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
 
       var output = 'Problem: ' + cxProblem + "\n\n";
       if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment" || callType === "Outage") {
