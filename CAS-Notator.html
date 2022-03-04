@@ -54,7 +54,7 @@
 
     .btn-combine {
       float: left;
-      margin: 10px 0;
+      margin: 10px 40px 0 0;
     }
 
     .btn-reset {
@@ -84,6 +84,11 @@
       margin: 0 0.1rem;
       font-size: .75rem;
       padding: 0.3rem;
+    }
+
+    .footerbtns {
+      margin: 0 5px 0 5px;
+
     }
 
     .form-select {
@@ -120,222 +125,295 @@
   </style>
 
 <body>
-  <section id="CAS">
-    <form id="notatorForm">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- column a -->
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-group g-">
-                  <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
-                  <label for="inputName" class="visually-hidden"></label>
-                  <input type="text" class="form-control bluer" id="inputName" placeholder="First and Last Name">
+  <div id="notator">
+    <section id="CAS">
+      <form id="notatorForm">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- column a -->
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group g-">
+                    <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
+                    <label for="inputName" class="visually-hidden"></label>
+                    <input type="text" class="form-control bluer" id="inputName" placeholder="First and Last Name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group g-3">
+                    <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
+                    <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
+                    <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="CX Phone #">
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="input-group g-3">
-                  <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
-                  <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
-                  <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="CX Phone #">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="input-group g-3">
+                    <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
+                    <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
+                      <option selected>CX Status</option>
+                      <option value="Account Holder">Account Holder</option>
+                      <option value="Authorized User">Authorized User</option>
+                      <option value="Device User">Device User</option>
+                      <option value="Not Authorized">Not Authorized</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group g-3">
+                    <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
+                    <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
+                      <option selected>Verification</option>
+                      <option value="Yes, with PIN">Yes, with PIN</option>
+                      <option value="Yes, with MFA">Yes, with MFA</option>
+                      <option value="No, wrong PIN">No, wrong PIN</option>
+                      <option value="No, unverified">No, unverified</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group g-3">
+                    <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
+                    <label for="inputContactId" class="visually-hidden">Contact ID</label>
+                    <input type="text" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="input-group g-3">
-                  <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
-                  <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
-                    <option selected>CX Status</option>
-                    <option value="Account Holder">Account Holder</option>
-                    <option value="Authorized User">Authorized User</option>
-                    <option value="Device User">Device User</option>
-                    <option value="Not Authorized">Not Authorized</option>
-                  </select>
+              <div class="row warning">
+                <div class="col-12">
+                </div>
+                <p><strong>This customer may not be given any information from the account!</strong></p>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="inputProblem" class="visually-hidden">Problem</label>
+                  <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="input-group g-3">
-                  <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
-                  <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
-                    <option selected>Verification</option>
-                    <option value="Yes, with PIN">Yes, with PIN</option>
-                    <option value="Yes, with MFA">Yes, with MFA</option>
-                    <option value="No, wrong PIN">No, wrong PIN</option>
-                    <option value="No, unverified">No, unverified</option>
-                  </select>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="inputAction" class="visually-hidden">Actions</label>
+                  <textarea rows="10" cols="10" class="form-control bluer" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="input-group g-3">
-                  <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
-                  <label for="inputContactId" class="visually-hidden">Contact ID</label>
-                  <input type="text" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
+              <!-- Specialized Call Fields -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group g-3">
+                    <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
+                    <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic">
+                      <option selected>Select a specialized topic</option>
+                      <option value="Loyalty">Loyalty - NOT YET</option>
+                      <option value="Outage">Outage Credit</option>
+                      <option value="Tech">Technical Support - NOT YET</option>
+                      <option value="Treatment">Promise to Pay</option>
+                      <option value="Vacation">Vacation Suspend - NOT YET</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group g-3 temporary" id="lastBroken">
+                    <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
+                    <label for="inputLastBroken" class="visually-hidden"></label>
+                    <input type="date" class="form-control bluer" id="inputLastBroken" placeholder="Last Broken PTP: ">
+                  </div>
+                  <div class="input-group g-3 temporary" id="outageMonthlyCharge">
+                    <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                    <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
+                    <input type="number" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row warning">
-              <div class="col-12">
-              </div>
-              <p><strong>This customer may not be given any information from the account!</strong></p>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label for="inputProblem" class="visually-hidden">Problem</label>
-                <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label for="inputAction" class="visually-hidden">Actions</label>
-                <textarea rows="10" cols="10" class="form-control bluer" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
-              </div>
-            </div>
-            <!-- Specialized Call Fields -->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-group g-3">
-                  <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
-                  <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic">
-                    <option selected>Select a specialized topic</option>
-                    <option value="Loyalty">Loyalty - NOT YET</option>
-                    <option value="Outage">Outage Credit</option>
-                    <option value="Tech">Technical Support - NOT YET</option>
-                    <option value="Treatment">Promise to Pay</option>
-                    <option value="Vacation">Vacation Suspend - NOT YET</option>
-                  </select>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group g-3 temporary" id="payAmount">
+                    <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                    <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
+                    <input type="number" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
+                  </div>
+                  <div class="input-group g-3 temporary" id="outageLength">
+                    <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
+                    <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
+                    <input type="number" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="input-group g-3 temporary bluer" id="payMethod">
+                    <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
+                    <select class="form-select bluer" aria-label="Default select example" id="inputPayMethod">
+                      <option selected>Method of payment</option>
+                      <option value="Bank">Bank</option>
+                      <option value="Customer Care">Customer Care</option>
+                      <option value="MyAccount">MyAccount</option>
+                      <option value="Retail">Retail</option>
+                      <option value="Unknown">Unknown</option>
+                    </select>
+                  </div>
+                  <div class="">
+                    <button id="outage-calc-btn" onclick="outageCalculator()" class="btn btn-secondary temporary" type="button">Calculate Refund</button>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="input-group g-3 temporary" id="lastBroken">
-                  <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
-                  <label for="inputLastBroken" class="visually-hidden"></label>
-                  <input type="date" class="form-control bluer" id="inputLastBroken" placeholder="Last Broken PTP: ">
-                </div>
-                <div class="input-group g-3 temporary" id="outageMonthlyCharge">
-                  <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
-                  <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
-                  <input type="number" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-group g-3 temporary" id="payAmount">
-                  <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
-                  <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
-                  <input type="number" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
-                </div>
-                <div class="input-group g-3 temporary" id="outageLength">
-                  <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
-                  <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
-                  <input type="number" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="input-group g-3 temporary bluer" id="payMethod">
-                  <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
-                  <select class="form-select bluer" aria-label="Default select example" id="inputPayMethod">
-                    <option selected>Method of payment</option>
-                    <option value="Bank">Bank</option>
-                    <option value="Customer Care">Customer Care</option>
-                    <option value="MyAccount">MyAccount</option>
-                    <option value="Retail">Retail</option>
-                    <option value="Unknown">Unknown</option>
-                  </select>
-                </div>
-                <div class="">
-                  <button id="outage-calc-btn" onclick="outageCalculator()" class="btn btn-secondary temporary" type="button">Calculate Refund</button>
+              <div class="row temporary" id="treatmentChecks">
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
+                    <label class="form-check-label" for="checkPayBefore">
+                      I informed them that payment must be received within 7 days.
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="I informed them we will not accept another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
+                    <label class="form-check-label" for="checkBroken90">
+                      I informed them we will not accept another Promise to Pay for 90 days if they miss this payment.
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="I informed them that cash payments may take up to 24 hours." id="checkCash24">
+                    <label class="form-check-label" for="checkCash24">
+                      I informed them that cash payments may take 24 hours.
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="I informed them that bank payments may take 3 - 5 business days." id="check3Business">
+                    <label class="form-check-label" for="check3Business">
+                      I informed them that bank payments may take 3 - 5 business days.
+                    </label>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row temporary" id="treatmentChecks">
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
-                  <label class="form-check-label" for="checkPayBefore">
-                    I informed them that payment must be received within 7 days.
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them we will not accept another Promise to Pay for 90 days if they miss this payment." id="checkBroken90">
-                  <label class="form-check-label" for="checkBroken90">
-                    I informed them we will not accept another Promise to Pay for 90 days if they miss this payment.
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them that cash payments may take up to 24 hours." id="checkCash24">
-                  <label class="form-check-label" for="checkCash24">
-                    I informed them that cash payments may take 24 hours.
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="I informed them that bank payments may take 3 - 5 business days." id="check3Business">
-                  <label class="form-check-label" for="check3Business">
-                    I informed them that bank payments may take 3 - 5 business days.
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div id="outageVerbatim" class="temporary verbatim verbatim-box">
+              <div class="row">
+                <div class="col-12">
+                  <div id="outageVerbatim" class="temporary verbatim verbatim-box">
 
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6">
-                <div class="input-group g-3 temporary  verbatim" id="outageRefundChoice">
-                  <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
-                  <select class="form-select bluer" id="inputOutageRefundChoice">
-                    <option selected>Chosen refund option</option>
-                    <option value="Refund">Up front refund</option>
-                    <option value="Monthly5">Temporary $5 per month offer</option>
-                    <option value="noOffer">None of the above</option>
-                  </select>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="input-group g-3 temporary  verbatim" id="outageRefundChoice">
+                    <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
+                    <select class="form-select bluer" id="inputOutageRefundChoice">
+                      <option selected>Chosen refund option</option>
+                      <option value="Refund">Up front refund</option>
+                      <option value="Monthly5">Temporary $5 per month offer</option>
+                      <option value="noOffer">None of the above</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- column b -->
-          <div class="col-md-6">
-            <label for="casOutput" class="visually-hidden">Note</label>
-            <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They will also be automatically copied, so you're ready to paste them into Singleview."></textarea>
-            <div>
-              <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
-              <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+            <!-- column b -->
+            <div class="col-md-6">
+              <label for="casOutput" class="visually-hidden">Note</label>
+              <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They will also be automatically copied, so you're ready to paste them into Singleview."></textarea>
+              <div>
+                <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
+                <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+              </div>
             </div>
           </div>
         </div>
+      </form>
+    </section>
+    <section id="history" >
+      <h4>Note History</h4>
+      Note history might appear here someday.
+    </section>
+    <section id="prepaidCalculator">
+      <h4>Pre-Paid Calculator</h4><br>
+      <h5>Simple Thirds</h5>
+      <form id="prepaidProration">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3">
+                <div class="input-group-text"><i class="fas fa-calendar fa-icon"></i></div>
+                <select class="form-select" aria-label="Default select" id="prepaidThirds">
+                  <option selected>Days until next top-up date?</option>
+                  <option value="33">1 - 10 days remaining</option>
+                  <option value="66">11 - 20 days remaining</option>
+                  <option value="99">21 - 30 days remaining</option>
+                </select>
+              </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3">
+                <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                <label for="inputPrepaidRatePlan" class="visually-hidden">Price of the item</label>
+                <input type="numbers" class="form-control" id="prepaidItemPrice" placeholder="Price of the item">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="">
+                <button id="prepaid-calc-btn" onclick="prepaidThirdsCalc()" class="btn btn-secondary btn-combine" type="button">Calculate</button>
+                <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetPreCalc()">Reset</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3">
+                <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
+                <label for="inputPrepaidRatePlan" class="visually-hidden">Amount to pay</label>
+                <input type="text" class="form-control" id="prepaidThirdsResult" placeholder="Amount to pay">
+              </div>
+
+            </div>
+
+          </div>
+    </section>
+    <section id="postpaidCalculator">
+      <h4>Post-Paid Calulator</h4>
+    </section>
+    <section id="taxCalculator">
+      <h4>Tax Calculator</h4>
+    </section>
+    <!-- end calculators -->
+
+  </div>
+
+  <div class="fixed-bottom nav-footer row align-items-center footer">
+    <div class="col-md-2 justify-content-start">
+      <div class="input-group g-2" id="role">
+        <select class="form-select" id="inputRole">
+          <option selected>Role</option>
+          <option value="CAS Phone">CAS Phone</option>
+          <option value="CAS Messaging">CAS Messaging</option>
+          <option value="Digital Social Media">Digital: Social Media</option>
+        </select>
       </div>
-    </form>
-  </section>
-      <!-- <nav class="container "> -->
+    </div>
 
-      <div class="fixed-bottom nav-footer row align-items-center footer">
-        <div class="col-2" >
-          <div class="input-group g-2" id="role">
-            <select class="form-select" id="inputRole">
-              <option selected>Role</option>
-              <option value="casPhone">CAS Phone</option>
-              <option value="casMessaging">CAS Messaging</option>
-              <option value="dsr">Digital: Social Media</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-6">
+  <div class="col-md-2 justify-content-start">
+    <div class="input-group g-2" id="footerMenu">
+      <select class="form-select" id="inputFooterMenu">
+        <option selected value="Notes">Notes</option>
+        <option value="History">History - NOT YET</option>
+        <option value="Post-paid Calculator">Post-paid Calculator</option>
+        <option value="Pre-paid Calculator">Pre-paid Calculator</option>
+        <option value="Tax Calculator">Tax Calculator</option>
+      </select>
+    </div>
+</div>
+<div class="col-6">
+</div>
 
-        </div>
-        <div class="col-1">
-          v.4.01.1
-        </div>
-        <div class="col-1" id="d20" onclick="randomTwenty()">[ 00 ]</div>
-          <div class="col-2" id="lastModified">    </div>
-      </div>
-    <!-- </nav> -->
+
+
+    <div class="col-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
+    <div class="col-1 d-flex justify-content-end">
+      v.4.01.1
+    </div>
+  </div>
+  <!-- </nav> -->
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://kit.fontawesome.com/8e9d7e365b.js" crossorigin"anonymous"></script>
@@ -410,6 +488,42 @@
     });
     $("#inputSpecialTopic").trigger("change");
 
+    // footer  menu
+    $("#inputFooterMenu").change(function() {
+      if ($(this).val() == "History") {
+        $('#CAS').hide();
+        $('#history').show();
+        $('#prepaidCalculator').hide();
+        $('#postpaidCalculator').hide();
+        $('#taxCalculator').hide();
+      } else if ($(this).val() == "Post-paid Calculator") {
+        $('#CAS').hide();
+        $('#history').hide();
+        $('#prepaidCalculator').hide();
+        $('#postpaidCalculator').show();
+        $('#taxCalculator').hide();
+      } else if ($(this).val() == "Pre-paid Calculator") {
+        $('#CAS').hide();
+        $('#history').hide();
+        $('#prepaidCalculator').show();
+        $('#postpaidCalculator').hide();
+        $('#taxCalculator').hide();
+      } else if ($(this).val() == "Tax Calculator") {
+        $('#CAS').hide();
+        $('#history').hide();
+        $('#prepaidCalculator').hide();
+        $('#postpaidCalculator').hide();
+        $('#taxCalculator').show();
+      } else {
+        $('#CAS').show();
+        $('#history').hide();
+        $('#prepaidCalculator').hide();
+        $('#postpaidCalculator').hide();
+        $('#taxCalculator').hide();
+      }
+    });
+    $("#inputFooterMenu").trigger("change");
+
     // warning message (flawed code, needs to be done better)
     $(document.body).click(function() {
       if ($("#inputStatus").val() === "Not Authorized" || $("#inputVerification").val() === "No, wrong PIN" || $("#inputVerification").val() === "No, unverified") {
@@ -427,11 +541,6 @@
         useGrouping: false
       }) + " ]";
     }
-
-    // date modified calculation
-    let date = document.lastModified;
-    date = date.split(' ')[0];
-    document.querySelector("#lastModified").innerText = "Last modified: " + date;
 
     // outage calculator
     function outageCalculator() {
@@ -470,8 +579,8 @@
       return roundedOffer;
     };
 
+// assemble note output
     function formsCombine() {
-      // var output = "";
 
       var cxName = $("#inputName").val();
       var cxMsisdn = $("#inputMsisdn").val();
@@ -487,6 +596,7 @@
       var outLength = $("#inputOutageLength").val();
       var outMonth = $("#inputOutageMonthlyCharge").val();
       var outRefundChoice = $("#inputOutageRefundChoice").val();
+      var roleTag = $("#inputRole").val();
       var cxCheckPayBefore = document.getElementById("checkPayBefore").checked;
       var cxCheckBroken90 = document.getElementById("checkBroken90").checked;
       var cxcheckCash24 = document.getElementById("checkCash24").checked;
@@ -502,6 +612,10 @@
       output += 'CX Status: ' + cxStatus + "\n";
       output += 'Verification: ' + cxVerify + "\n";
       output += 'MSISDN: ' + cxMsisdn + "\n";
+
+      if (roleTag !== "Role") {
+        output += 'Agent Role: ' + roleTag + "\n";
+      }
       output += 'Contact ID: ' + contactId + "\n\n";
       output += 'Action: ' + cxAction + "\n\n";
       if (callType === "Treatment") {
@@ -537,7 +651,7 @@
       }
 
       $("#casOutput").val(output)
-      }
+    }
 
     function copyNotes(i, j) {
       $(i).click(function() {
@@ -549,13 +663,34 @@
 
     copyNotes("#copy-btn", "#casOutput");
 
-
     // reset button
     function resetForm() {
       document.getElementById("notatorForm").reset();
       $('.temporary').hide();
       $('.warning').hide();
     }
+
+    // reset button Prepaid calculator
+    function resetPreCalc() {
+      document.getElementById("prepaidProration").reset();
+    }
+
+// simple thirds prepaid calculators
+function prepaidThirdsCalc() {
+  var prepaidThirdsDays = $("#prepaidThirds").val();
+  var prepaidPrice = $("#prepaidItemPrice").val();
+  var prepaidAmountToPay = prepaidPrice;
+  if (prepaidThirdsDays === "33") {
+    prepaidAmountToPay = (prepaidPrice * 0.33).toFixed(2);
+  }
+   else if (prepaidThirdsDays === "66") {
+    prepaidAmountToPay = (prepaidPrice * 0.66).toFixed(2);
+  } else {
+    prepaidAmountToPay = prepaidPrice;
+  }
+    return  $("#prepaidThirdsResult").val(prepaidAmountToPay)
+}
+
   </script>
 </body>
 
