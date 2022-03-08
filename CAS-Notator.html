@@ -106,6 +106,13 @@
       font-size: .75rem;
     }
 
+    .ptpWarning {
+      color: red;
+      text-align: center;
+      margin-bottom: 0px;
+      display: none;
+    }
+
     .row {
       margin-bottom: 15px;
     }
@@ -183,8 +190,8 @@
               </div>
               <div class="row warning">
                 <div class="col-12">
+                  <p><strong>This customer may not be given any information from the account!</strong></p>
                 </div>
-                <p><strong>This customer may not be given any information from the account!</strong></p>
               </div>
               <div class="row">
                 <div class="col-md-12">
@@ -256,6 +263,13 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row ptpWarning temporary">
+                <div class="col-12">
+                  <p><strong>This customer does not qualify to make a Promise to Pay!</strong></p>
+                </div>
+              </div>
+
               <div class="row temporary" id="treatmentChecks">
                 <div class="col-12">
                   <div class="form-check">
@@ -319,9 +333,9 @@
         </div>
       </form>
     </section>
-    <section id="history" >
+    <section id="history">
       <h4>Note History</h4>
-      Note history might appear here someday.
+      <div id="historyPrint"></div>
     </section>
     <section id="prepaidCalculator">
       <h4>Pre-Paid Calculator</h4><br>
@@ -339,7 +353,7 @@
                   <option value="99">21 - 30 days remaining</option>
                 </select>
               </div>
-              </div>
+            </div>
           </div>
           <div class="row">
             <div class="col-lg-3">
@@ -369,9 +383,60 @@
             </div>
 
           </div>
+        </form>
     </section>
     <section id="postpaidCalculator">
-      <h4>Post-Paid Calulator</h4>
+      <h4>Post-Paid Calulator</h4><br>
+      <form id="postpaidProration">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3" id="oldMrcPrice">
+                <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                <label for="inputOldMrcPrice" class="visually-hidden">Price of Old Item</label>
+                <input type="number" class="form-control bluer" id="inputOldMrcPrice" placeholder="Price of removed item">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3" id="mrcPrice">
+                <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
+                <label for="inputMrcPrice" class="visually-hidden">Price of New Item</label>
+                <input type="number" class="form-control bluer" id="inputMrcPrice" placeholder="Price of added Item">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="input-group g-3" id="mrcDaysRemainingOld">
+                <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
+                <label for="inputMrcDaysRemaining" class="visually-hidden">Days remaining</label>
+                <input type="number" class="form-control bluer" id="inputMrcDaysRemaining" placeholder="Days remaining">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="">
+                <button id="postpaid-calc-btn" onclick="postpaidCalc()" class="btn btn-secondary btn-combine" type="button">Calculate</button>
+                <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetPostCalc()">Reset</button>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="input-group g-3">
+                  <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
+                  <label for="postpaidResult" class="visually-hidden">Amount to pay</label>
+                  <input type="text" class="form-control" id="postpaidResult" placeholder="Amount to pay">
+                </div>
+                <p class="footer">Note: a month in SingleView is 30.4375 days (average of month lengths over 4 years)</p>
+              </div>
+
+            </div>
+          </div>
+      </form>
     </section>
     <section id="taxCalculator">
       <h4>Tax Calculator</h4>
@@ -392,19 +457,19 @@
       </div>
     </div>
 
-  <div class="col-md-2 justify-content-start">
-    <div class="input-group g-2" id="footerMenu">
-      <select class="form-select" id="inputFooterMenu">
-        <option selected value="Notes">Notes</option>
-        <option value="History">History - NOT YET</option>
-        <option value="Post-paid Calculator">Post-paid Calculator</option>
-        <option value="Pre-paid Calculator">Pre-paid Calculator</option>
-        <option value="Tax Calculator">Tax Calculator</option>
-      </select>
+    <div class="col-md-2 justify-content-start">
+      <div class="input-group g-2" id="footerMenu">
+        <select class="form-select" id="inputFooterMenu">
+          <option selected value="Notes">Notes</option>
+          <option value="History">History - NOT YET</option>
+          <option value="Post-paid Calculator">Post-paid Calculator</option>
+          <option value="Pre-paid Calculator">Pre-paid Calculator</option>
+          <option value="Tax Calculator">Tax Calculator</option>
+        </select>
+      </div>
     </div>
-</div>
-<div class="col-6">
-</div>
+    <div class="col-6">
+    </div>
 
 
 
@@ -533,6 +598,22 @@
       }
     });
 
+
+    // PTP warning message (flawed code, needs to be done better)
+    $("#inputLastBroken").change(function() {
+      var today = new Date();
+      var ptpBrokenDate = $("#inputLastBroken").val();
+      var ptpDateRule = new Date(new Date().setDate(today.getDate() - 89));
+      ptpBrokenDate = new Date(ptpBrokenDate);
+      if (ptpDateRule < ptpBrokenDate) {
+        $('.ptpWarning').show();
+      } else {
+        $('.ptpWarning').hide();
+      }
+    });
+
+
+
     // Nothing important
     function randomTwenty() {
       let d = document.querySelector("#d20");
@@ -579,7 +660,7 @@
       return roundedOffer;
     };
 
-// assemble note output
+    // assemble note output
     function formsCombine() {
 
       var cxName = $("#inputName").val();
@@ -651,6 +732,7 @@
       }
 
       $("#casOutput").val(output)
+      return output;
     }
 
     function copyNotes(i, j) {
@@ -675,22 +757,41 @@
       document.getElementById("prepaidProration").reset();
     }
 
-// simple thirds prepaid calculators
-function prepaidThirdsCalc() {
-  var prepaidThirdsDays = $("#prepaidThirds").val();
-  var prepaidPrice = $("#prepaidItemPrice").val();
-  var prepaidAmountToPay = prepaidPrice;
-  if (prepaidThirdsDays === "33") {
-    prepaidAmountToPay = (prepaidPrice * 0.33).toFixed(2);
-  }
-   else if (prepaidThirdsDays === "66") {
-    prepaidAmountToPay = (prepaidPrice * 0.66).toFixed(2);
-  } else {
-    prepaidAmountToPay = prepaidPrice;
-  }
-    return  $("#prepaidThirdsResult").val(prepaidAmountToPay)
-}
+    // reset button Postpaid calculator
+    function resetPostCalc() {
+      document.getElementById("postpaidProration").reset();
+    }
 
+//history happens here
+// function history(){
+//
+// }
+
+
+
+    // simple thirds prepaid calculators
+    function prepaidThirdsCalc() {
+      var prepaidThirdsDays = $("#prepaidThirds").val();
+      var prepaidPrice = $("#prepaidItemPrice").val();
+      var prepaidAmountToPay = prepaidPrice;
+      if (prepaidThirdsDays === "33") {
+        prepaidAmountToPay = (prepaidPrice * 0.33).toFixed(2);
+      } else if (prepaidThirdsDays === "66") {
+        prepaidAmountToPay = (prepaidPrice * 0.66).toFixed(2);
+      } else {
+        prepaidAmountToPay = prepaidPrice;
+      }
+      return $("#prepaidThirdsResult").val(prepaidAmountToPay)
+    }
+
+    // postpaid calculator
+    function postpaidCalc() {
+      var oldMrcPrice = $("#inputOldMrcPrice").val();
+      var mrcPrice = $("#inputMrcPrice").val();
+      var mrcDaysRemaining = $("#inputMrcDaysRemaining").val();
+      var postpaidAmountToPay = (((mrcPrice - oldMrcPrice) / 30.4375) * mrcDaysRemaining).toFixed(2);
+      return $("#postpaidResult").val(postpaidAmountToPay)
+    }
   </script>
 </body>
 
