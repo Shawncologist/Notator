@@ -47,6 +47,22 @@
       background-color: #EBF5FB55;
     }
 
+    .lavender:focus {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      border: 1px solid #db86e8;
+      background-color: #f2a9ed44;
+      box-shadow: 0 0 5px #db86e8;
+      border: 1px solid #db86e8;
+    }
+
+    .lavender {
+      background-color: #f2a9ed22;
+    }
+
+
     .btn:focus {
       outline: none;
       box-shadow: none;
@@ -98,6 +114,12 @@
     .form-control::placeholder {
       color: #CCCCCC;
       opacity: 1;
+    }
+
+    .history {
+      white-space: pre-wrap;
+      overflow: auto;
+      max-height: 600px;
     }
 
     .nav-footer {
@@ -326,7 +348,7 @@
               <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They will also be automatically copied, so you're ready to paste them into Singleview."></textarea>
               <div>
                 <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
-                <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetForm()">Reset</button>
+                <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetHistoryCombo()">Reset</button>
               </div>
             </div>
           </div>
@@ -334,8 +356,9 @@
       </form>
     </section>
     <section id="history">
-      <h4>Note History</h4>
-      <div id="historyPrint"></div>
+      <h4>Note History</h4><br>
+      <hr>
+      <div id="historyPrint" class="history"></div>
     </section>
     <section id="prepaidCalculator">
       <h4>Pre-Paid Calculator</h4><br>
@@ -383,7 +406,7 @@
             </div>
 
           </div>
-        </form>
+      </form>
     </section>
     <section id="postpaidCalculator">
       <h4>Post-Paid Calulator</h4><br>
@@ -441,6 +464,38 @@
     <section id="taxCalculator">
       <h4>Tax Calculator</h4>
     </section>
+    <section id="aboutNotator">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-4">
+            <h4>Instructions</h4>
+            <br>
+            <h6>General Note Taking</h6>
+            <ul>
+              <li>The "Combine & Copy" button will assemble your note and also copy it to the clipboard.</li>
+              <li>The "Role" menu in the footer will persist your choice as long as the Pipe tab is not closed.</li>
+              <li>Information entered in fields is saved if you use the footer menu to visit other pages and return.</li>
+              <li>Calendar fields, such as "Last Broken PTP", can use the calendar icon on the right of the field to select a date.</li>
+            </ul><br>
+            <h6>Note History</h6>
+            <ul>
+              <li>The "Reset" button is what triggers a note to be written to the History page.</li>
+              <li>The notes on the History page are only saved until the Pipe tab is closed or reset.</li>
+            </ul>
+
+          </div>
+          <div class="col-lg-1">
+
+
+          </div>
+          <div class="col-lg-4">
+            <h4>Change Log</h4>
+
+          </div>
+        </div>
+
+
+    </section>
     <!-- end calculators -->
 
   </div>
@@ -461,14 +516,26 @@
       <div class="input-group g-2" id="footerMenu">
         <select class="form-select" id="inputFooterMenu">
           <option selected value="Notes">Notes</option>
-          <option value="History">History - NOT YET</option>
+          <option value="History">History</option>
           <option value="Post-paid Calculator">Post-paid Calculator</option>
           <option value="Pre-paid Calculator">Pre-paid Calculator</option>
           <option value="Tax Calculator">Tax Calculator</option>
+          <option value="About Notator">About Notator</option>
         </select>
       </div>
     </div>
-    <div class="col-6">
+
+    <div class="col-md-2 justify-content-start">
+      <div class="input-group g-2" id="footerTheme">
+        <select class="form-select" id="inputFooterTheme">
+          <option selected value="Notes">Theme</option>
+          <option value="Blue">Blue</option>
+          <option value="Lavender">Lavender</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-4">
     </div>
 
 
@@ -488,6 +555,7 @@
     let totalRefund = "";
     let roundedOffer = "";
     let altOfferMonths = "";
+    let output = "";
 
     // CA form display, or not
     $("#inputSpecialTopic").change(function() {
@@ -561,33 +629,59 @@
         $('#prepaidCalculator').hide();
         $('#postpaidCalculator').hide();
         $('#taxCalculator').hide();
+        $('#aboutNotator').hide();
       } else if ($(this).val() == "Post-paid Calculator") {
         $('#CAS').hide();
         $('#history').hide();
         $('#prepaidCalculator').hide();
         $('#postpaidCalculator').show();
         $('#taxCalculator').hide();
+        $('#aboutNotator').hide();
       } else if ($(this).val() == "Pre-paid Calculator") {
         $('#CAS').hide();
         $('#history').hide();
         $('#prepaidCalculator').show();
         $('#postpaidCalculator').hide();
         $('#taxCalculator').hide();
+        $('#aboutNotator').hide();
       } else if ($(this).val() == "Tax Calculator") {
         $('#CAS').hide();
         $('#history').hide();
         $('#prepaidCalculator').hide();
         $('#postpaidCalculator').hide();
         $('#taxCalculator').show();
+        $('#aboutNotator').hide();
+      } else if ($(this).val() == "About Notator") {
+        $('#CAS').hide();
+        $('#history').hide();
+        $('#prepaidCalculator').hide();
+        $('#postpaidCalculator').hide();
+        $('#taxCalculator').hide();
+        $('#aboutNotator').show();
       } else {
         $('#CAS').show();
         $('#history').hide();
         $('#prepaidCalculator').hide();
         $('#postpaidCalculator').hide();
         $('#taxCalculator').hide();
+        $('#aboutNotator').hide();
       }
     });
     $("#inputFooterMenu").trigger("change");
+
+
+$("#inputFooterTheme").change(function() {
+  let textareas = document.querySelector('textarea');
+if ($(this).val() == "Lavender") {
+  textareas.classList.replace("bluer", "lavender");
+
+}
+});
+    $("#inputFooterTheme").trigger("change");
+
+
+
+
 
     // warning message (flawed code, needs to be done better)
     $(document.body).click(function() {
@@ -732,7 +826,7 @@
       }
 
       $("#casOutput").val(output)
-      return output;
+      return text = output;
     }
 
     function copyNotes(i, j) {
@@ -752,6 +846,24 @@
       $('.warning').hide();
     }
 
+    //history happens here
+    function history() {
+      var historyPaste = text;
+      var date = new Date();
+      date.getDate();
+      var time = new Date().toLocaleTimeString();
+      var d = date.toString().split(" ").splice(1, 3).join(" ");
+      var dateTime = d + " " + time;
+      $("#historyPrint").prepend(dateTime + "\n\n" + text + "<hr>");
+    }
+
+    function resetHistoryCombo() {
+      resetForm();
+      history();
+    }
+
+
+
     // reset button Prepaid calculator
     function resetPreCalc() {
       document.getElementById("prepaidProration").reset();
@@ -761,12 +873,6 @@
     function resetPostCalc() {
       document.getElementById("postpaidProration").reset();
     }
-
-//history happens here
-// function history(){
-//
-// }
-
 
 
     // simple thirds prepaid calculators
