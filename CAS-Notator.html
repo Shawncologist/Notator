@@ -47,18 +47,18 @@
       background-color: #EBF5FB55;
     }
 
-    .lavender:focus {
+    .pinker:focus {
       -webkit-transition: all 0.30s ease-in-out;
       -moz-transition: all 0.30s ease-in-out;
       -ms-transition: all 0.30s ease-in-out;
       -o-transition: all 0.30s ease-in-out;
       border: 1px solid #db86e8;
-      background-color: #f2a9ed44;
+      background-color: #f2a9ed22;
       box-shadow: 0 0 5px #db86e8;
       border: 1px solid #db86e8;
     }
 
-    .lavender {
+    .pinker {
       background-color: #f2a9ed22;
     }
 
@@ -160,16 +160,16 @@
         <div class="container-fluid">
           <div class="row">
             <!-- column a -->
-            <div class="col-md-6">
+            <div class="col-lg-6">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-">
                     <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
                     <label for="inputName" class="visually-hidden"></label>
                     <input type="text" class="form-control bluer" id="inputName" placeholder="First and Last Name">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
                     <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
@@ -178,7 +178,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-4">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
                     <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
@@ -190,7 +190,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
                     <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
@@ -202,7 +202,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
                     <label for="inputContactId" class="visually-hidden">Contact ID</label>
@@ -211,38 +211,38 @@
                 </div>
               </div>
               <div class="row warning">
-                <div class="col-12">
+                <div class="col-lg-12">
                   <p><strong>This customer may not be given any information from the account!</strong></p>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                   <label for="inputProblem" class="visually-hidden">Problem</label>
                   <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-12">
                   <label for="inputAction" class="visually-hidden">Actions</label>
                   <textarea rows="10" cols="10" class="form-control bluer" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
                 </div>
               </div>
               <!-- Specialized Call Fields -->
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
-                    <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic">
+                    <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic" onclick="ptpDueDate()">
                       <option selected>Select a specialized topic</option>
                       <option value="Loyalty">Loyalty - NOT YET</option>
                       <option value="Outage">Outage Credit</option>
                       <option value="Tech">Technical Support - NOT YET</option>
-                      <option value="Treatment">Promise to Pay</option>
+                      <option value="Promise to Pay">Promise to Pay</option>
                       <option value="Vacation">Vacation Suspend - NOT YET</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3 temporary" id="lastBroken">
                     <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
                     <label for="inputLastBroken" class="visually-hidden"></label>
@@ -256,7 +256,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3 temporary" id="payAmount">
                     <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                     <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
@@ -268,7 +268,7 @@
                     <input type="number" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3 temporary bluer" id="payMethod">
                     <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
                     <select class="form-select bluer" aria-label="Default select example" id="inputPayMethod">
@@ -287,13 +287,15 @@
               </div>
 
               <div class="row ptpWarning temporary">
-                <div class="col-12">
+                <div class="col-lg-12">
                   <p><strong>This customer does not qualify to make a Promise to Pay!</strong></p>
                 </div>
               </div>
-
+              <div class="col-lg-12 temporary">
+                <p><strong><span id="ptpDue"></span></strong></p>
+              </div>
               <div class="row temporary" id="treatmentChecks">
-                <div class="col-12">
+                <div class="col-lg-12">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
                     <label class="form-check-label" for="checkPayBefore">
@@ -321,7 +323,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-12">
+                <div class="col-lg-12">
                   <div id="outageVerbatim" class="temporary verbatim verbatim-box">
 
                   </div>
@@ -329,7 +331,7 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                   <div class="input-group g-3 temporary  verbatim" id="outageRefundChoice">
                     <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
                     <select class="form-select bluer" id="inputOutageRefundChoice">
@@ -343,9 +345,9 @@
               </div>
             </div>
             <!-- column b -->
-            <div class="col-md-6">
+            <div class="col-lg-6">
               <label for="casOutput" class="visually-hidden">Note</label>
-              <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They will also be automatically copied, so you're ready to paste them into Singleview."></textarea>
+              <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They are automatically copied, so you're ready to paste them into Singleview."></textarea>
               <div>
                 <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
                 <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetHistoryCombo()">Reset</button>
@@ -369,7 +371,7 @@
             <div class="col-lg-3">
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-calendar fa-icon"></i></div>
-                <select class="form-select" aria-label="Default select" id="prepaidThirds">
+                <select class="form-select bluer" aria-label="Default select" id="prepaidThirds">
                   <option selected>Days until next top-up date?</option>
                   <option value="33">1 - 10 days remaining</option>
                   <option value="66">11 - 20 days remaining</option>
@@ -383,7 +385,7 @@
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                 <label for="inputPrepaidRatePlan" class="visually-hidden">Price of the item</label>
-                <input type="numbers" class="form-control" id="prepaidItemPrice" placeholder="Price of the item">
+                <input type="numbers" class="form-control bluer" id="prepaidItemPrice" placeholder="Price of the item">
               </div>
             </div>
           </div>
@@ -400,7 +402,7 @@
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
                 <label for="inputPrepaidRatePlan" class="visually-hidden">Amount to pay</label>
-                <input type="text" class="form-control" id="prepaidThirdsResult" placeholder="Amount to pay">
+                <input type="text" class="form-control bluer" id="prepaidThirdsResult" placeholder="Amount to pay">
               </div>
 
             </div>
@@ -452,7 +454,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
                   <label for="postpaidResult" class="visually-hidden">Amount to pay</label>
-                  <input type="text" class="form-control" id="postpaidResult" placeholder="Amount to pay">
+                  <input type="text" class="form-control bluer" id="postpaidResult" placeholder="Amount to pay">
                 </div>
                 <p class="footer">Note: a month in SingleView is 30.4375 days (average of month lengths over 4 years)</p>
               </div>
@@ -501,7 +503,7 @@
   </div>
 
   <div class="fixed-bottom nav-footer row align-items-center footer">
-    <div class="col-md-2 justify-content-start">
+    <div class="col-lg-2 justify-content-start">
       <div class="input-group g-2" id="role">
         <select class="form-select" id="inputRole">
           <option selected>Role</option>
@@ -512,7 +514,7 @@
       </div>
     </div>
 
-    <div class="col-md-2 justify-content-start">
+    <div class="col-lg-2 justify-content-start">
       <div class="input-group g-2" id="footerMenu">
         <select class="form-select" id="inputFooterMenu">
           <option selected value="Notes">Notes</option>
@@ -525,23 +527,23 @@
       </div>
     </div>
 
-    <div class="col-md-2 justify-content-start">
+    <div class="col-lg-2 justify-content-start">
       <div class="input-group g-2" id="footerTheme">
         <select class="form-select" id="inputFooterTheme">
           <option selected value="Notes">Theme</option>
           <option value="Blue">Blue</option>
-          <option value="Lavender">Lavender</option>
+          <option value="Pink">Pink</option>
         </select>
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-lg-4">
     </div>
 
 
 
-    <div class="col-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
-    <div class="col-1 d-flex justify-content-end">
+    <div class="col-lg-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
+    <div class="col-lg-1 d-flex justify-content-end">
       v.4.01.1
     </div>
   </div>
@@ -556,6 +558,7 @@
     let roundedOffer = "";
     let altOfferMonths = "";
     let output = "";
+    let ptpPayBefore = "";
 
     // CA form display, or not
     $("#inputSpecialTopic").change(function() {
@@ -593,7 +596,7 @@
         $('#payMethod').hide();
         $('#treatmentChecks').hide();
         $('.verbatim').hide();
-      } else if ($(this).val() == "Treatment") {
+      } else if ($(this).val() == "Promise to Pay") {
         $('#cancelType').hide();
         $('#techType').hide();
         $('#lastBroken').show();
@@ -669,12 +672,13 @@
     });
     $("#inputFooterMenu").trigger("change");
 
-
+// Themes
 $("#inputFooterTheme").change(function() {
   let textareas = document.querySelector('textarea');
-if ($(this).val() == "Lavender") {
-  textareas.classList.replace("bluer", "lavender");
-
+if ($(this).val() == "Pink") {
+$("[class*=bluer]").removeClass('bluer').addClass('pinker');
+} else if ($(this).val() == "Blue") {
+  $("[class*=pinker]").removeClass('pinker').addClass('bluer');
 }
 });
     $("#inputFooterTheme").trigger("change");
@@ -754,6 +758,16 @@ if ($(this).val() == "Lavender") {
       return roundedOffer;
     };
 
+
+
+// calculate payment due date PTP
+    function ptpDueDate(){
+      var today = new Date();
+      ptpPayBefore = new Date(new Date().setDate(today.getDate() + 6));
+      console.log(ptpPayBefore);
+    }
+
+
     // assemble note output
     function formsCombine() {
 
@@ -780,7 +794,7 @@ if ($(this).val() == "Lavender") {
       cxName = cxName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
 
       var output = 'Problem: ' + cxProblem + "\n\n";
-      if (callType === "Loyalty" || callType === "Tech" || callType === "Treatment" || callType === "Outage") {
+      if (callType === "Loyalty" || callType === "Tech" || callType === "Promise to Pay" || callType === "Outage") {
         output += 'Call Type: ' + callType + "\n";
       }
       output += 'Name: ' + cxName + "\n";
@@ -793,7 +807,7 @@ if ($(this).val() == "Lavender") {
       }
       output += 'Contact ID: ' + contactId + "\n\n";
       output += 'Action: ' + cxAction + "\n\n";
-      if (callType === "Treatment") {
+      if (callType === "Promise to Pay") {
         output += 'Last Broken PTP: ' + cxBroken + "\n";
         output += 'Will pay: $' + cxPay + "\n";
         output += 'Payment method: ' + cxMethod + "\n";
@@ -812,16 +826,16 @@ if ($(this).val() == "Lavender") {
           output += "I don't know what option the customer chose." + "\n";
         }
       }
-      if (cxCheckPayBefore === true && callType === "Treatment") {
+      if (cxCheckPayBefore === true && callType === "Promise to Pay") {
         output += "- " + checkPayBefore.getAttribute('value') + "\n";
       }
-      if (cxCheckBroken90 === true && callType === "Treatment") {
+      if (cxCheckBroken90 === true && callType === "Promise to Pay") {
         output += "- " + checkBroken90.getAttribute('value') + "\n";
       }
-      if (cxcheckCash24 === true && callType === "Treatment") {
+      if (cxcheckCash24 === true && callType === "Promise to Pay") {
         output += "- " + checkCash24.getAttribute('value') + "\n";
       }
-      if (cxcheck3Business === true && callType === "Treatment") {
+      if (cxcheck3Business === true && callType === "Promise to Pay") {
         output += "- " + check3Business.getAttribute('value') + "\n";
       }
 
