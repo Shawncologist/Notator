@@ -145,6 +145,12 @@
       padding: 10px;
     }
 
+    .verbatim-ptp {
+      border: 1px solid #CED4DA;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
     .warning {
       color: red;
       text-align: center;
@@ -235,7 +241,7 @@
                     <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic" onclick="ptpDueDate()">
                       <option selected>Select a specialized topic</option>
                       <option value="Loyalty">Loyalty - NOT YET</option>
-                      <option value="Outage">Outage Credit</option>
+                      <option value="Outage">Outage Refund</option>
                       <option value="Tech">Technical Support - NOT YET</option>
                       <option value="Promise to Pay">Promise to Pay</option>
                       <option value="Vacation">Vacation Suspend - NOT YET</option>
@@ -291,11 +297,11 @@
                   <p><strong>This customer does not qualify to make a Promise to Pay!</strong></p>
                 </div>
               </div>
-              <div class="col-lg-12 temporary">
-                <p><strong><span id="ptpDue"></span></strong></p>
-              </div>
               <div class="row temporary" id="treatmentChecks">
                 <div class="col-lg-12">
+                  <div id="ptpDue" class="temporary verbatim-ptp">
+                    x
+                  </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
                     <label class="form-check-label" for="checkPayBefore">
@@ -672,15 +678,15 @@
     });
     $("#inputFooterMenu").trigger("change");
 
-// Themes
-$("#inputFooterTheme").change(function() {
-  let textareas = document.querySelector('textarea');
-if ($(this).val() == "Pink") {
-$("[class*=bluer]").removeClass('bluer').addClass('pinker');
-} else if ($(this).val() == "Blue") {
-  $("[class*=pinker]").removeClass('pinker').addClass('bluer');
-}
-});
+    // Themes
+    $("#inputFooterTheme").change(function() {
+      let textareas = document.querySelector('textarea');
+      if ($(this).val() == "Pink") {
+        $("[class*=bluer]").removeClass('bluer').addClass('pinker');
+      } else if ($(this).val() == "Blue") {
+        $("[class*=pinker]").removeClass('pinker').addClass('bluer');
+      }
+    });
     $("#inputFooterTheme").trigger("change");
 
 
@@ -760,11 +766,21 @@ $("[class*=bluer]").removeClass('bluer').addClass('pinker');
 
 
 
-// calculate payment due date PTP
-    function ptpDueDate(){
+    // calculate payment due date PTP
+    function ptpDueDate() {
+      var ptpVerbatim = "";
       var today = new Date();
       ptpPayBefore = new Date(new Date().setDate(today.getDate() + 6));
-      console.log(ptpPayBefore);
+      const longEnUSFormatter = new Intl.DateTimeFormat('en-US', {
+    month: 'long',
+    day:   'numeric',
+    weekday: 'long',
+});
+ptpPayBefore = longEnUSFormatter.format(ptpPayBefore);
+
+      ptpVerbatim = $("#ptpDue").html("We must receive the payment by " + ptpPayBefore);
+
+      return ptpVerbatim;
     }
 
 
@@ -792,14 +808,39 @@ $("[class*=bluer]").removeClass('bluer').addClass('pinker');
       var cxcheck3Business = document.getElementById("check3Business").checked;
 
       cxName = cxName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+      // const enUSFormatter = new Intl.DateTimeFormat('en-US', {
+      //   year: 'numeric',
+      //   month: 'long',
+      //   day:   'numeric',
+      //   });
+      // cxBroken = enUSFormatter.format(cxBroken);
 
-      var output = 'Problem: ' + cxProblem + "\n\n";
-      if (callType === "Loyalty" || callType === "Tech" || callType === "Promise to Pay" || callType === "Outage") {
-        output += 'Call Type: ' + callType + "\n";
+      if (callType === "Loyalty") {
+        output = callType + "\n";
+      } else if (callType === "Tech") {
+        output = callType + " support" + "\n";
+      } else if (callType === "Promise to Pay") {
+        output = callType + "\n";
+      } else if (callType === "Outage") {
+        output = callType + " refund" + "\n";} else if (callType === "Vacation") {
+        output = callType + " suspend" + "\n";
+      } else {
+        output = '';
       }
+      output += 'Problem: ' + cxProblem + "\n\n";
       output += 'Name: ' + cxName + "\n";
-      output += 'CX Status: ' + cxStatus + "\n";
-      output += 'Verification: ' + cxVerify + "\n";
+      if (cxStatus === "CX Status") {
+        output += 'CX Status: unknown' + "\n";
+      } else {
+        output += 'CX Status: ' + cxStatus + "\n";
+      }
+
+      if (cxVerify === "Verification") {
+        output += 'Verification: unknown' + "\n";
+      } else {
+        output += 'Verification: ' + cxVerify + "\n";
+      }
+
       output += 'MSISDN: ' + cxMsisdn + "\n";
 
       if (roleTag !== "Role") {
@@ -811,6 +852,7 @@ $("[class*=bluer]").removeClass('bluer').addClass('pinker');
         output += 'Last Broken PTP: ' + cxBroken + "\n";
         output += 'Will pay: $' + cxPay + "\n";
         output += 'Payment method: ' + cxMethod + "\n";
+        output += 'Payment due: ' + ptpPayBefore + "\n";
       }
       if (callType === "Outage") {
         output += 'Service outage for ' + outLength + " days" + "\n";
