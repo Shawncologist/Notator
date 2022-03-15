@@ -10,11 +10,19 @@
       background-color: #FFFFFF;
       width: 100%;
       height: 100vh;
+      font-family: "calibri", sans-serif;
     }
 
     /* div {
     border: 1px solid pink;
   } */
+
+    input[type="text"],
+    textarea,
+    select {
+      outline: none !important;
+      box-shadow: none;
+    }
 
     input[type="date"]:before {
       content: attr(placeholder) !important;
@@ -32,22 +40,56 @@
       min-height: 660px;
     }
 
-    .bluer:focus {
+    /* Themes */
+
+    .theme-bluer:focus {
       -webkit-transition: all 0.30s ease-in-out;
       -moz-transition: all 0.30s ease-in-out;
       -ms-transition: all 0.30s ease-in-out;
       -o-transition: all 0.30s ease-in-out;
       border: 1px solid #DDDDDD;
-      background-color: #EBF5FB55;
+      background-color: #c7e2f373;
       box-shadow: 0 0 5px rgba(81, 203, 238, 1);
       border: 1px solid rgba(81, 203, 238, 1);
     }
 
-    .bluer {
-      background-color: #EBF5FB55;
+    .theme-bluer {
+      background-color: #c7e2f373;
     }
 
-    .pinker:focus {
+    .theme-coal:focus {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      background-color: #4a463f84;
+      box-shadow: none;
+      border: 1px solid #322f29;
+    }
+
+    .theme-coal {
+      background-color: #4a463f84;
+      color: #c4cccc;
+      border: 1px solid #DDDDDD;
+    }
+
+
+    .theme-seafoam:focus {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      border: 1px solid #DDDDDD;
+      background-color: #3DED9722;
+      box-shadow: 0 0 5px rgba(61, 237, 151, 1);
+      border: 1px solid rgba(61, 237, 151, 1);
+    }
+
+    .theme-seafoam {
+      background-color: #3DED9722;
+    }
+
+    .theme-pinker:focus {
       -webkit-transition: all 0.30s ease-in-out;
       -moz-transition: all 0.30s ease-in-out;
       -ms-transition: all 0.30s ease-in-out;
@@ -58,10 +100,27 @@
       border: 1px solid #db86e8;
     }
 
-    .pinker {
+    .theme-pinker {
       background-color: #f2a9ed22;
     }
 
+    .theme-plain {
+      background-color: #CCCCCC22;
+      border: 1px solid #4a463f55;
+    }
+
+    .theme-plain:focus {
+      -webkit-transition: all 0.30s ease-in-out;
+      -moz-transition: all 0.30s ease-in-out;
+      -ms-transition: all 0.30s ease-in-out;
+      -o-transition: all 0.30s ease-in-out;
+      background-color: #CCCCCC22;
+      box-shadow: none;
+      border: 1px solid #4a463fd9;
+    }
+
+
+    /* end of themes */
 
     .btn:focus {
       outline: none;
@@ -104,17 +163,19 @@
 
     .footerbtns {
       margin: 0 5px 0 5px;
-
     }
 
     .form-select {
-      color: #71869A;
+      /* color: #71869A; */
+      outline: none;
+      box-shadow: none;
     }
 
     .form-control::placeholder {
       color: #CCCCCC;
       opacity: 1;
     }
+
 
     .history {
       white-space: pre-wrap;
@@ -138,6 +199,10 @@
     .row {
       margin-bottom: 15px;
     }
+
+.tags-menu {
+  margin-top: 10px;
+}
 
     .verbatim-box {
       border: 1px solid #CED4DA;
@@ -172,14 +237,14 @@
                   <div class="input-group g-">
                     <div class="input-group-text"><i class="fas fa-user fa-icon"></i></div>
                     <label for="inputName" class="visually-hidden"></label>
-                    <input type="text" class="form-control bluer" id="inputName" placeholder="First and Last Name">
+                    <input type="text" class="form-control theme-plain themed" id="inputName" placeholder="First and Last Name">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-phone fa-icon"></i></div>
                     <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
-                    <input type="text" class="form-control bluer" id="inputMsisdn" placeholder="CX Phone #">
+                    <input type="text" class="form-control theme-plain themed" id="inputMsisdn" placeholder="CX Phone #">
                   </div>
                 </div>
               </div>
@@ -187,7 +252,7 @@
                 <div class="col-lg-4">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hand-paper fa-icon"></i></div>
-                    <select class="form-select bluer" aria-label="Default select example" id="inputStatus" type="text">
+                    <select class="form-select theme-plain themed" aria-label="Default select example" id="inputStatus" type="text">
                       <option selected>CX Status</option>
                       <option value="Account Holder">Account Holder</option>
                       <option value="Authorized User">Authorized User</option>
@@ -199,7 +264,7 @@
                 <div class="col-lg-4">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-lock fa-icon"></i></div>
-                    <select class="form-select bluer" aria-label="Default select example" id="inputVerification">
+                    <select class="form-select theme-plain themed" aria-label="Default select example" id="inputVerification">
                       <option selected>Verification</option>
                       <option value="Yes, with PIN">Yes, with PIN</option>
                       <option value="Yes, with MFA">Yes, with MFA</option>
@@ -212,7 +277,7 @@
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
                     <label for="inputContactId" class="visually-hidden">Contact ID</label>
-                    <input type="text" class="form-control bluer" id="inputContactId" placeholder="Conversation ID">
+                    <input type="text" class="form-control theme-plain themed" id="inputContactId" placeholder="Conversation ID">
                   </div>
                 </div>
               </div>
@@ -224,13 +289,13 @@
               <div class="row">
                 <div class="col-lg-12">
                   <label for="inputProblem" class="visually-hidden">Problem</label>
-                  <textarea rows="4" cols="10" class="form-control bluer" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
+                  <textarea rows="4" cols="10" class="form-control theme-plain themed" id="inputProblem" placeholder="Primary reason for the customer's call"></textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12">
                   <label for="inputAction" class="visually-hidden">Actions</label>
-                  <textarea rows="10" cols="10" class="form-control bluer" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
+                  <textarea rows="10" cols="10" class="form-control theme-plain themed" id="inputAction" placeholder="Actions you took and information you gave"></textarea>
                 </div>
               </div>
               <!-- Specialized Call Fields -->
@@ -238,7 +303,7 @@
                 <div class="col-lg-6">
                   <div class="input-group g-3">
                     <div class="input-group-text"><i class="fas fa-hat-wizard fa-icon"></i></div>
-                    <select class="form-select bluer" aria-label="Default select example" id="inputSpecialTopic" onclick="ptpDueDate()">
+                    <select class="form-select theme-plain themed" aria-label="Default select example" id="inputSpecialTopic" onclick="ptpDueDate()">
                       <option selected>Select a specialized topic</option>
                       <option value="Loyalty">Loyalty - NOT YET</option>
                       <option value="Outage">Outage Refund</option>
@@ -252,12 +317,12 @@
                   <div class="input-group g-3 temporary" id="lastBroken">
                     <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
                     <label for="inputLastBroken" class="visually-hidden"></label>
-                    <input type="date" class="form-control bluer" id="inputLastBroken" placeholder="Last Broken PTP: ">
+                    <input type="date" class="form-control theme-plain themed" id="inputLastBroken" placeholder="Last Broken:">
                   </div>
                   <div class="input-group g-3 temporary" id="outageMonthlyCharge">
                     <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                     <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
-                    <input type="number" class="form-control bluer" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
+                    <input type="number" class="form-control theme-plain themed" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
                   </div>
                 </div>
               </div>
@@ -266,18 +331,18 @@
                   <div class="input-group g-3 temporary" id="payAmount">
                     <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                     <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
-                    <input type="number" class="form-control bluer" id="inputPayAmount" placeholder="Amount to be paid">
+                    <input type="number" class="form-control theme-plain themed" id="inputPayAmount" placeholder="Amount to be paid">
                   </div>
                   <div class="input-group g-3 temporary" id="outageLength">
                     <div class="input-group-text"><i class="fas fa-calendar-times fa-icon"></i></div>
                     <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
-                    <input type="number" class="form-control bluer" id="inputOutageLength" placeholder="Length of outage in days">
+                    <input type="number" class="form-control theme-plain themed" id="inputOutageLength" placeholder="Length of outage in days">
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="input-group g-3 temporary bluer" id="payMethod">
+                  <div class="input-group g-3 temporary" id="payMethod">
                     <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
-                    <select class="form-select bluer" aria-label="Default select example" id="inputPayMethod">
+                    <select class="form-select theme-plain themed" aria-label="Default select example" id="inputPayMethod">
                       <option selected>Method of payment</option>
                       <option value="Bank">Bank</option>
                       <option value="Customer Care">Customer Care</option>
@@ -299,8 +364,8 @@
               </div>
               <div class="row temporary" id="treatmentChecks">
                 <div class="col-lg-12">
-                  <div id="ptpDue" class="temporary verbatim-ptp">
-                    x
+                  <div id="ptpDue" class="verbatim-ptp">
+
                   </div>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="I informed them that payment must be received within 7 days." id="checkPayBefore">
@@ -340,7 +405,7 @@
                 <div class="col-lg-6">
                   <div class="input-group g-3 temporary  verbatim" id="outageRefundChoice">
                     <div class="input-group-text"><i class="fas fa-donate fa-icon"></i></div>
-                    <select class="form-select bluer" id="inputOutageRefundChoice">
+                    <select class="form-select theme-plain themed" id="inputOutageRefundChoice">
                       <option selected>Chosen refund option</option>
                       <option value="Refund">Up front refund</option>
                       <option value="Monthly5">Temporary $5 per month offer</option>
@@ -353,10 +418,33 @@
             <!-- column b -->
             <div class="col-lg-6">
               <label for="casOutput" class="visually-hidden">Note</label>
-              <textarea rows="25" cols="10" class="form-control bluer" id="casOutput" placeholder="Your notes will appear here when you click Combine. They are automatically copied, so you're ready to paste them into Singleview."></textarea>
+              <textarea rows="25" cols="10" class="form-control theme-plain themed" id="casOutput"
+                placeholder="Your notes will appear here when you click Combine. They are automatically copied, so you're ready to paste them into Singleview."></textarea>
               <div>
+                <div class="row">
+<div class="col-md-4">
                 <button id="copy-btn" onclick="formsCombine()" class="btn btn-secondary btn-combine" type="button">Combine & Copy</button>
+</div>
+                <div class="col-md-4">
+                  <div class="input-group g-3 tags-menu">
+                    <div class="input-group-text"><i class="fas fa-tag fa-icon"></i></div>
+                    <select class="form-select theme-plain themed" aria-label="Default select" id="inputTag" type="text">
+                      <option selected>Tag it!</option>
+                      <option value="** Address Change **">** Address Change **</option>
+                      <option value="** Customer Failed Verification **">** Customer Failed Verification **</option>
+                      <option value="** No More Promotions **">** No More Promotions **</option>
+                      <option value="** Promise to Pay Denied **">** Promise to Pay Denied **</option>
+                      <option value="** Promotion or Credit Applied **">** Promotion or Credit Applied **</option>
+                      <option value="** Roaming Conversation**">** Roaming Conversation**</option>
+                      <option value="** Unauthorized User **">** Unauthorized User **</option>
+                    </select>
+                  </div>
+                </div>
+
+<div class="col-md-4">
                 <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetHistoryCombo()">Reset</button>
+              </div>
+            </div>
               </div>
             </div>
           </div>
@@ -377,7 +465,7 @@
             <div class="col-lg-3">
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-calendar fa-icon"></i></div>
-                <select class="form-select bluer" aria-label="Default select" id="prepaidThirds">
+                <select class="form-select theme-plain themed" aria-label="Default select" id="prepaidThirds">
                   <option selected>Days until next top-up date?</option>
                   <option value="33">1 - 10 days remaining</option>
                   <option value="66">11 - 20 days remaining</option>
@@ -391,7 +479,7 @@
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                 <label for="inputPrepaidRatePlan" class="visually-hidden">Price of the item</label>
-                <input type="numbers" class="form-control bluer" id="prepaidItemPrice" placeholder="Price of the item">
+                <input type="numbers" class="form-control theme-plain themed" id="prepaidItemPrice" placeholder="Price of the item">
               </div>
             </div>
           </div>
@@ -408,7 +496,7 @@
               <div class="input-group g-3">
                 <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
                 <label for="inputPrepaidRatePlan" class="visually-hidden">Amount to pay</label>
-                <input type="text" class="form-control bluer" id="prepaidThirdsResult" placeholder="Amount to pay">
+                <input type="text" class="form-control theme-plain themed" id="prepaidThirdsResult" placeholder="Amount to pay">
               </div>
 
             </div>
@@ -425,7 +513,7 @@
               <div class="input-group g-3" id="oldMrcPrice">
                 <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                 <label for="inputOldMrcPrice" class="visually-hidden">Price of Old Item</label>
-                <input type="number" class="form-control bluer" id="inputOldMrcPrice" placeholder="Price of removed item">
+                <input type="number" class="form-control theme-plain themed" id="inputOldMrcPrice" placeholder="Price of removed item">
               </div>
             </div>
           </div>
@@ -434,7 +522,7 @@
               <div class="input-group g-3" id="mrcPrice">
                 <div class="input-group-text"><i class="fas fa-dollar-sign fa-icon"></i></div>
                 <label for="inputMrcPrice" class="visually-hidden">Price of New Item</label>
-                <input type="number" class="form-control bluer" id="inputMrcPrice" placeholder="Price of added Item">
+                <input type="number" class="form-control theme-plain themed" id="inputMrcPrice" placeholder="Price of added Item">
               </div>
             </div>
           </div>
@@ -443,7 +531,7 @@
               <div class="input-group g-3" id="mrcDaysRemainingOld">
                 <div class="input-group-text"><i class="fas fa-hashtag fa-icon"></i></div>
                 <label for="inputMrcDaysRemaining" class="visually-hidden">Days remaining</label>
-                <input type="number" class="form-control bluer" id="inputMrcDaysRemaining" placeholder="Days remaining">
+                <input type="number" class="form-control theme-plain themed" id="inputMrcDaysRemaining" placeholder="Days remaining">
               </div>
             </div>
           </div>
@@ -460,7 +548,7 @@
                 <div class="input-group g-3">
                   <div class="input-group-text"><i class="fas fa-equals fa-icon"></i></div>
                   <label for="postpaidResult" class="visually-hidden">Amount to pay</label>
-                  <input type="text" class="form-control bluer" id="postpaidResult" placeholder="Amount to pay">
+                  <input type="text" class="form-control theme-plain themed" id="postpaidResult" placeholder="Amount to pay">
                 </div>
                 <p class="footer">Note: a month in SingleView is 30.4375 days (average of month lengths over 4 years)</p>
               </div>
@@ -509,7 +597,7 @@
   </div>
 
   <div class="fixed-bottom nav-footer row align-items-center footer">
-    <div class="col-lg-2 justify-content-start">
+    <div class="col-md-2 justify-content-start">
       <div class="input-group g-2" id="role">
         <select class="form-select" id="inputRole">
           <option selected>Role</option>
@@ -520,7 +608,7 @@
       </div>
     </div>
 
-    <div class="col-lg-2 justify-content-start">
+    <div class="col-md-2 justify-content-start">
       <div class="input-group g-2" id="footerMenu">
         <select class="form-select" id="inputFooterMenu">
           <option selected value="Notes">Notes</option>
@@ -533,23 +621,23 @@
       </div>
     </div>
 
-    <div class="col-lg-2 justify-content-start">
+    <div class="col-md-2 justify-content-start">
       <div class="input-group g-2" id="footerTheme">
         <select class="form-select" id="inputFooterTheme">
           <option selected value="Notes">Theme</option>
           <option value="Blue">Blue</option>
+          <!-- <option value="Coal">Coal</option> -->
           <option value="Pink">Pink</option>
+          <option value="Seafoam">Seafoam</option>
+          <!-- <option value="Tiger">Tiger</option> -->
         </select>
       </div>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-md-4">
     </div>
-
-
-
-    <div class="col-lg-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
-    <div class="col-lg-1 d-flex justify-content-end">
+    <div class="col-md-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
+    <div class="col-md-1 d-flex justify-content-end">
       v.4.01.1
     </div>
   </div>
@@ -678,19 +766,27 @@
     });
     $("#inputFooterMenu").trigger("change");
 
-    // Themes
+
+    // themes
+    function clearThemes() {
+      $(".themed").removeClass("theme-bluer theme-pinker theme-plain theme-coal theme-seafoam");
+    }
+
     $("#inputFooterTheme").change(function() {
-      let textareas = document.querySelector('textarea');
-      if ($(this).val() == "Pink") {
-        $("[class*=bluer]").removeClass('bluer').addClass('pinker');
-      } else if ($(this).val() == "Blue") {
-        $("[class*=pinker]").removeClass('pinker').addClass('bluer');
+      clearThemes();
+      if ($(this).val() === "Pink") {
+        $(".themed").addClass('theme-pinker');
+      } else if ($(this).val() === "Blue") {
+        $(".themed").addClass('theme-bluer');
+      } else if ($(this).val() === "Coal") {
+        $(".themed").addClass('theme-coal');
+      } else if ($(this).val() === "Seafoam") {
+        $(".themed").addClass('theme-seafoam');
+      } else {
+        $(".themed").addClass('theme-plain');
       }
     });
     $("#inputFooterTheme").trigger("change");
-
-
-
 
 
     // warning message (flawed code, needs to be done better)
@@ -701,7 +797,6 @@
         $('.warning').hide();
       }
     });
-
 
     // PTP warning message (flawed code, needs to be done better)
     $("#inputLastBroken").change(function() {
@@ -715,8 +810,6 @@
         $('.ptpWarning').hide();
       }
     });
-
-
 
     // Nothing important
     function randomTwenty() {
@@ -772,11 +865,11 @@
       var today = new Date();
       ptpPayBefore = new Date(new Date().setDate(today.getDate() + 6));
       const longEnUSFormatter = new Intl.DateTimeFormat('en-US', {
-    month: 'long',
-    day:   'numeric',
-    weekday: 'long',
-});
-ptpPayBefore = longEnUSFormatter.format(ptpPayBefore);
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+      });
+      ptpPayBefore = longEnUSFormatter.format(ptpPayBefore);
 
       ptpVerbatim = $("#ptpDue").html("We must receive the payment by " + ptpPayBefore);
 
@@ -802,33 +895,35 @@ ptpPayBefore = longEnUSFormatter.format(ptpPayBefore);
       var outMonth = $("#inputOutageMonthlyCharge").val();
       var outRefundChoice = $("#inputOutageRefundChoice").val();
       var roleTag = $("#inputRole").val();
+      var inputTag = $("#inputTag").val();
       var cxCheckPayBefore = document.getElementById("checkPayBefore").checked;
       var cxCheckBroken90 = document.getElementById("checkBroken90").checked;
       var cxcheckCash24 = document.getElementById("checkCash24").checked;
       var cxcheck3Business = document.getElementById("check3Business").checked;
 
       cxName = cxName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
-      // const enUSFormatter = new Intl.DateTimeFormat('en-US', {
-      //   year: 'numeric',
-      //   month: 'long',
-      //   day:   'numeric',
-      //   });
-      // cxBroken = enUSFormatter.format(cxBroken);
 
-      if (callType === "Loyalty") {
-        output = callType + "\n";
-      } else if (callType === "Tech") {
-        output = callType + " support" + "\n";
-      } else if (callType === "Promise to Pay") {
-        output = callType + "\n";
-      } else if (callType === "Outage") {
-        output = callType + " refund" + "\n";} else if (callType === "Vacation") {
-        output = callType + " suspend" + "\n";
+      if (inputTag === "Tag it!") {
+        output = "";
       } else {
-        output = '';
+        output = inputTag + "\n";
+      }
+      if (callType === "Loyalty") {
+        output += callType + "\n\n";
+      } else if (callType === "Tech") {
+        output += callType + " support" + "\n\n";
+      } else if (callType === "Promise to Pay") {
+        output += callType + "\n\n";
+      } else if (callType === "Outage") {
+        output += callType + " refund" + "\n\n";
+      } else if (callType === "Vacation") {
+        output += callType + " suspend" + "\n\n";
+      } else {
+        output += '';
       }
       output += 'Problem: ' + cxProblem + "\n\n";
       output += 'Name: ' + cxName + "\n";
+
       if (cxStatus === "CX Status") {
         output += 'CX Status: unknown' + "\n";
       } else {
