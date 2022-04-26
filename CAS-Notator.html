@@ -12,6 +12,7 @@
       width: 100%;
       height: 100vh;
       font-family: "calibri", sans-serif;
+      font-size: 18px;
     }
 
     /* div {
@@ -229,6 +230,11 @@
       margin: 10px 20px;
     }
 
+.rpchidden {
+  display: none;
+  margin: 10px 20px;
+}
+
     .history {
       white-space: pre-wrap;
       overflow: auto;
@@ -239,6 +245,13 @@
       color: #61616E;
     }
 
+    .material-icons.green-icons {
+      color: #65C18C;
+    }
+
+    .material-icons.red-icons {
+      color: #E02401;
+    }
 
     .nav-footer {
       border: 1px solid #616161;
@@ -290,7 +303,7 @@
     }
 
     .warning {
-      color: red;
+      color: #E02401;
       text-align: center;
       margin-bottom: 0px;
       display: none;
@@ -308,21 +321,21 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">account_circle</span></div>
+                    <div class="input-group-text"><span id="icon-name" class="material-icons grey-icons">account_circle</span></div>
                     <label for="inputName" class="visually-hidden"></label>
                     <input type="text" class="form-control theme-plain themed" id="inputName" placeholder="First and Last Name">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">local_phone</span></div>
+                    <div class="input-group-text"><span id="icon-caller" class="material-icons grey-icons">local_phone</span></div>
                     <label for="inputCaller" class="visually-hidden">Caller Phone#</label>
                     <input type="text" class="form-control theme-plain themed" id="inputCaller" placeholder="Caller Phone #">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">local_phone</span></div>
+                    <div class="input-group-text"><span id="icon-msisdn" class="material-icons grey-icons">local_phone</span></div>
                     <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
                     <input type="text" class="form-control theme-plain themed" id="inputMsisdn" placeholder="Acct MSISDN">
                   </div>
@@ -331,7 +344,7 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">back_hand</span></div>
+                    <div class="input-group-text"><span id="icon-status" class="material-icons grey-icons">back_hand</span></div>
                     <select class="form-select theme-plain themed selectmenu" id="inputStatus" title="test">
                       <option selected value="">CX Status</option>
                       <option value="Account Holder">Account Holder</option>
@@ -343,7 +356,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">lock</span></div>
+                    <div class="input-group-text"><span id="icon-verify" class="material-icons grey-icons">lock</span></div>
                     <select class="form-select theme-plain themed selectmenu" aria-label="Default select example" id="inputVerification">
                       <option selected value="">Verification</option>
                       <option value="Yes, with PIN">Yes, with PIN</option>
@@ -356,7 +369,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">tag</span></div>
+                    <div class="input-group-text"><span id="icon-conversation" class="material-icons grey-icons">tag</span></div>
                     <label for="inputContactId" class="visually-hidden">Contact ID</label>
                     <input type="text" class="form-control theme-plain themed" id="inputContactId" placeholder="Conversation ID">
                   </div>
@@ -383,7 +396,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">grade</span></div>
+                    <div class="input-group-text"><span id="icon-specialized" class="material-icons grey-icons">grade</span></div>
                     <select class="form-select theme-plain themed" aria-label="Default select example" id="inputSpecialTopic" onclick="ptpDueDate()">
                       <option selected>Select a specialized topic</option>
                       <option value="Contact Details Change">Contact Details Change</option>
@@ -404,15 +417,15 @@
                     <input type="date" class="form-control theme-plain themed" id="inputLastBroken" placeholder="Last Broken:">
                   </div>
                   <div class="input-group g-3 temporary group-outage" id="outageMonthlyCharge">
-                    <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text"><span id="icon-outage-monthly" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputOutageMonthlyCharge" class="visually-hidden">Monthly Charge</label>
                     <input type="number" class="form-control theme-plain themed" id="inputOutageMonthlyCharge" placeholder="Customer's monthly charge">
                   </div>
-                  <div class="input-group g-3 temporary group-rate-plan-change">
-                    <div class="input-group-text"><span class="material-icons grey-icons">fiber_new</span></div>
-                    <label for="inputContactId" class="visually-hidden">New Rate Plan Name</label>
-                    <input type="text" class="form-control theme-plain themed" id="rpcPlanName" placeholder="New Rate Plan Name">
+                  <div class="form-check check-middle temporary group-rate-plan-change">
+                    <input class="form-check-input" type="checkbox" value="This is just a Quote. I'm not changing the Rate Plan now." id="rpcQuote">
+                    <label class="form-check-label" for="rpcQuote"> This is just a Quote.</label>
                   </div>
+
                   <div class="temporary group-loyalty">
                     <div class="btn-pair">
                       <a href="https://freedomcustomercare.yonyx.com/y/conversation/?id=6b707b90-3365-11ec-9d93-4201c0a80112&lang=en" target="_blank" class="btn btn-outline-secondary btn-loyalty-fm col-5" type="button"><strong>FM Loyalty
@@ -441,14 +454,14 @@
               <div class="row temporary group-ptp">
                 <div class="col-lg-6">
                   <div class="input-group g-3" id="payAmount">
-                    <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text"><span id="icon-ptp-pay" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
-                    <input type="number" class="form-control theme-plain themed" id="inputPayAmount" placeholder="Amount to be paid">
+                    <input type="text" class="form-control theme-plain themed" id="inputPayAmount" placeholder="Amount to be paid">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input-group g-3" id="payMethod">
-                    <div class="input-group-text"><span class="material-icons grey-icons">credit_score</span></div>
+                    <div class="input-group-text"><span id="icon-ptp-method" class="material-icons grey-icons">credit_score</span></div>
                     <select class="form-select theme-plain themed" aria-label="Default select example" id="inputPayMethod">
                       <option selected>Method of payment</option>
                       <option value="Bank">Bank</option>
@@ -464,7 +477,7 @@
               <div class="row temporary group-outage">
                 <div class="col-lg-6">
                   <div class="input-group g-3 " id="outageLength">
-                    <div class="input-group-text"><span class="material-icons grey-icons">event_busy</span></div>
+                    <div class="input-group-text"><span id="icon-outage-length" class="material-icons grey-icons">event_busy</span></div>
                     <label for="inputOutageLength" class="visually-hidden">Outage Length</label>
                     <input type="number" class="form-control theme-plain themed" id="inputOutageLength" placeholder="Length of outage in days">
                   </div>
@@ -479,7 +492,7 @@
               <div class="row temporary group-rate-plan-change">
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">group_work</span></div>
+                    <div class="input-group-text"><span id="icon-rpc-account" class="material-icons grey-icons">group_work</span></div>
                     <select class="form-select theme-plain themed" aria-label="Default select example" id="inputRpcType">
                       <option selected>Account Type</option>
                       <option value="Postpaid">Postpaid</option>
@@ -490,7 +503,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text"><span id="icon-rpc-remove" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputOldPlanPrice" class="visually-hidden">Removed Plan Price</label>
                     <input type="number" class="form-control theme-plain themed" id="inputOldPlanPrice" placeholder="Removing MRC">
                   </div>
@@ -498,7 +511,7 @@
 
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text"><span id="icon-rpc-new-price" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputNewPlanPrice" class="visually-hidden">New Plan Price</label>
                     <input type="number" class="form-control theme-plain themed" id="inputNewPlanPrice" placeholder="New MRC">
                   </div>
@@ -522,7 +535,7 @@
               <div class="row temporary group-vacation-pass">
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons">group_work</span></div>
+                    <div class="input-group-text"><span id="icon-vp-cycle" class="material-icons grey-icons">group_work</span></div>
                     <select class="form-select theme-plain themed" id="inputVacationCycle">
                       <option selected>CX Cycle Date</option>
                       <option value="5th">5th</option>
@@ -535,14 +548,14 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons"></span></div>
+                    <div class="input-group-text"><span id="icon-vp-start" class="material-icons grey-icons"></span></div>
                     <label for="inputVacationStart" class="visually-hidden">Start</label>
                     <input type="month" class="form-control theme-plain themed" id="inputVacationStart" placeholder="Start">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons"></span></div>
+                    <div class="input-group-text"><span id="icon-vp-end" class="material-icons grey-icons"></span></div>
                     <label for="inputVacationEnd" class="visually-hidden">End</label>
                     <input type="month" class="form-control theme-plain themed" id="inputVacationEnd" placeholder="End">
                   </div>
@@ -595,14 +608,14 @@
               <div class="row temporary group-rate-plan-change">
                 <div class="col-lg-6">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons"></span></div>
+                    <div class="input-group-text"><span id="icon-rpc-transaction" class="material-icons grey-icons"></span></div>
                     <label for="inputLastBroken" class="visually-hidden"></label>
                     <input type="date" class="form-control theme-plain themed" id="inputRpcTransaction" placeholder="Transaction Date">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span class="material-icons grey-icons"></span></div>
+                    <div class="input-group-text"><span id="icon-rpc-bill" class="material-icons grey-icons"></span></div>
                     <label for="inputLastBroken" class="visually-hidden"></label>
                     <input type="date" class="form-control theme-plain themed" id="inputRpcBillDate" placeholder="Next Invoice">
                   </div>
@@ -622,14 +635,12 @@
                   </div>
                 </div>
               </div>
-
-
               <!-- END specialized row 2 -->
               <!-- Begin Specialized Row 3 -->
               <div class="row temporary group-outage">
                 <div class="col-lg-6">
                   <div class="input-group g-3 temporary verbatim" id="outageRefundChoice">
-                    <div class="input-group-text"><span class="material-icons grey-icons">request_quote</span></div>
+                    <div class="input-group-text"><span id="icon-outage-choice" class="material-icons grey-icons">request_quote</span></div>
                     <select class="form-select theme-plain themed" id="inputOutageRefundChoice">
                       <option selected>Chosen refund option</option>
                       <option value="Refund">Up front refund</option>
@@ -639,38 +650,27 @@
                   </div>
                 </div>
               </div>
-
               <!-- rate plan change row 3 -->
               <div class="row temporary group-rate-plan-change">
-                <div class="col-sm-2">
-                  <div class="">
-                    <button id="rpc-calc-btn" onclick="rpcCalculator()" class="btn btn-secondary" type="button">Calculate</button>
+                <div class="col-sm-6">
+                  <div class="input-group g-3 ">
+                    <div class="input-group-text"><span id="icon-rpc-old" class="material-icons grey-icons">delete_forever</span></div>
+                    <label for="rpcPlanOld" class="visually-hidden">Old Rate Plan Name</label>
+                    <input type="text" class="form-control theme-plain themed" id="rpcPlanOld" placeholder="Old Rate Plan Name">
                   </div>
                 </div>
-                <div class="col-sm-10">
-                  <div class="form-check check-middle">
-                    <input class="form-check-input" type="checkbox" value="This is just a Quote. I'm not changing the Rate Plan now." id="rpcQuote">
-                    <label class="form-check-label" for="rpcQuote"> This is just a Quote. I'm not changing the Rate Plan now. </label>
-                  </div>
-                </div>
-              </div>
-              <div class="row temporary group-rate-plan-change">
-                <div class="col-lg-12">
-                  <div id="rpcVerbatim" class="temporary verbatim-rpc">x
-                  </div>
-
-                  <div class="form-check hidden">
-                    <input class="form-check-input" type="checkbox" value="I reviewed all differences between both rate plans with customer." id="checkRpcReview">
-                    <label class="form-check-label" for="checkRpcReview"> I reviewed all differences between both rate plans with customer. </label>
+                <div class="col-sm-6">
+                  <div class="input-group g-3 ">
+                    <div class="input-group-text"><span id="icon-rpc-new" class="material-icons grey-icons">fiber_new</span></div>
+                    <label for="rpcPlanName" class="visually-hidden">New Rate Plan Name</label>
+                    <input type="text" class="form-control theme-plain themed" id="rpcPlanName" placeholder="New Rate Plan Name">
                   </div>
                 </div>
               </div>
-              <!-- </div> -->
               <!-- vacation pass row 3 -->
               <div class="row temporary group-vacation-pass">
                 <div class="col-lg-12">
                   <div id="vpVerbatim" class="temporary verbatim-vp">x </div>
-
                   <div class="form-check vphidden">
                     <input class="form-check-input" type="checkbox" value="I reviewed all the conditions of the Vacation Pass with the customer" id="checkVpReview">
                     <label class="form-check-label" for="checkVpReview"> I reviewed all the conditions of the Vacation Pass with the customer. </label>
@@ -681,6 +681,61 @@
                   </div>
                 </div>
               </div>
+
+                  <!-- END specialized row 3 -->
+                <!-- Begin Specialized Row 4 -->
+                <!-- rate plan change row 4 -->
+                <div class="row temporary group-rate-plan-change">
+                <div class="col-sm-2">
+                    <div class="">
+                      <button id="rpc-calc-btn" onclick="rpcCalculator()" class="btn btn-secondary" type="button">Calculate</button>
+                    </div>
+                  </div>
+                </div>
+<!-- END specialized row 4 -->
+<!-- Begin Specialized Row 5 -->
+<!-- rate plan change row 5 -->
+<div class="row temporary group-rate-plan-change">
+  <div class="col-lg-12">
+    <div id="rpcVerbatim" class="temporary verbatim-rpc">x
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="I reviewed all differences between both rate plans with customer." id="checkRpcReview">
+      <label class="form-check-label" for="checkRpcReview"> I reviewed all differences between both rate plans with customer. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="Prices are quoted before tax and they are an estimate." id="checkRpcQuoted">
+      <label class="form-check-label" for="checkRpcReview"> Prices are quoted before tax and they are an estimate. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="Prices do not reflect any discounts or promos currently attached to the account." id="checkRpcReflect">
+      <label class="form-check-label" for="checkRpcReview"> Prices do not reflect any discounts or promos currently attached to the account. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="Promos or Bonus Data attached to the previous rate plan may be lost." id="checkRpcPromos">
+      <label class="form-check-label" for="checkRpcReview"> Promos or Bonus Data attached to the previous rate plan may be lost. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="The new rate plan will be effective immediately." id="checkRpcEffective">
+      <label class="form-check-label" for="checkRpcReview"> The new rate plan will be effective immediately. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="Price adjustments, including proration, will be reflected on the next invoice." id="checkRpcNext">
+      <label class="form-check-label" for="checkRpcReview"> Price adjustments, including proration, will be reflected on the next invoice. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="MyTab savings could be billed out with rate plan change." id="checkRpcTab">
+      <label class="form-check-label" for="checkRpcReview"> MyTab savings could be billed out with rate plan change. </label>
+    </div>
+    <div class="form-check rpchidden">
+      <input class="form-check-input" type="checkbox" value="They can not go back to legacy plans or rates." id="checkRpcLegacy">
+      <label class="form-check-label" for="checkRpcReview"> They can not go back to legacy plans or rates. </label>
+    </div>
+  </div>
+</div>
+<!-- END specialized row 5 -->
+
+              <!-- </div> -->
             </div>
             <!-- column b -->
             <div class="col-lg-5">
@@ -699,7 +754,7 @@
                 </div>
                 <div class="col-md-5">
                   <div class="input-group g-3 tags-menu">
-                    <div class="input-group-text"><span class="material-icons grey-icons">error_outline</span></div>
+                    <div class="input-group-text"><span id="icon-tags" class="material-icons grey-icons">error_outline</span></div>
                     <select class="form-select theme-plain themed" aria-label="Default select" id="inputTag" type="text">
                       <option selected>Tag it!</option>
                       <option value="** Address Change **">** Address Change **</option>
@@ -914,7 +969,7 @@
     </div>
     <div class="col-md-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
     <div class="col-md-1 d-flex justify-content-end">
-      v.4.01.1
+      v.4.01.2
     </div>
   </div>
   <!-- </nav> -->
@@ -922,6 +977,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script>
+    let allForm = document.getElementById("notatorForm");
     let dailyRate = "";
     let totalRefund = "";
     let roundedOffer = "";
@@ -1104,8 +1160,11 @@
     $("#inputFooterTheme").trigger("change");
 
 
-    // warning message (flawed code, needs to be done better)
-    $(document.body).click(function() {
+    // warning for verify and status
+allForm.addEventListener("change", formsUpdate);
+
+    // $("#notatorForm").click(function() {
+    function formsUpdate() {
       if ($("#inputStatus").val() === "Not Authorized" || $("#inputVerification").val() === "No, wrong PIN" || $("#inputVerification").val() === "No, unverified") {
         $('.warning').show();
       } else {
@@ -1117,8 +1176,94 @@
       } else {
         $("#inputVerification").prop('disabled', false);
       }
+      if ($("#inputStatus").val() === "Not Authorized") {
+        $("#icon-status").removeClass("grey-icons green-icons");
+        $("#icon-status").addClass('red-icons');
+        $("#icon-verify").removeClass("grey-icons green-icons");
+        $("#icon-verify").addClass('red-icons');
+      } else if ($("#inputStatus").val() === "Account Holder" || $("#inputStatus").val() === "Authorized User" || $("#inputStatus").val() === "Device User") {
+        $("#icon-status").removeClass("red-icons grey-icons");
+        $("#icon-status").addClass('green-icons');
+      } else {
+        $("#icon-status").removeClass("red-icons green-icons");
+        $("#icon-status").addClass('grey-icons');
+        $("#icon-verify").removeClass("red-icons green-icons");
+        $("#icon-verify").addClass('grey-icons');
+      }
+      if ($("#inputVerification").val() === "No, wrong PIN" || $("#inputVerification").val() === "No, unverified" || $("#inputVerification").val() === null) {
+        $("#icon-verify").removeClass("grey-icons green-icons");
+        $("#icon-verify").addClass('red-icons');
+      } else if ($("#inputVerification").val() === "Yes, with PIN" || $("#inputVerification").val() === "Yes, with MFA SMS" || $("#inputVerification").val() === "Yes, with MFA Email") {
+        $("#icon-verify").removeClass("red-icons grey-icons");
+        $("#icon-verify").addClass('green-icons');
+      } else {
+        $("#icon-verify").removeClass("red-icons green-icons");
+        $("#icon-verify").addClass('grey-icons');
+      }
+      // red and green and grey icons for all but status and verify
+      colourChange ("#inputName", "#icon-name");
+      colourChange ("#inputCaller", "#icon-caller");
+      colourChange ("#inputMsisdn", "#icon-msisdn");
+      colourChange ("#inputContactId", "#icon-conversation");
+      if ($("#inputSpecialTopic").val() !== "Select a specialized topic") {
+        colourChange ("#inputSpecialTopic", "#icon-specialized");
+      } else if ($("#inputSpecialTopic").val() === "Select a specialized topic"){
+        $("#icon-specialized").removeClass("green-icons");
+        $("#icon-specialized").addClass('grey-icons');
+      }
+      colourChange ("#inputOutageMonthlyCharge", "#icon-outage-monthly");
+      colourChange ("#inputPayAmount", "#icon-ptp-pay");
+      if ($("#inputPayMethod").val() !== "Method of payment") {
+        colourChange ("#inputPayMethod", "#icon-ptp-method");
+      } else if ($("#inputPayMethod").val() === "Method of payment"){
+        $("#icon-ptp-method").removeClass("green-icons");
+        $("#icon-ptp-method").addClass('grey-icons');
+      }
 
-    });
+      colourChange ("#inputOutageLength", "#icon-outage-length");
+      if ($("#inputRpcType").val() !== "Account Type") {
+        colourChange ("#inputRpcType", "#icon-rpc-account");
+      } else if ($("#inputRpcType").val() === "Account Type"){
+        $("#icon-rpc-account").removeClass("green-icons");
+        $("#icon-rpc-account").addClass('grey-icons');
+      }
+      colourChange ("#inputOldPlanPrice", "#icon-rpc-remove");
+      colourChange ("#inputNewPlanPrice", "#icon-rpc-new-price");
+      if ($("#inputVacationCycle").val() !== "CX Cycle Date") {
+        colourChange ("#inputVacationCycle", "#icon-vp-cycle");
+      } else if ($("#inputVacationCycle").val() === "CX Cycle Date"){
+        $("#icon-vp-cycle").removeClass("green-icons");
+        $("#icon-vp-cycle").addClass('grey-icons');
+      }
+      colourChange ("#inputVacationStart", "#icon-vp-start");
+      colourChange ("#inputVacationEnd", "#icon-vp-end");
+      colourChange ("#inputRpcTransaction", "#icon-rpc-transaction");
+      colourChange ("#inputRpcBillDate", "#icon-rpc-bill");
+      if ($("#inputOutageRefundChoice").val() !== "Chosen refund option") {
+        colourChange ("#inputOutageRefundChoice", "#icon-outage-choice");
+      } else if ($("#inputOutageRefundChoice").val() === "Chosen refund option"){
+        $("#icon-outage-choice").removeClass("green-icons");
+        $("#icon-outage-choice").addClass('grey-icons');
+      }
+      colourChange ("#rpcPlanOld", "#icon-rpc-old");
+      colourChange ("#rpcPlanName", "#icon-rpc-new");
+      if ($("#inputTag").val() !== "Tag it!") {
+        colourChange ("#inputTag", "#icon-tags");
+      } else if ($("#inputTag").val() === "Tag it!"){
+        $("#icon-tags").removeClass("green-icons");
+        $("#icon-tags").addClass('grey-icons');
+      }
+    };
+
+function colourChange(target, icon) {
+  if ($(target).val() === "") {
+    $(icon).removeClass("green-icons");
+    $(icon).addClass('grey-icons');
+  } else {
+    $(icon).removeClass("grey-icons");
+    $(icon).addClass('green-icons');
+  }
+}
 
     // PTP warning message (flawed code, needs to be done better)
     $("#inputLastBroken").change(function() {
@@ -1214,7 +1359,7 @@
 
       } else if (inputRpcType === "Postpaid") {
         rpcResult = (postpaidProrateCharge - rpcProrateCredit).toFixed(2);
-        rpcVerbatim = $("#rpcVerbatim").html("With these dates, there will be " + "<strong>" + rpcTotalDays + " days" + "</strong>" + " of proration." + "<br>" + "The plan being removed costs " + "<strong>" + "$" + perDayRemoving + "</strong>" +
+        rpcVerbatim = $("#rpcVerbatim").html("<strong>" + "All prices are before tax, and are an estimate!" + "</strong>"  + "<br>" + "With these dates, there will be " + "<strong>" + rpcTotalDays + " days" + "</strong>" + " of proration." + "<br>" + "The plan being removed costs " + "<strong>" + "$" + perDayRemoving + "</strong>" +
           " per day." + "<br>" + "This equals a credit for unused sevice of " + "<strong>" + "$" + rpcProrateCredit + "</strong>" + "<br>" + "The plan being added costs " + "<strong>" + "$" + perDayProrating + "</strong>" +
           " per day." + "<br>" + "This account is Postpaid, so the new rate plan will cost " + "<strong>" + "$" + postpaidProrateCharge + "</strong>" + " for these " + "<strong>" + rpcTotalDays + " days" + "</strong>" + "<br>" +
           "Applying the service credit to the prorated service charge means this plan change costs " + "<strong>" + "$" + rpcResult + "</strong>");
@@ -1223,7 +1368,7 @@
       }
 
       $('.verbatim-rpc').show();
-      $('.vphidden').show();
+      $('.rpchidden').show();
       return rpcVerbatim;
     }
 
@@ -1234,7 +1379,8 @@
       vpMonthsCalculator();
       vpCycleDate = $("#inputVacationCycle").val()
 
-      vpVerbatimText = $("#vpVerbatim").html("Vacation Pass will begin on the " + vpCycleDate + " of " + resultVpStart + "<br>" + "Vacation Pass will conclude on the " + vpCycleDate + " of " + resultVpEnd + "<br>" + "This vacation is for " + "<strong>" + diffResult + " months" + "</strong>" + "<br>" + "The amount charged on the next invoice will be " + "<strong>" + "$" + (15 * diffResult) + "</strong>" + " (" + diffResult + " months at $15 each" + ")");
+      vpVerbatimText = $("#vpVerbatim").html("Vacation Pass will begin on the " + vpCycleDate + " of " + resultVpStart + "<br>" + "Vacation Pass will conclude on the " + vpCycleDate + " of " + resultVpEnd + "<br>" + "This vacation is for " +
+        "<strong>" + diffResult + " months" + "</strong>" + "<br>" + "The amount charged on the next invoice will be " + "<strong>" + "$" + (15 * diffResult) + "</strong>" + " (" + diffResult + " months at $15 each" + ")");
       $('.verbatim-vp').show();
       $('.vphidden').show();
     }
@@ -1255,18 +1401,18 @@
       return resultVpEnd
     }
 
-function vpMonthsCalculator() {
-  var inputStartDate = $("#inputVacationStart").val().split('-');
-  var startM = parseInt(inputStartDate[1]);
-  var startY = parseInt(inputStartDate[0]);
-  var inputEndDate = $("#inputVacationEnd").val().split('-');
-  var endM = parseInt(inputEndDate[1]);
-  var endY = parseInt(inputEndDate[0]);
-  var diffYears = (endY - startY) * 12;
-  var diffMonths = (endM + 1) - (startM + 1) ;
-  diffResult = diffYears + diffMonths;
-  return diffResult
-}
+    function vpMonthsCalculator() {
+      var inputStartDate = $("#inputVacationStart").val().split('-');
+      var startM = parseInt(inputStartDate[1]);
+      var startY = parseInt(inputStartDate[0]);
+      var inputEndDate = $("#inputVacationEnd").val().split('-');
+      var endM = parseInt(inputEndDate[1]);
+      var endY = parseInt(inputEndDate[0]);
+      var diffYears = (endY - startY) * 12;
+      var diffMonths = (endM + 1) - (startM + 1);
+      diffResult = diffYears + diffMonths;
+      return diffResult
+    }
 
     // calculate payment due date PTP
     function ptpDueDate() {
@@ -1306,6 +1452,7 @@ function vpMonthsCalculator() {
       var roleTag = $("#inputRole").val();
       var inputTag = $("#inputTag").val();
       var rpcPlanName = $("#rpcPlanName").val();
+      var rpcPlanOld = $("#rpcPlanOld").val();
       var rpcTransactionDate = dateFormatitron($("#inputRpcTransaction").val());
       var rpcBillDate = dateFormatitron($("#inputRpcBillDate").val());
       var loyaltyYonyx = $("#inputYonyx").val();
@@ -1314,6 +1461,13 @@ function vpMonthsCalculator() {
       var rpcQuoteYes = document.getElementById("rpcQuote").checked;
       var vpQuoteYes = document.getElementById("vpQuote").checked;
       var rpcChangesYes = document.getElementById("checkRpcReview").checked;
+      var rpcQuoted = document.getElementById("checkRpcQuoted").checked;
+      var rpcReflect = document.getElementById("checkRpcReflect").checked;
+      var rpcPromos = document.getElementById("checkRpcPromos").checked;
+      var rpcEffective = document.getElementById("checkRpcEffective").checked;
+      var rpcNext = document.getElementById("checkRpcNext").checked;
+      var rpcTab = document.getElementById("checkRpcTab").checked;
+      var rpcLegacy = document.getElementById("checkRpcLegacy").checked;
       var cxCheckPayBefore = document.getElementById("checkPayBefore").checked;
       var cxCheckBroken90 = document.getElementById("checkBroken90").checked;
       var cxcheckCash24 = document.getElementById("checkCash24").checked;
@@ -1343,7 +1497,7 @@ function vpMonthsCalculator() {
         output += callType + "\n\n";
       } else if (callType === "Vacation Pass" && vpQuoteYes === true) {
         output += "Quoting for a potential " + callType + "\n\n";
-      }  else if (callType === "Rate Plan Change" && rpcQuoteYes === false) {
+      } else if (callType === "Rate Plan Change" && rpcQuoteYes === false) {
         output += callType + "\n\n";
       } else if (callType === "Rate Plan Change" && rpcQuoteYes === true) {
         output += "Quoting for a potential " + callType + "\n\n";
@@ -1380,7 +1534,11 @@ function vpMonthsCalculator() {
       if (callType === "Promise to Pay") {
         output += 'Last Broken PTP: ' + cxBroken + "\n";
         output += 'Will pay: $' + cxPay + "\n";
-        output += 'Payment method: ' + cxMethod + "\n";
+        if (cxMethod !== "Method of payment") {
+          output += 'Payment method: ' + cxMethod + "\n";
+        } else if (cxMethod === "Method of payment") {
+          output += 'Payment method: unknown' + "\n";
+        }
         output += 'Payment due: ' + ptpPayBefore + "\n";
       }
       if (callType === "Outage") {
@@ -1401,6 +1559,7 @@ function vpMonthsCalculator() {
         output += "- " + rpcQuote.getAttribute('value') + "\n";
       }
       if (callType === "Rate Plan Change") {
+        output += 'Old rate plan: ' + rpcPlanOld + "\n";
         output += 'New rate plan: ' + rpcPlanName + "\n";
         output += 'New plan MRC: $' + inputNewPlanPrice + "\n";
         output += 'Removing plan MRC: $' + inputOldPlanPrice + "\n";
@@ -1428,6 +1587,27 @@ function vpMonthsCalculator() {
       if (rpcChangesYes === true && callType === "Rate Plan Change") {
         output += "- " + checkRpcReview.getAttribute('value') + "\n";
       }
+      if (rpcQuoted === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcQuoted.getAttribute('value') + "\n";
+      }
+      if (rpcReflect === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcReflect.getAttribute('value') + "\n";
+      }
+      if (rpcPromos === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcPromos.getAttribute('value') + "\n";
+      }
+      if (rpcEffective === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcEffective.getAttribute('value') + "\n";
+      }
+      if (rpcNext === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcNext.getAttribute('value') + "\n";
+      }
+      if (rpcTab === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcTab.getAttribute('value') + "\n";
+      }
+      if (rpcLegacy === true && callType === "Rate Plan Change") {
+        output += "- " + checkRpcLegacy.getAttribute('value') + "\n";
+      }
       if (cxCheckPayBefore === true && callType === "Promise to Pay") {
         output += "- " + checkPayBefore.getAttribute('value') + "\n";
       }
@@ -1451,7 +1631,7 @@ function vpMonthsCalculator() {
 
     }
 
-// combine and copy button
+    // combine and copy button
     function copyNotes(i, j) {
       $(i).click(function() {
         var copyText = $(j);
@@ -1460,9 +1640,9 @@ function vpMonthsCalculator() {
 
         var copyBtn = document.getElementById("copy-btn");
         copyBtn.innerHTML = "Copied!"
-      setTimeout(function() {
-        copyBtn.innerHTML = "Combine"
-      }, 5000)
+        setTimeout(function() {
+          copyBtn.innerHTML = "Combine"
+        }, 5000)
       });
     }
 
@@ -1475,7 +1655,15 @@ function vpMonthsCalculator() {
       $('.warning').hide();
       $('.hidden').hide();
       $(".selectmenu").removeClass("selectedmenu");
-    }
+      $("#inputVerification").prop('disabled', false);
+
+      const allIcons = $(".material-icons");
+        for (var i = 0; i < allIcons.length; i++){
+          allIcons[i].classList.remove("green-icons");
+          allIcons[i].classList.remove("red-icons");
+          allIcons[i].classList.add("grey-icons");
+      }
+}
 
     //history happens here
     function history() {
