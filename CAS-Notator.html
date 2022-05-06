@@ -13,6 +13,7 @@
       height: 100vh;
       font-family: "calibri", sans-serif;
       font-size: 18px;
+      color: #212529;
     }
 
     /* div {
@@ -149,9 +150,32 @@
 
     /* end of themes */
 
-.accordion-body {
-  padding: 5px;
-}
+    .accordion-body {
+      padding: 5px;
+    }
+
+    .accordion-button {
+      background-color: #CCCCCC22;
+      box-shadow: none;
+    }
+
+    .accordion-button:focus {
+      background-color: #CCCCCC88;
+      box-shadow: none;
+      border: 1px solid #4a463fd9;
+      color: #212529;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #CCCCCC88;
+      box-shadow: none;
+      border: 1px solid #4a463fd9;
+      color: #212529;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
 
     .btn:focus {
       outline: none;
@@ -267,6 +291,23 @@
       display: none;
     }
 
+    .pdcDisplay {
+      display: inline
+    }
+
+    .pdcDisplay-row {
+      border-bottom: 1px solid #cccccc88;
+      margin: 5px;
+      padding: 4px;
+      display: none;
+    }
+
+    .pdc-copy {
+      color: #5C636A;
+      margin-right: 10px;
+
+    }
+
     .pdc-number {
       margin: 4px 14px 4px 4px;
       display: inline;
@@ -277,8 +318,7 @@
     }
 
     .pdc-general {
-      /* border: 1px solid #CED4DA; */
-      display: none;
+      display: flex;
     }
 
     .vphidden {
@@ -897,42 +937,167 @@
                 <div class="col-md-12 pdc-hide" id="pdcBox">
                   <div class="accordion" id="accordion">
                     <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                          General Pre-Defined Content
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                        <div class="accordion-body">
-                          <ul>
-                          <li id="pdcGeneral1" class="pdc-general"> </li>
-                          <li id="pdcGeneral2" class="pdc-general"> </li>
-                          <li> Customer asked for a supervisor.</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="accordion-item">
                       <h2 class="accordion-header" id="headingTwo">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Billing Pre-Defined Content
+                          General Pre-Defined Content
                         </button>
                       </h2>
                       <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordion">
                         <div class="accordion-body">
-                          xoxo 2
+                          <!-- gen 1 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow1"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral1Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput1">
+                              <label class="form-check-label" for="pdcGeneralInput1" id="pdcGeneral1"> </label>
+                            </div>
+                            </div>
+                          </div>
+                          <!-- gen 2 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow2"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral2Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput2">
+                              <label class="form-check-label" for="pdcGeneralInput2" id="pdcGeneral2"> </label>
+                            </div>
+                          </div>
+                          </div>
+                          <!-- gen 3 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow3"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral3Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput3">
+                              <label class="form-check-label" for="pdcGeneralInput3" id="pdcGeneral3"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 4 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow4"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral4Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput4">
+                              <label class="form-check-label" for="pdcGeneralInput4" id="pdcGeneral4"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 5 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow5"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral5Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput5">
+                              <label class="form-check-label" for="pdcGeneralInput5" id="pdcGeneral5"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 6 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow6"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral6Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput6">
+                              <label class="form-check-label" for="pdcGeneralInput6" id="pdcGeneral6"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 7 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow7"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral7Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput7">
+                              <label class="form-check-label" for="pdcGeneralInput7" id="pdcGeneral7"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 8 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow8"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral8Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput8">
+                              <label class="form-check-label" for="pdcGeneralInput8" id="pdcGeneral8"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 9 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow9"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral9Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput9">
+                              <label class="form-check-label" for="pdcGeneralInput9" id="pdcGeneral9"> </label>
+                            </div>
+                          </div></div>
+                          <!-- gen 10 -->
+                          <div class="pdcDisplay-row" id="pdcGeneralRow10"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcGeneral10Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcGeneralInput10">
+                              <label class="form-check-label" for="pdcGeneralInput10" id="pdcGeneral10"> </label>
+                            </div>
+                          </div></div>
+
                         </div>
                       </div>
                     </div>
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingThree">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Loyalty Pre-Defined Content
+                          Billing Pre-Defined Content
                         </button>
                       </h2>
                       <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordion">
                         <div class="accordion-body">
-                          xoxo 3
+                          <!-- Billing 1 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow1"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling1Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput1">
+                              <label class="form-check-label" for="pdcBillingInput1" id="pdcBilling1"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 2 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow2"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling2Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput2">
+                              <label class="form-check-label" for="pdcBillingInput2" id="pdcBilling2"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 3 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow3"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling3Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput3">
+                              <label class="form-check-label" for="pdcBillingInput3" id="pdcBilling3"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 4 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow4"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling4Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput4">
+                              <label class="form-check-label" for="pdcBillingInput4" id="pdcBilling4"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 5 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow5"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling5Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput5">
+                              <label class="form-check-label" for="pdcBillingInput5" id="pdcBilling5"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 6 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow6"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling6Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput6">
+                              <label class="form-check-label" for="pdcBillingInput6" id="pdcBilling6"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 7 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow7"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling7Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput7">
+                              <label class="form-check-label" for="pdcBillingInput7" id="pdcBilling7"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 8 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow8"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling8Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput8">
+                              <label class="form-check-label" for="pdcBillingInput8" id="pdcBilling8"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 9 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow9"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling9Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput9">
+                              <label class="form-check-label" for="pdcBillingInput9" id="pdcBilling9"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Billing 10 -->
+                          <div class="pdcDisplay-row" id="pdcBillingRow10"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcBilling10Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcBillingInput10">
+                              <label class="form-check-label" for="pdcBillingInput10" id="pdcBilling10"> </label>
+                            </div>
+                          </div></div>
                         </div>
                       </div>
                     </div>
@@ -944,19 +1109,82 @@
                       </h2>
                       <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordion">
                         <div class="accordion-body">
-                          xoxo 4
+                          <!-- Tech 1 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow1"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech1Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput1">
+                              <label class="form-check-label" for="pdcTechInput1" id="pdcTech1"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 2 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow2"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech2Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput2">
+                              <label class="form-check-label" for="pdcTechInput2" id="pdcTech2"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 3 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow3"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech3Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput3">
+                              <label class="form-check-label" for="pdcTechInput3" id="pdcTech3"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 4 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow4"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech4Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput4">
+                              <label class="form-check-label" for="pdcTechInput4" id="pdcTech4"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 5 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow5"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech5Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput5">
+                              <label class="form-check-label" for="pdcTechInput5" id="pdcTech5"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 6 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow6"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech6Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput6">
+                              <label class="form-check-label" for="pdcTechInput6" id="pdcTech6"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 7 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow7"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech7Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput7">
+                              <label class="form-check-label" for="pdcTechInput7" id="pdcTech7"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 8 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow8"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech8Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput8">
+                              <label class="form-check-label" for="pdcTechInput8" id="pdcTech8"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 9 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow9"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech9Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput9">
+                              <label class="form-check-label" for="pdcTechInput9" id="pdcTech9"> </label>
+                            </div>
+                          </div></div>
+                          <!-- Tech 10 -->
+                          <div class="pdcDisplay-row" id="pdcTechRow10"><div class="pdc-general"><span class="material-icons pdc-copy" id="pdcTech10Clippy">content_paste</span>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="pdcTechInput10">
+                              <label class="form-check-label" for="pdcTechInput10" id="pdcTech10"> </label>
+                            </div>
+                          </div></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-
-
-
-
-
 
             </div>
           </div>
@@ -1052,24 +1280,25 @@
         </div>
         <div class="row">
           <div class="col-lg-3">
-            <div class="">
+            <div>
               <button id="postpaid-calc-btn" onclick="postpaidCalc()" class="btn btn-secondary btn-combine" type="button">Calculate</button>
               <button class="btn btn-secondary btn-reset justify-content-md-end" type="button" value="reset" onClick="resetPostCalc()">Reset</button>
             </div>
 
           </div>
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="input-group g-3">
-                <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
-                <label for="postpaidResult" class="visually-hidden">Amount to pay</label>
-                <input type="text" class="form-control theme-plain themed" id="postpaidResult" placeholder="Amount to pay">
-              </div>
-              <p class="footer">Note: a month in SingleView is 30.4375 days (average of month lengths over 4 years)</p>
-            </div>
-
-          </div>
         </div>
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">attach_money</span></div>
+              <label for="postpaidResult" class="visually-hidden">Amount to pay</label>
+              <input type="text" class="form-control theme-plain themed" id="postpaidResult" placeholder="Amount to pay">
+            </div>
+            <p class="footer">Note: a month in SingleView is 30.4375 days (average of month lengths over 4 years)</p>
+          </div>
+
+        </div>
+      </div>
     </form>
   </section>
   <section id="taxCalculator">
@@ -1093,7 +1322,7 @@
               <option selected>PDC Category</option>
               <option value="Billing">Billing</option>
               <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
+              <option value="Tech">Tech Support</option>
             </select>
           </div>
         </div>
@@ -1115,303 +1344,320 @@
         </div>
       </div>
       <!-- PPDC 2 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>2.</strong>
+      <div class="" id="ppdcRow2">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>2.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryTwo">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryTwo">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleTwo" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleTwo" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcTwoButton" onclick="ppdcSave(`ppdc2`, `#ppdcCategoryTwo`, `#ppdcTitleTwo`, `#ppdcTwo`, `#ppdcTwoButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcTwoDelete" onclick="removePpdc(`ppdc2`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleTwo" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleTwo" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcTwo" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcTwoButton" onclick="ppdcSave(`ppdc2`, `#ppdcCategoryTwo`, `#ppdcTitleTwo`, `#ppdcTwo`, `#ppdcTwoButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcTwoDelete" onclick="removePpdc(`ppdc2`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcTwo" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 3 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>3.</strong>
+      <div class="pdc-hide" id="ppdcRow3">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>3.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryThree">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryThree">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleThree" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleThree" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcThreeButton" onclick="ppdcSave(`ppdc3`, `#ppdcCategoryThree`, `#ppdcTitleThree`, `#ppdcThree`, `#ppdcThreeButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcThreeDelete" onclick="removePpdc(`ppdc3`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleThree" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleThree" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcThree" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcThreeButton" onclick="ppdcSave(`ppdc3`, `#ppdcCategoryThree`, `#ppdcTitleThree`, `#ppdcThree`, `#ppdcThreeButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcThreeDelete" onclick="removePpdc(`ppdc3`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcThree" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 4 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>4.</strong>
+      <div class="pdc-hide" id="ppdcRow4">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>4.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryFour">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryFour">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleFour" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleFour" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcFourButton" onclick="ppdcSave(`ppdc4`, `#ppdcCategoryFour`, `#ppdcTitleFour`, `#ppdcFour`, `#ppdcFourButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcFourDelete" onclick="removePpdc(`ppdc4`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleFour" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleFour" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcFour" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcFourButton" onclick="ppdcSave(`ppdc4`, `#ppdcCategoryFour`, `#ppdcTitleFour`, `#ppdcFour`, `#ppdcFourButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcFourDelete" onclick="removePpdc(`ppdc4`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcFour" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 5 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>5.</strong>
+      <div class="pdc-hide" id="ppdcRow5">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>5.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryFive">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryFive">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleFive" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleFive" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcFiveButton" onclick="ppdcSave(`ppdc5`, `#ppdcCategoryFive`, `#ppdcTitleFive`, `#ppdcFive`, `#ppdcFiveButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcFiveDelete" onclick="removePpdc(`ppdc5`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleFive" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleFive" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcFive" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcFiveButton" onclick="ppdcSave(`ppdc5`, `#ppdcCategoryFive`, `#ppdcTitleFive`, `#ppdcFive`, `#ppdcFiveButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcFiveDelete" onclick="removePpdc(`ppdc5`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcFive" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 6 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>6.</strong>
+      <div class="pdc-hide" id="ppdcRow6">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>6.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategorySix">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategorySix">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleSix" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleSix" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcSixButton" onclick="ppdcSave(`ppdc6`, `#ppdcCategorySix`, `#ppdcTitleSix`, `#ppdcSix`, `#ppdcSixButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcSixDelete" onclick="removePpdc(`ppdc6`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleSix" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleSix" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcSix" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcSixButton" onclick="ppdcSave(`ppdc6`, `#ppdcCategorySix`, `#ppdcTitleSix`, `#ppdcSix`, `#ppdcSixButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcSixDelete" onclick="removePpdc(`ppdc6`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcSix" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 7 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>7.</strong>
+      <div class="pdc-hide" id="ppdcRow7">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>7.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategorySeven">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategorySeven">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleSeven" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleSeven" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcSevenButton" onclick="ppdcSave(`ppdc7`, `#ppdcCategorySeven`, `#ppdcTitleSeven`, `#ppdcSeven`, `#ppdcSevenButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcSevenDelete" onclick="removePpdc(`ppdc7`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleSeven" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleSeven" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcSeven" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcSevenButton" onclick="ppdcSave(`ppdc7`, `#ppdcCategorySeven`, `#ppdcTitleSeven`, `#ppdcSeven`, `#ppdcSevenButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcSevenDelete" onclick="removePpdc(`ppdc7`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcSeven" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 8 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>8.</strong>
+      <div class="pdc-hide" id="ppdcRow8">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>8.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryEight">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryEight">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleEight" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleEight" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcEightButton" onclick="ppdcSave(`ppdc8`, `#ppdcCategoryEight`, `#ppdcTitleEight`, `#ppdcEight`, `#ppdcEightButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcEightDelete" onclick="removePpdc(`ppdc8`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleEight" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleEight" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcEight" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcEightButton" onclick="ppdcSave(`ppdc8`, `#ppdcCategoryEight`, `#ppdcTitleEight`, `#ppdcEight`, `#ppdcEightButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcEightDelete" onclick="removePpdc(`ppdc8`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcEight" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 9 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>9.</strong>
+      <div class="pdc-hide" id="ppdcRow9">
+        <div class="row pdc-tight" id="ppdcRow9">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>9.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryNine">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryNine">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleNine" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleNine" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcNineButton" onclick="ppdcSave(`ppdc9`, `#ppdcCategoryNine`, `#ppdcTitleNine`, `#ppdcNine`, `#ppdcNineButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcNineDelete" onclick="removePpdc(`ppdc9`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleNine" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleNine" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcNine" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcNineButton" onclick="ppdcSave(`ppdc9`, `#ppdcCategoryNine`, `#ppdcTitleNine`, `#ppdcNine`, `#ppdcNineButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcNineDelete" onclick="removePpdc(`ppdc9`)" type="button">Delete</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcNine" placeholder="Add your custom pre-defined text here."></textarea>
         </div>
       </div>
       <!-- PPDC 10 -->
-      <div class="row pdc-tight">
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="pdc-number">
-              <strong>10.</strong>
+      <div class="pdc-hide" id="ppdcRow10">
+        <div class="row pdc-tight">
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="pdc-number">
+                <strong>10.</strong>
+              </div>
+              <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
+              <select class="form-select theme-plain themed" id="ppdcCategoryTen">
+                <option selected>PDC Category</option>
+                <option value="Billing">Billing</option>
+                <option value="General">General</option>
+                <option value="Tech">Tech Support</option>
+              </select>
             </div>
-            <div class="input-group-text"><span class="material-icons grey-icons">category</span></div>
-            <select class="form-select theme-plain themed" id="ppdcCategoryTen">
-              <option selected>PDC Category</option>
-              <option value="Billing">Billing</option>
-              <option value="General">General</option>
-              <option value="Tech Support">Tech Support</option>
-            </select>
+          </div>
+          <div class="col-md-4">
+            <div class="input-group g-3">
+              <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
+              <label for="ppdcTitleNine" class="visually-hidden">Menu title</label>
+              <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleTen" placeholder="Menu title">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-secondary btn-sm footerbtns" id="ppdcTenButton" onclick="ppdcSave(`ppdc10`, `#ppdcCategoryTen`, `#ppdcTitleTen`, `#ppdcTen`, `#ppdcTenButton`)" type="button">Save</button>
+            <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcTenDelete" onclick="removePpdc(`ppdc10`)" type="button">Delete</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="input-group g-3">
-            <div class="input-group-text"><span class="material-icons grey-icons">title</span></div>
-            <label for="ppdcTitleNine" class="visually-hidden">Menu title</label>
-            <input type="text" maxlength="25" class="form-control theme-plain themed" id="ppdcTitleTen" placeholder="Menu title">
+        <div class="row">
+          <div class="col-lg-12">
+            <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcTen" placeholder="Add your custom pre-defined text here."></textarea>
           </div>
         </div>
-        <div class="col-md-4">
-          <button class="btn btn-secondary btn-sm footerbtns" id="ppdcTenButton" onclick="ppdcSave(`ppdc10`, `#ppdcCategoryTen`, `#ppdcTitleTen`, `#ppdcTen`, `#ppdcTenButton`)" type="button">Save</button>
-          <button class="btn btn-secondary btn-sm footerbtns btn-delete" id="ppdcTenDelete" onclick="removePpdc(`ppdc10`)" type="button">Delete</button>
-        </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <textarea rows="1" maxlength="120" class="form-control theme-plain themed contents" id="ppdcTen" placeholder="Add your custom pre-defined text here."></textarea>
-        </div>
-      </div>
-
 
 
 
@@ -1500,7 +1746,7 @@
     <div class="col-md-4 justify-content-start">
       <div class="form-check footer-pdc">
         <input class="form-check-input" type="checkbox" value="Enable Pre-defined Content" id="pdcEnable">
-        <label class="form-check-label" for="pdcEnable"> Enable Pre-defined Content</label>
+        <label class="form-check-label" for="pdcEnable"> Enable Pre-Defined Content</label>
       </div>
     </div>
     <div class="col-md-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
@@ -1528,6 +1774,25 @@
     let resultVpStart = "";
     let resultVpEnd = "";
     let diffResult = "";
+    let getpp1All = "";
+    let getpp2All = "";
+    let getpp3All = "";
+    let getpp4All = "";
+    let getpp5All = "";
+    let getpp6All = "";
+    let getpp7All = "";
+    let getpp8All = "";
+    let getpp9All = "";
+    let getpp10All = "";
+    // const getpp2All = JSON.parse(window.localStorage.getItem(`ppdc2`));
+    // const getpp3All = JSON.parse(window.localStorage.getItem(`ppdc3`));
+    // const getpp4All = JSON.parse(window.localStorage.getItem(`ppdc4`));
+    // const getpp5All = JSON.parse(window.localStorage.getItem(`ppdc5`));
+    // const getpp6All = JSON.parse(window.localStorage.getItem(`ppdc6`));
+    // const getpp7All = JSON.parse(window.localStorage.getItem(`ppdc7`));
+    // const getpp8All = JSON.parse(window.localStorage.getItem(`ppdc8`));
+    // const getpp9All = JSON.parse(window.localStorage.getItem(`ppdc9`));
+    // const getpp10All = JSON.parse(window.localStorage.getItem(`ppdc10`));
 
     let months = ["Jan", "Feb", "March", "April", "May", "June", "July",
       "August", "September", "October", "November", "December"
@@ -2107,6 +2372,38 @@
       var cxCheckVpReview = document.getElementById("checkVpReview").checked;
       var cxCheckVpFee = document.getElementById("checkVpFee").checked;
 
+      var pdcGeneral1 = document.getElementById("pdcGeneralInput1").checked;
+      var pdcGeneral2 = document.getElementById("pdcGeneralInput2").checked;
+      var pdcGeneral3 = document.getElementById("pdcGeneralInput3").checked;
+      var pdcGeneral4 = document.getElementById("pdcGeneralInput4").checked;
+      var pdcGeneral5 = document.getElementById("pdcGeneralInput5").checked;
+      var pdcGeneral6 = document.getElementById("pdcGeneralInput6").checked;
+      var pdcGeneral7 = document.getElementById("pdcGeneralInput7").checked;
+      var pdcGeneral8 = document.getElementById("pdcGeneralInput8").checked;
+      var pdcGeneral9 = document.getElementById("pdcGeneralInput9").checked;
+      var pdcGeneral10 = document.getElementById("pdcGeneralInput10").checked;
+      var pdcBilling1 = document.getElementById("pdcBillingInput1").checked;
+      var pdcBilling2 = document.getElementById("pdcBillingInput2").checked;
+      var pdcBilling3 = document.getElementById("pdcBillingInput3").checked;
+      var pdcBilling4 = document.getElementById("pdcBillingInput4").checked;
+      var pdcBilling5 = document.getElementById("pdcBillingInput5").checked;
+      var pdcBilling6 = document.getElementById("pdcBillingInput6").checked;
+      var pdcBilling7 = document.getElementById("pdcBillingInput7").checked;
+      var pdcBilling8 = document.getElementById("pdcBillingInput8").checked;
+      var pdcBilling9 = document.getElementById("pdcBillingInput9").checked;
+      var pdcBilling10 = document.getElementById("pdcBillingInput10").checked;
+      var pdcTech1 = document.getElementById("pdcTechInput1").checked;
+      var pdcTech2 = document.getElementById("pdcTechInput2").checked;
+      var pdcTech3 = document.getElementById("pdcTechInput3").checked;
+      var pdcTech4 = document.getElementById("pdcTechInput4").checked;
+      var pdcTech5 = document.getElementById("pdcTechInput5").checked;
+      var pdcTech6 = document.getElementById("pdcTechInput6").checked;
+      var pdcTech7 = document.getElementById("pdcTechInput7").checked;
+      var pdcTech8 = document.getElementById("pdcTechInput8").checked;
+      var pdcTech9 = document.getElementById("pdcTechInput9").checked;
+      var pdcTech10 = document.getElementById("pdcTechInput10").checked;
+
+
       cxName = cxName.trim();
       cxName = cxName.toLowerCase().replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
 
@@ -2163,6 +2460,99 @@
       if (cxAction > "") {
         output += 'Action: ' + cxAction + "\n\n";
       }
+      if (pdcGeneral1 === true) {
+        output += "- " + getpp1All.text + "\n";
+      }
+      if (pdcGeneral2 === true) {
+        output += "- " + getpp2All.text + "\n";
+      }
+      if (pdcGeneral3 === true) {
+        output += "- " + getpp3All.text + "\n";
+      }
+      if (pdcGeneral4 === true) {
+        output += "- " + getpp4All.text + "\n";
+      }
+      if (pdcGeneral5 === true) {
+        output += "- " + getpp5All.text + "\n";
+      }
+      if (pdcGeneral6 === true) {
+        output += "- " + getpp6All.text + "\n";
+      }
+      if (pdcGeneral7 === true) {
+        output += "- " + getpp7All.text + "\n";
+      }
+      if (pdcGeneral8 === true) {
+        output += "- " + getpp8All.text + "\n";
+      }
+      if (pdcGeneral9 === true) {
+        output += "- " + getpp9All.text + "\n";
+      }
+      if (pdcGeneral10 === true) {
+        output += "- " + getpp10All.text + "\n";
+      }
+
+      if (pdcBilling1 === true) {
+        output += "- " + getpp1All.text + "\n";
+      }
+      if (pdcBilling2 === true) {
+        output += "- " + getpp2All.text + "\n";
+      }
+      if (pdcBilling3 === true) {
+        output += "- " + getpp3All.text + "\n";
+      }
+      if (pdcBilling4 === true) {
+        output += "- " + getpp4All.text + "\n";
+      }
+      if (pdcBilling5 === true) {
+        output += "- " + getpp5All.text + "\n";
+      }
+      if (pdcBilling6 === true) {
+        output += "- " + getpp6All.text + "\n";
+      }
+      if (pdcBilling7 === true) {
+        output += "- " + getpp7All.text + "\n";
+      }
+      if (pdcBilling8 === true) {
+        output += "- " + getpp8All.text + "\n";
+      }
+      if (pdcBilling9 === true) {
+        output += "- " + getpp9All.text + "\n";
+      }
+      if (pdcBilling10 === true) {
+        output += "- " + getpp10All.text + "\n";
+      }
+
+      if (pdcTech1 === true) {
+        output += "- " + getpp1All.text + "\n";
+      }
+      if (pdcTech2 === true) {
+        output += "- " + getpp2All.text + "\n";
+      }
+      if (pdcTech3 === true) {
+        output += "- " + getpp3All.text + "\n";
+      }
+      if (pdcTech4 === true) {
+        output += "- " + getpp4All.text + "\n";
+      }
+      if (pdcTech5 === true) {
+        output += "- " + getpp5All.text + "\n";
+      }
+      if (pdcTech6 === true) {
+        output += "- " + getpp6All.text + "\n";
+      }
+      if (pdcTech7 === true) {
+        output += "- " + getpp7All.text + "\n";
+      }
+      if (pdcTech8 === true) {
+        output += "- " + getpp8All.text + "\n";
+      }
+      if (pdcTech9 === true) {
+        output += "- " + getpp9All.text + "\n";
+      }
+      if (pdcTech10 === true) {
+        output += "- " + getpp10All.text + "\n";
+      }
+
       if (callType === "Promise to Pay") {
         output += 'Last Broken PTP: ' + cxBroken + "\n";
         output += 'Will pay: $' + cxPay + "\n";
@@ -2395,7 +2785,8 @@
       getPpdc8();
       getPpdc9();
       getPpdc10();
-    }
+      displayPpdcFields()
+      }
 
     function ppdcSave(key, cat, title, text, button) {
       const ppCat = $(cat).val();
@@ -2416,54 +2807,90 @@
     function removePpdc(key) {
       window.localStorage.removeItem(key);
       getAllPpdc();
+      displayPpdcFields()
     }
 
-// $("#casOutput").val(output)
+    // hide/show of pdc edit rows
+    $("#ppdcCreateForm").click(displayPpdcFields);
 
+    function displayPpdcFields() {
+      if ($("#ppdcTen").val() > "") {
+        $('#ppdcRow10').show();
+      }
+      if ($("#ppdcNine").val() > "") {
+        $('#ppdcRow10').show();
+        $('#ppdcRow8').show();
+      }
+      if ($("#ppdcEight").val() > "") {
+        $('#ppdcRow9').show();
+        $('#ppdcRow8').show();
+      }
+      if ($("#ppdcSeven").val() > "") {
+        $('#ppdcRow8').show();
+        $('#ppdcRow7').show();
+      }
+      if ($("#ppdcSix").val() > "") {
+        $('#ppdcRow7').show();
+        $('#ppdcRow6').show();
+      }
+      if ($("#ppdcFive").val() > "") {
+        $('#ppdcRow6').show();
+        $('#ppdcRow5').show();
+      }
+      if ($("#ppdcFour").val() > "") {
+        $('#ppdcRow5').show();
+        $('#ppdcRow4').show();
+      }
+      if ($("#ppdcThree").val() > "") {
+        $('#ppdcRow4').show();
+        $('#ppdcRow3').show();
+      }
+      if ($("#ppdcTwo").val() > "") {
+        $('#ppdcRow3').show();
+      }
+    };
 
-
-// Beginning of the ppdc get spam. It's ugly to have a separate function for each ppdc but it works nicely in the pipe this way. Will refine later maybe
+    // Beginning of the ppdc get spam. It's ugly to have a separate function for each ppdc but it works nicely in the pipe this way. Will refine later maybe
     function getPpdc1() {
-      const getpp1All = JSON.parse(window.localStorage.getItem(`ppdc1`));
+      getpp1All = JSON.parse(window.localStorage.getItem(`ppdc1`));
       if (getpp1All > "") {
         document.getElementById("ppdcOne").value = (getpp1All.text);
         document.getElementById("ppdcCategoryOne").value = (getpp1All.cat);
         document.getElementById("ppdcTitleOne").value = (getpp1All.title);
+        if (getpp1All.cat === "General") {
+          $("#pdcGeneral1").text(getpp1All.title)
+          $('#pdcGeneralRow1').show();
+        } else if (getpp1All.cat === "Billing") {
+          $("#pdcBilling1").text(getpp1All.title)
+          $('#pdcBillingRow1').show();
+        } else if (getpp1All.cat === "Tech") {
+          $("#pdcTech1").text(getpp1All.title)
+          $('#pdcTechRow1').show();
+        }
       } else {
         document.getElementById("ppdcOne").value = ("");
         document.getElementById("ppdcCategoryOne").value = ("PDC Category");
         document.getElementById("ppdcTitleOne").value = ("");
       }
-
-      if (getpp1All.cat === "General") {
-        $("#pdcGeneral1").html(getpp1All.title)
-        $('#pdcGeneral1').show();
-      }
     }
 
-
-$("#pdcGeneral1").click(function copyPdc() {
-  var getpp1All = JSON.parse(window.localStorage.getItem(`ppdc1`));
-  var copyPdcText =  getpp1All.text;
-  console.log(copyPdcText);
+    $("#pdcGeneral1Clippy").click(function copyPdc() {
+      var copyPdcText = getpp1All.text;
       var dummy = document.createElement("input");
-      // dummy.style.display = 'none';
       document.body.appendChild(dummy);
 
       dummy.setAttribute("id", "dummy_id");
-      document.getElementById("dummy_id").value=copyPdcText;
+      document.getElementById("dummy_id").value = copyPdcText;
       dummy.select();
       document.execCommand("copy");
       document.body.removeChild(dummy);
 
-      var copiedAlert = document.getElementById("pdcGeneral1");
-          copiedAlert.innerHTML = "Copied!"
-          setTimeout(function() {
-            copiedAlert.innerHTML = getpp1All.title;
-          }, 1000)
-});
-
-
+      var copiedAlert = document.getElementById("pdcGeneral1Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
 
     $("#ppdcOneButton").click(function() {
@@ -2471,11 +2898,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc2() {
-      const getpp2All = JSON.parse(window.localStorage.getItem(`ppdc2`));
+      getpp2All = JSON.parse(window.localStorage.getItem(`ppdc2`));
       if (getpp2All > "") {
         document.getElementById("ppdcTwo").value = (getpp2All.text);
         document.getElementById("ppdcCategoryTwo").value = (getpp2All.cat);
         document.getElementById("ppdcTitleTwo").value = (getpp2All.title);
+        if (getpp2All.cat === "General") {
+          $("#pdcGeneral2").text(getpp2All.title)
+          $('#pdcGeneralRow2').show();
+        }
+        if (getpp2All.cat === "Billing") {
+          $("#pdcBilling2").text(getpp2All.title)
+          $('#pdcBillingRow2').show();
+        }
+        if (getpp2All.cat === "Tech") {
+          $("#pdcTech2").text(getpp2All.title)
+          $('#pdcTechRow2').show();
+        }
       } else {
         document.getElementById("ppdcTwo").value = ("");
         document.getElementById("ppdcCategoryTwo").value = ("PDC Category");
@@ -2488,11 +2927,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc3() {
-      const getpp3All = JSON.parse(window.localStorage.getItem(`ppdc3`));
+      getpp3All = JSON.parse(window.localStorage.getItem(`ppdc3`));
       if (getpp3All > "") {
         document.getElementById("ppdcThree").value = (getpp3All.text);
         document.getElementById("ppdcCategoryThree").value = (getpp3All.cat);
         document.getElementById("ppdcTitleThree").value = (getpp3All.title);
+        if (getpp3All.cat === "General") {
+          $("#pdcGeneral3").text(getpp3All.title)
+          $('#pdcGeneralRow3').show();
+        }
+        if (getpp3All.cat === "Billing") {
+          $("#pdcBilling3").text(getpp3All.title)
+          $('#pdcBillingRow3').show();
+        }
+        if (getpp3All.cat === "Tech") {
+          $("#pdcTech3").text(getpp3All.title)
+          $('#pdcTechRow3').show();
+        }
       } else {
         document.getElementById("ppdcThree").value = ("");
         document.getElementById("ppdcCategoryThree").value = ("PDC Category");
@@ -2505,11 +2956,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc4() {
-      const getpp4All = JSON.parse(window.localStorage.getItem(`ppdc4`));
+      getpp4All = JSON.parse(window.localStorage.getItem(`ppdc4`));
       if (getpp4All > "") {
         document.getElementById("ppdcFour").value = (getpp4All.text);
         document.getElementById("ppdcCategoryFour").value = (getpp4All.cat);
         document.getElementById("ppdcTitleFour").value = (getpp4All.title);
+        if (getpp4All.cat === "General") {
+          $("#pdcGeneral4").text(getpp4All.title)
+          $('#pdcGeneralRow4').show();
+        }
+        if (getpp4All.cat === "Billing") {
+          $("#pdcBilling4").text(getpp4All.title)
+          $('#pdcBillingRow4').show();
+        }
+        if (getpp4All.cat === "Tech") {
+          $("#pdcTech4").text(getpp4All.title)
+          $('#pdcTechRow4').show();
+        }
       } else {
         document.getElementById("ppdcFour").value = ("");
         document.getElementById("ppdcCategoryFour").value = ("PDC Category");
@@ -2522,11 +2985,24 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc5() {
-      const getpp5All = JSON.parse(window.localStorage.getItem(`ppdc5`));
+      getpp5All = JSON.parse(window.localStorage.getItem(`ppdc5`));
       if (getpp5All > "") {
         document.getElementById("ppdcFive").value = (getpp5All.text);
         document.getElementById("ppdcCategoryFive").value = (getpp5All.cat);
         document.getElementById("ppdcTitleFive").value = (getpp5All.title);
+        console.log(getpp5All.title);
+        if (getpp5All.cat === "General") {
+          $("#pdcGeneral5").text(getpp5All.title)
+          $('#pdcGeneralRow5').show();
+        }
+        if (getpp5All.cat === "Billing") {
+          $("#pdcBilling5").text(getpp5All.title)
+          $('#pdcBillingRow5').show();
+        }
+        if (getpp5All.cat === "Tech") {
+          $("#pdcTech5").text(getpp5All.title)
+          $('#pdcTechRow5').show();
+        }
       } else {
         document.getElementById("ppdcFive").value = ("");
         document.getElementById("ppdcCategoryFive").value = ("PDC Category");
@@ -2539,11 +3015,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc6() {
-      const getpp6All = JSON.parse(window.localStorage.getItem(`ppdc6`));
+      getpp6All = JSON.parse(window.localStorage.getItem(`ppdc6`));
       if (getpp6All > "") {
         document.getElementById("ppdcSix").value = (getpp6All.text);
         document.getElementById("ppdcCategorySix").value = (getpp6All.cat);
         document.getElementById("ppdcTitleSix").value = (getpp6All.title);
+        if (getpp6All.cat === "General") {
+          $("#pdcGeneral6").text(getpp6All.title)
+          $('#pdcGeneralRow6').show();
+        }
+        if (getpp6All.cat === "Billing") {
+          $("#pdcBilling6").text(getpp6All.title)
+          $('#pdcBillingRow6').show();
+        }
+        if (getpp6All.cat === "Tech") {
+          $("#pdcTech6").text(getpp6All.title)
+          $('#pdcTechRow6').show();
+        }
       } else {
         document.getElementById("ppdcSix").value = ("");
         document.getElementById("ppdcCategorySix").value = ("PDC Category");
@@ -2556,11 +3044,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc7() {
-      const getpp7All = JSON.parse(window.localStorage.getItem(`ppdc7`));
+      getpp7All = JSON.parse(window.localStorage.getItem(`ppdc7`));
       if (getpp7All > "") {
         document.getElementById("ppdcSeven").value = (getpp7All.text);
         document.getElementById("ppdcCategorySeven").value = (getpp7All.cat);
         document.getElementById("ppdcTitleSeven").value = (getpp7All.title);
+        if (getpp7All.cat === "General") {
+          $("#pdcGeneral7").text(getpp7All.title)
+          $('#pdcGeneralRow7').show();
+        }
+        if (getpp7All.cat === "Billing") {
+          $("#pdcBilling7").text(getpp7All.title)
+          $('#pdcBillingRow7').show();
+        }
+        if (getpp7All.cat === "Tech") {
+          $("#pdcTech7").text(getpp7All.title)
+          $('#pdcTechRow7').show();
+        }
       } else {
         document.getElementById("ppdcSeven").value = ("");
         document.getElementById("ppdcCategorySeven").value = ("PDC Category");
@@ -2573,11 +3073,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc8() {
-      const getpp8All = JSON.parse(window.localStorage.getItem(`ppdc8`));
+      getpp8All = JSON.parse(window.localStorage.getItem(`ppdc8`));
       if (getpp8All > "") {
         document.getElementById("ppdcEight").value = (getpp8All.text);
         document.getElementById("ppdcCategoryEight").value = (getpp8All.cat);
         document.getElementById("ppdcTitleEight").value = (getpp8All.title);
+        if (getpp8All.cat === "General") {
+          $("#pdcGeneral8").text(getpp8All.title)
+          $('#pdcGeneralRow8').show();
+        }
+        if (getpp8All.cat === "Billing") {
+          $("#pdcBilling8").text(getpp8All.title)
+          $('#pdcBillingRow8').show();
+        }
+        if (getpp8All.cat === "Tech") {
+          $("#pdcTech8").text(getpp8All.title)
+          $('#pdcTechRow8').show();
+        }
       } else {
         document.getElementById("ppdcEight").value = ("");
         document.getElementById("ppdcCategoryEight").value = ("PDC Category");
@@ -2590,11 +3102,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc9() {
-      const getpp9All = JSON.parse(window.localStorage.getItem(`ppdc9`));
+      getpp9All = JSON.parse(window.localStorage.getItem(`ppdc9`));
       if (getpp9All > "") {
         document.getElementById("ppdcNine").value = (getpp9All.text);
         document.getElementById("ppdcCategoryNine").value = (getpp9All.cat);
         document.getElementById("ppdcTitleNine").value = (getpp9All.title);
+        if (getpp9All.cat === "General") {
+          $("#pdcGeneral9").text(getpp9All.title)
+          $('#pdcGeneralRow9').show();
+        }
+        if (getpp9All.cat === "Billing") {
+          $("#pdcBilling9").text(getpp9All.title)
+          $('#pdcBillingRow9').show();
+        }
+        if (getpp9All.cat === "Tech") {
+          $("#pdcTech9").text(getpp9All.title)
+          $('#pdcTechRow9').show();
+        }
       } else {
         document.getElementById("ppdcNine").value = ("");
         document.getElementById("ppdcCategoryNine").value = ("PDC Category");
@@ -2607,11 +3131,23 @@ $("#pdcGeneral1").click(function copyPdc() {
     });
 
     function getPpdc10() {
-      const getpp10All = JSON.parse(window.localStorage.getItem(`ppdc10`));
+      getpp10All = JSON.parse(window.localStorage.getItem(`ppdc10`));
       if (getpp10All > "") {
         document.getElementById("ppdcTen").value = (getpp10All.text);
         document.getElementById("ppdcCategoryTen").value = (getpp10All.cat);
         document.getElementById("ppdcTitleTen").value = (getpp10All.title);
+        if (getpp10All.cat === "General") {
+          $("#pdcGeneral10").text(getpp10All.title)
+          $('#pdcGeneralRow10').show();
+        }
+        if (getpp10All.cat === "Billing") {
+          $("#pdcBilling10").text(getpp10All.title)
+          $('#pdcBillingRow10').show();
+        }
+        if (getpp10All.cat === "Tech") {
+          $("#pdcTech10").text(getpp10All.title)
+          $('#pdcTechRow10').show();
+        }
       } else {
         document.getElementById("ppdcTen").value = ("");
         document.getElementById("ppdcCategoryTen").value = ("PDC Category");
@@ -2622,8 +3158,6 @@ $("#pdcGeneral1").click(function copyPdc() {
     $("#ppdcTenButton").click(function() {
       getPpdc10();
     });
-
-
   </script>
 </body>
 
