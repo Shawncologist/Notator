@@ -223,7 +223,7 @@
     }
 
     .contents {
-      margin-bottom: 7px;
+      margin: 0px 31px 7px 31px;
     }
 
     .container-fluid {
@@ -2867,7 +2867,10 @@
           $("#pdcTech1").text(getpp1All.title)
           $('#pdcTechRow1').show();
         }
-      } else {
+      } else if (getpp1All === null) {
+        $('#pdcGeneralRow1').hide();
+        $('#pdcBillingRow1').hide();
+        $('#pdcTechRow1').hide();
         document.getElementById("ppdcOne").value = ("");
         document.getElementById("ppdcCategoryOne").value = ("PDC Category");
         document.getElementById("ppdcTitleOne").value = ("");
@@ -2892,6 +2895,41 @@
       }, 1000)
     });
 
+    $("#pdcBilling1Clippy").click(function copyPdc() {
+      var copyPdcText = getpp1All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling1Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech1Clippy").click(function copyPdc() {
+      var copyPdcText = getpp1All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech1Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcOneButton").click(function() {
       getPpdc1();
@@ -2915,12 +2953,68 @@
           $("#pdcTech2").text(getpp2All.title)
           $('#pdcTechRow2').show();
         }
-      } else {
+      }  else if (getpp2All === null) {
+        $('#pdcGeneralRow2').hide();
+        $('#pdcBillingRow2').hide();
+        $('#pdcTechRow2').hide();
         document.getElementById("ppdcTwo").value = ("");
         document.getElementById("ppdcCategoryTwo").value = ("PDC Category");
         document.getElementById("ppdcTitleTwo").value = ("");
       }
     }
+    $("#pdcGeneral2Clippy").click(function copyPdc() {
+      var copyPdcText = getpp2All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral2Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling2Clippy").click(function copyPdc() {
+      var copyPdcText = getpp2All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling2Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech2Clippy").click(function copyPdc() {
+      var copyPdcText = getpp2All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech2Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcTwoButton").click(function() {
       getPpdc2();
@@ -2944,12 +3038,69 @@
           $("#pdcTech3").text(getpp3All.title)
           $('#pdcTechRow3').show();
         }
-      } else {
+      }  else if (getpp3All === null) {
+        $('#pdcGeneralRow3').hide();
+        $('#pdcBillingRow3').hide();
+        $('#pdcTechRow3').hide();
         document.getElementById("ppdcThree").value = ("");
         document.getElementById("ppdcCategoryThree").value = ("PDC Category");
         document.getElementById("ppdcTitleThree").value = ("");
       }
     }
+    $("#pdcGeneral3Clippy").click(function copyPdc() {
+      var copyPdcText = getpp3All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral3Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling3Clippy").click(function copyPdc() {
+      var copyPdcText = getpp3All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling3Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech3Clippy").click(function copyPdc() {
+      var copyPdcText = getpp3All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech3Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
 
     $("#ppdcThreeButton").click(function() {
       getPpdc3();
@@ -2973,12 +3124,68 @@
           $("#pdcTech4").text(getpp4All.title)
           $('#pdcTechRow4').show();
         }
-      } else {
+      }  else if (getpp4All === null) {
+        $('#pdcGeneralRow4').hide();
+        $('#pdcBillingRow4').hide();
+        $('#pdcTechRow4').hide();
         document.getElementById("ppdcFour").value = ("");
         document.getElementById("ppdcCategoryFour").value = ("PDC Category");
         document.getElementById("ppdcTitleFour").value = ("");
       }
     }
+    $("#pdcGeneral4Clippy").click(function copyPdc() {
+      var copyPdcText = getpp4All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral4Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling4Clippy").click(function copyPdc() {
+      var copyPdcText = getpp4All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling4Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech4Clippy").click(function copyPdc() {
+      var copyPdcText = getpp4All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech4Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcFourButton").click(function() {
       getPpdc4();
@@ -2990,7 +3197,6 @@
         document.getElementById("ppdcFive").value = (getpp5All.text);
         document.getElementById("ppdcCategoryFive").value = (getpp5All.cat);
         document.getElementById("ppdcTitleFive").value = (getpp5All.title);
-        console.log(getpp5All.title);
         if (getpp5All.cat === "General") {
           $("#pdcGeneral5").text(getpp5All.title)
           $('#pdcGeneralRow5').show();
@@ -3003,12 +3209,68 @@
           $("#pdcTech5").text(getpp5All.title)
           $('#pdcTechRow5').show();
         }
-      } else {
+      }  else if (getpp5All === null) {
+        $('#pdcGeneralRow5').hide();
+        $('#pdcBillingRow5').hide();
+        $('#pdcTechRow5').hide();
         document.getElementById("ppdcFive").value = ("");
         document.getElementById("ppdcCategoryFive").value = ("PDC Category");
         document.getElementById("ppdcTitleFive").value = ("");
       }
     }
+    $("#pdcGeneral5Clippy").click(function copyPdc() {
+      var copyPdcText = getpp5All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral5Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling5Clippy").click(function copyPdc() {
+      var copyPdcText = getpp5All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling5Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech5Clippy").click(function copyPdc() {
+      var copyPdcText = getpp5All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech5Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcFiveButton").click(function() {
       getPpdc5();
@@ -3032,12 +3294,68 @@
           $("#pdcTech6").text(getpp6All.title)
           $('#pdcTechRow6').show();
         }
-      } else {
+      } else if (getpp6All === null) {
+        $('#pdcGeneralRow6').hide();
+        $('#pdcBillingRow6').hide();
+        $('#pdcTechRow6').hide();
         document.getElementById("ppdcSix").value = ("");
         document.getElementById("ppdcCategorySix").value = ("PDC Category");
         document.getElementById("ppdcTitleSix").value = ("");
       }
     }
+    $("#pdcGeneral6Clippy").click(function copyPdc() {
+      var copyPdcText = getpp6All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral6Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling6Clippy").click(function copyPdc() {
+      var copyPdcText = getpp6All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling6Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech6Clippy").click(function copyPdc() {
+      var copyPdcText = getpp6All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech6Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcSixButton").click(function() {
       getPpdc6();
@@ -3061,12 +3379,68 @@
           $("#pdcTech7").text(getpp7All.title)
           $('#pdcTechRow7').show();
         }
-      } else {
+      } else if (getpp7All === null) {
+        $('#pdcGeneralRow7').hide();
+        $('#pdcBillingRow7').hide();
+        $('#pdcTechRow7').hide();
         document.getElementById("ppdcSeven").value = ("");
         document.getElementById("ppdcCategorySeven").value = ("PDC Category");
         document.getElementById("ppdcTitleSeven").value = ("");
       }
     }
+    $("#pdcGeneral7Clippy").click(function copyPdc() {
+      var copyPdcText = getpp7All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral7Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling7Clippy").click(function copyPdc() {
+      var copyPdcText = getpp7All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling7Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech7Clippy").click(function copyPdc() {
+      var copyPdcText = getpp7All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech7Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcSevenButton").click(function() {
       getPpdc7();
@@ -3090,12 +3464,68 @@
           $("#pdcTech8").text(getpp8All.title)
           $('#pdcTechRow8').show();
         }
-      } else {
+      } else if (getpp8All === null) {
+        $('#pdcGeneralRow8').hide();
+        $('#pdcBillingRow8').hide();
+        $('#pdcTechRow8').hide();
         document.getElementById("ppdcEight").value = ("");
         document.getElementById("ppdcCategoryEight").value = ("PDC Category");
         document.getElementById("ppdcTitleEight").value = ("");
       }
     }
+    $("#pdcGeneral8Clippy").click(function copyPdc() {
+      var copyPdcText = getpp8All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral8Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling8Clippy").click(function copyPdc() {
+      var copyPdcText = getpp8All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling8Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech8Clippy").click(function copyPdc() {
+      var copyPdcText = getpp8All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech8Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcEightButton").click(function() {
       getPpdc8();
@@ -3119,12 +3549,68 @@
           $("#pdcTech9").text(getpp9All.title)
           $('#pdcTechRow9').show();
         }
-      } else {
+      } else if (getpp9All === null) {
+        $('#pdcGeneralRow9').hide();
+        $('#pdcBillingRow9').hide();
+        $('#pdcTechRow9').hide();
         document.getElementById("ppdcNine").value = ("");
         document.getElementById("ppdcCategoryNine").value = ("PDC Category");
         document.getElementById("ppdcTitleNine").value = ("");
       }
     }
+    $("#pdcGeneral9Clippy").click(function copyPdc() {
+      var copyPdcText = getpp9All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral9Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling9Clippy").click(function copyPdc() {
+      var copyPdcText = getpp9All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling9Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech9Clippy").click(function copyPdc() {
+      var copyPdcText = getpp9All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech9Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcNineButton").click(function() {
       getPpdc9();
@@ -3148,12 +3634,68 @@
           $("#pdcTech10").text(getpp10All.title)
           $('#pdcTechRow10').show();
         }
-      } else {
+      } else if (getpp10All === null) {
+        $('#pdcGeneralRow10').hide();
+        $('#pdcBillingRow10').hide();
+        $('#pdcTechRow10').hide();
         document.getElementById("ppdcTen").value = ("");
         document.getElementById("ppdcCategoryTen").value = ("PDC Category");
         document.getElementById("ppdcTitleTen").value = ("");
       }
     }
+    $("#pdcGeneral10Clippy").click(function copyPdc() {
+      var copyPdcText = getpp10All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcGeneral10Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcBilling10Clippy").click(function copyPdc() {
+      var copyPdcText = getpp10All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcBilling10Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
+
+    $("#pdcTech10Clippy").click(function copyPdc() {
+      var copyPdcText = getpp10All.text;
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+
+      dummy.setAttribute("id", "dummy_id");
+      document.getElementById("dummy_id").value = copyPdcText;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      var copiedAlert = document.getElementById("pdcTech10Clippy");
+      copiedAlert.innerHTML = "assignment_turned_in"
+      setTimeout(function() {
+        copiedAlert.innerHTML = "content_paste";
+      }, 1000)
+    });
 
     $("#ppdcTenButton").click(function() {
       getPpdc10();
