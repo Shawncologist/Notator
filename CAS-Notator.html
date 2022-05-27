@@ -443,14 +443,14 @@
                   <div class="input-group g-3">
                     <div class="input-group-text"><span id="icon-caller" class="material-icons grey-icons">local_phone</span></div>
                     <label for="inputCaller" class="visually-hidden">Caller Phone#</label>
-                    <input type="text" class="form-control theme-plain themed" id="inputCaller" placeholder="Caller Phone #">
+                    <input type="text" class="form-control theme-plain themed number-only" id="inputCaller" placeholder="Caller Phone #">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-msisdn" class="material-icons grey-icons">local_phone</span></div>
+                    <div class="input-group-text"><span id="icon-msisdn" class="material-icons grey-icons">content_paste</span></div>
                     <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
-                    <input type="text" class="form-control theme-plain themed" id="inputMsisdn" placeholder="Acct MSISDN">
+                    <input type="text" class="form-control theme-plain themed number-only" id="inputMsisdn" placeholder="Acct MSISDN">
                   </div>
                 </div>
               </div>
@@ -2355,6 +2355,36 @@
 
       return ptpVerbatim;
     }
+
+// Copy MSISDN button
+$("#icon-msisdn").click(function copyMsisdn() {
+  var copyMsisdn = document.getElementById("inputMsisdn").value;
+  var dummy = document.createElement("input");
+  document.body.appendChild(dummy);
+  dummy.setAttribute("id", "dummy_id");
+  document.getElementById("dummy_id").value = copyMsisdn;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+
+let copiedIconChange = document.getElementById("icon-msisdn");
+copiedIconChange.innerHTML = "assignment_turned_in"
+setTimeout(function() {
+  copiedIconChange.innerHTML = "content_paste";
+}, 1000)
+});
+
+// Remove crap from number Fields
+function onlyNumbers(nummy) {
+ const number = nummy.value.replace(/[^0-9]/g, '');
+ nummy.value = number;
+}
+
+document.querySelectorAll('.number-only').forEach( i => i.addEventListener('focusout', function (nummy) {
+  onlyNumbers(nummy.currentTarget);
+}))
+
+
 
     // assemble note output
     function formsCombine() {
