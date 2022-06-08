@@ -304,6 +304,10 @@
       margin: 10px 0px;
     }
 
+.help_center {
+  margin-left: 5px;
+}
+
     .pdc-hide {
       display: none;
     }
@@ -337,6 +341,10 @@
     .pdc-general {
       display: flex;
     }
+
+.reviews {
+  margin-top: 2px;
+}
 
     .vphidden {
       display: none;
@@ -434,21 +442,21 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-name" class="material-icons grey-icons">account_circle</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-name`, `#inputName`)"><span id="icon-name" class="material-icons grey-icons">account_circle</span></div>
                     <label for="inputName" class="visually-hidden"></label>
                     <input type="text" class="form-control theme-plain themed" id="inputName" placeholder="First and Last Name">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-caller" class="material-icons grey-icons">local_phone</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-caller`, `#inputCaller`)"><span id="icon-caller" class="material-icons grey-icons">phone_in_talk</span></div>
                     <label for="inputCaller" class="visually-hidden">Caller Phone#</label>
                     <input type="text" class="form-control theme-plain themed number-only" id="inputCaller" placeholder="Caller Phone #">
                   </div>
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-msisdn" class="material-icons grey-icons">content_paste</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-msisdn`, `#inputMsisdn`)"><span id="icon-msisdn" class="material-icons grey-icons">phone</span></div>
                     <label for="inputMsisdn" class="visually-hidden">MSISDN</label>
                     <input type="text" class="form-control theme-plain themed number-only" id="inputMsisdn" placeholder="Acct MSISDN">
                   </div>
@@ -482,7 +490,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-conversation" class="material-icons grey-icons">tag</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-conversation`, `#inputContactId`)"><span id="icon-conversation" class="material-icons grey-icons">tag</span></div>
                     <label for="inputContactId" class="visually-hidden">Contact ID</label>
                     <input type="text" class="form-control theme-plain themed" id="inputContactId" placeholder="Conversation ID">
                   </div>
@@ -570,7 +578,7 @@
               <div class="row temporary group-ptp">
                 <div class="col-lg-6">
                   <div class="input-group g-3" id="payAmount">
-                    <div class="input-group-text"><span id="icon-ptp-pay" class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-ptp-pay`, `#inputPayAmount`)"><span id="icon-ptp-pay" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputMsisdn" class="visually-hidden">Payment Amount</label>
                     <input type="text" class="form-control theme-plain themed" id="inputPayAmount" placeholder="Amount to be paid">
                   </div>
@@ -619,7 +627,7 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-rpc-remove" class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-rpc-remove`, `#inputOldPlanPrice`)"><span id="icon-rpc-remove" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputOldPlanPrice" class="visually-hidden">Removed Plan Price</label>
                     <input type="number" class="form-control theme-plain themed" id="inputOldPlanPrice" placeholder="Removing MRC">
                   </div>
@@ -627,7 +635,7 @@
 
                 <div class="col-lg-4">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-rpc-new-price" class="material-icons grey-icons">attach_money</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-rpc-new-price`, `#inputNewPlanPrice`)"><span id="icon-rpc-new-price" class="material-icons grey-icons">attach_money</span></div>
                     <label for="inputNewPlanPrice" class="visually-hidden">New Plan Price</label>
                     <input type="number" class="form-control theme-plain themed" id="inputNewPlanPrice" placeholder="New MRC">
                   </div>
@@ -643,14 +651,14 @@
                 </div>
                 <div class="col-sm-6 cdchidden temporary">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-contact-old-email" class="material-icons grey-icons">unsubscribe</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-contact-old-email`, `#cdcEmailOld`)"><span id="icon-contact-old-email" class="material-icons grey-icons">unsubscribe</span></div>
                     <label for="cdcEmailOld" class="visually-hidden">Old Email</label>
                     <input type="text" class="form-control theme-plain themed" id="cdcEmailOld" placeholder="Old Email">
                   </div>
                 </div>
                 <div class="col-sm-6 cdchidden temporary">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-contact-new-email" class="material-icons grey-icons">mark_email_read</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-contact-new-email`, `#cdcEmailNew`)"><span id="icon-contact-new-email" class="material-icons grey-icons">mark_email_read</span></div>
                     <label for="cdcEmailNew" class="visually-hidden">New Email</label>
                     <input type="text" class="form-control theme-plain themed" id="cdcEmailNew" placeholder="New Email">
                   </div>
@@ -770,14 +778,14 @@
                 </div>
                 <div class="col-sm-6 cdchiddenAddress cdchiddenAddress-inputs temporary">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-contact-old-address" class="material-icons grey-icons">wrong_location</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-contact-old-address`, `#cdcAddressOld`)"><span id="icon-contact-old-address" class="material-icons grey-icons">wrong_location</span></div>
                     <label for="cdcAddressOld" class="visually-hidden">Old Address</label>
                     <input type="text" class="form-control theme-plain themed" id="cdcAddressOld" placeholder="Old Address">
                   </div>
                 </div>
                 <div class="col-sm-6 cdchiddenAddress cdchiddenAddress-inputs temporary">
                   <div class="input-group g-3">
-                    <div class="input-group-text"><span id="icon-contact-new-address" class="material-icons grey-icons">add_location_alt</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-contact-new-address`, `#cdcAddressNew`)"><span id="icon-contact-new-address" class="material-icons grey-icons">add_location_alt</span></div>
                     <label for="cdcAddressNew" class="visually-hidden">New Address</label>
                     <input type="text" class="form-control theme-plain themed" id="cdcAddressNew" placeholder="New Address">
                   </div>
@@ -834,14 +842,14 @@
               <div class="row temporary group-rate-plan-change">
                 <div class="col-sm-6">
                   <div class="input-group g-3 ">
-                    <div class="input-group-text"><span id="icon-rpc-old" class="material-icons grey-icons">delete_forever</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-rpc-old`, `#rpcPlanOld`)"><span id="icon-rpc-old" class="material-icons grey-icons">delete_forever</span></div>
                     <label for="rpcPlanOld" class="visually-hidden">Old Rate Plan Name</label>
                     <input type="text" class="form-control theme-plain themed" id="rpcPlanOld" placeholder="Old Rate Plan Name">
                   </div>
                 </div>
                 <div class="col-sm-6">
                   <div class="input-group g-3 ">
-                    <div class="input-group-text"><span id="icon-rpc-new" class="material-icons grey-icons">fiber_new</span></div>
+                    <div class="input-group-text" onclick="copyFromIcon(`icon-rpc-new`, `#rpcPlanName`)"><span id="icon-rpc-new" class="material-icons grey-icons">fiber_new</span></div>
                     <label for="rpcPlanName" class="visually-hidden">New Rate Plan Name</label>
                     <input type="text" class="form-control theme-plain themed" id="rpcPlanName" placeholder="New Rate Plan Name">
                   </div>
@@ -1686,51 +1694,6 @@
 
   </section>
 
-  <section id="aboutNotator">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-4">
-          <h3>Instructions</h3>
-          <br>
-          <h4>General Note Taking</h4>
-          <ul>
-            <li>The "Combine & Copy" button will assemble your note and also copy it to the clipboard.</li>
-            <li>The "Role" menu in the footer will persist your choice as long as the Pipe tab is not closed.</li>
-            <li>Information entered in fields is saved if you use the footer menu to visit other pages and return.</li>
-            <li>Calendar fields, such as "Last Broken PTP", can use the calendar icon on the right of the field to select a date.</li>
-          </ul><br>
-          <h4>Note History</h4>
-          <ul>
-            <li>The "Reset" button is what triggers a note to be written to the History page.</li>
-            <li>The notes on the History page are only saved until the Pipe tab is closed or reset.</li>
-          </ul>
-          <h4>Pre-Defined Content</h4>
-          <ul>
-            <li>Currently only 10 custom pre-defined messages can be created. They are created on the "Personal Pre-Defined Content" page.</li>
-            <li>Messages are saved as long as you are using the same computer and browser</li>
-            <li>Strict browser settings that block the use of "Local Storage" will break the saved message feature</li>
-            <li>On the Notes page, when using pre-defined content:
-<ul>
-  <li>Click the clipboard to copy the saved message. This is to allow for using the field for content other than what goes in the note.</li>
-  <li>Selecting the checkbox will insert the saved message into the note.</li>
-  <li>The title is displayed, but the message body is what will be copied or inserted.</li>
-</ul>
-            </li>
-          </ul>
-
-        </div>
-        <div class="col-lg-1">
-
-
-        </div>
-        <div class="col-lg-4">
-          <h4>Change Log</h4>
-
-        </div>
-      </div>
-
-
-  </section>
   <!-- end calculators -->
 
   </div>
@@ -1753,7 +1716,6 @@
           <option selected value="Notes">Notes</option>
           <option value="History">History</option>
           <option value="Personal Pre-Defined Content">Pre-Defined Content</option>
-          <option value="About Notator">About Notator</option>
           <option value="Post-paid Calculator">Calculator: Post-paid</option>
           <option value="Pre-paid Calculator">Calculator: Pre-paid</option>
           <option value="Tax Calculator">Calculator: Taxes -NOT YET</option>
@@ -1782,11 +1744,12 @@
         <label class="form-check-label" for="pdcEnable"> Enable Pre-Defined Content</label>
       </div>
     </div>
-    <div class="col-md-1 d-flex justify-content-end"><a href="https://thepipe.sjrb.ca/docs/DOC-148007#jive_content_id_Feedback" target="_blank"><span class="material-icons grey-icons">reviews</span></a></div>
-    <div class="col-md-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
+        <div class="col-md-1 d-flex justify-content-end" id="d20" onclick="randomTwenty()">[ 00 ]</div>
     <div class="col-md-1 d-flex justify-content-end">
-      v.4.01.2
+      v.4.01.3
     </div>
+    <div class="col-md-1 d-flex justify-content-end"><a href="https://thepipe.sjrb.ca/docs/DOC-148007#jive_content_id_Feedback" target="_blank" title="Feedback"><span class="material-icons grey-icons reviews">reviews</span></a>
+    <a href="https://thepipe.sjrb.ca/docs/DOC-148007#jive_content_id_Instructions" target="_blank" title="Instructions"><span class="material-icons grey-icons help_center">help_center</span></a></div>
   </div>
   <!-- </nav> -->
 
@@ -1938,7 +1901,6 @@
         $('#postpaidCalculator').hide();
         $('#PersonalPdc').hide();
         $('#taxCalculator').hide();
-        $('#aboutNotator').hide();
       } else if ($(this).val() == "Post-paid Calculator") {
         $('#CAS').hide();
         $('#history').hide();
@@ -1946,7 +1908,6 @@
         $('#postpaidCalculator').show();
         $('#PersonalPdc').hide();
         $('#taxCalculator').hide();
-        $('#aboutNotator').hide();
       } else if ($(this).val() == "Pre-paid Calculator") {
         $('#CAS').hide();
         $('#history').hide();
@@ -1954,7 +1915,6 @@
         $('#postpaidCalculator').hide();
         $('#PersonalPdc').hide();
         $('#taxCalculator').hide();
-        $('#aboutNotator').hide();
       } else if ($(this).val() == "Personal Pre-Defined Content") {
         $('#CAS').hide();
         $('#history').hide();
@@ -1962,7 +1922,6 @@
         $('#postpaidCalculator').hide();
         $('#PersonalPdc').show();
         $('#taxCalculator').hide();
-        $('#aboutNotator').hide();
         getAllPpdc()
       } else if ($(this).val() == "Tax Calculator") {
         $('#CAS').hide();
@@ -1971,15 +1930,6 @@
         $('#postpaidCalculator').hide();
         $('#PersonalPdc').hide();
         $('#taxCalculator').show();
-        $('#aboutNotator').hide();
-      } else if ($(this).val() == "About Notator") {
-        $('#CAS').hide();
-        $('#history').hide();
-        $('#prepaidCalculator').hide();
-        $('#postpaidCalculator').hide();
-        $('#PersonalPdc').hide();
-        $('#taxCalculator').hide();
-        $('#aboutNotator').show();
       } else {
         $('#CAS').show();
         $('#history').hide();
@@ -2357,22 +2307,19 @@
     }
 
 // Copy MSISDN button
-$("#icon-msisdn").click(function copyMsisdn() {
-  var copyMsisdn = document.getElementById("inputMsisdn").value;
-  var dummy = document.createElement("input");
-  document.body.appendChild(dummy);
-  dummy.setAttribute("id", "dummy_id");
-  document.getElementById("dummy_id").value = copyMsisdn;
-  dummy.select();
-  document.execCommand("copy");
-  document.body.removeChild(dummy);
+function copyFromIcon(icon, field) {
+let copyContent = document.querySelector(field);
+copyContent.select();
+document.execCommand("copy");
 
-let copiedIconChange = document.getElementById("icon-msisdn");
+let copiedIconChange = document.getElementById(icon);
+let oldIcon = copiedIconChange.innerHTML;
 copiedIconChange.innerHTML = "assignment_turned_in"
 setTimeout(function() {
-  copiedIconChange.innerHTML = "content_paste";
+  copiedIconChange.innerHTML = oldIcon;
 }, 1000)
-});
+}
+
 
 // Remove crap from number Fields
 function onlyNumbers(nummy) {
